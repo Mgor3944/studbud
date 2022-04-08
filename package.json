@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mgor3944/studbud.git"
   },
-  "author": "",
+  "author": "Matt Gordon",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Mgor3944/studbud/issues"
   },
-  "homepage": "https://github.com/Mgor3944/studbud#readme"
+  "homepage": "https://github.com/Mgor3944/studbud#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
