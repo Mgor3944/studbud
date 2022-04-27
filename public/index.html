@@ -1,47 +1,93 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>StudBud</title>
+
+        <!-- Boxicons CDN Link -->
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
         <link href="style.css" rel="stylesheet" type="text/css" /> <!-- css file link-->
         <link href="scss/main.scss" rel="stylesheet" type="text/css" /> <!-- scss file link-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Repl.it Code Task</h1><br>
-        <form id="taskform">
-            <label for="task">Task:</label>
-            <input type="text" name="task" id="taskInput">
+        <!-- Vertical Navbar -->
+        <div class="sidebar">
 
-            <br>
-            <!-- Date input -->
-            <label for="dueDate">Due Date: </label>
-            <input type="date" name="dueDate" id="dueDateInput">
-            <br>
-            <!-- Time input -->
-            <label for="completionTime">Completion Time: </label>
-            <input type="time" name="completionTime" id="completionTimeInput">
+            <!-- Logo -->
+            <div class="logo-details">
+                <i class='bx bx-pulse icon'></i>
+                <div class="logo_name">StudBud</div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            
+            <!-- Navlist -->
+            <ul class="nav-list">
 
-            <br>
+                <!-- Searchbar -- Need to move to topnavbar
+                <li>
+                    <i class='bx bx-search'></i><input type="text" placeholder="Search...">
+                    <span class="tooltip">Search</span>
+                </li> -->
 
-            <label for="estimatedTime">Estimated completion time (in mins):</label>
-            <input type="number" name="estimatedTime" id="estimatedTimeInput">
-            <!-- Priority -->
-            <br>
+                <!-- Active Features -->
+                <li>
+                    <a href="#"><i class='bx bxs-dashboard active'></i><span class="links_name activeX">Dashboard</span></a>
+                    <span class="tooltip">Dashboard</span></li>
+                <li>
+                    <a href="#"><i class='bx bx-cube'></i><span class="links_name">Covey Quads</span></a>
+                    <span class="tooltip">Covey Quads</span>
+                </li>
 
-            <label for="priority">Task Priority:</label>
-            <select name="prority" id="priorityInput">
-            <option value="">Select one</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            </select>
+                <div class="line-split"></div>
 
-            <br>
+                <!-- Coming Soon -->
+                <li>
+                    <a href="#" class="coming-soon"><i class='bx bx-calendar'></i><span class="links_name">Projects</span></a>
+                    <span class="tooltip">Projects</span>
+                </li>
+                <li>
+                    <a href="#" class="coming-soon"><i class='bx bx-task'></i><span class="links_name">Tasks</span></a>
+                    <span class="tooltip">Tasks</span>
+                </li>
+                <li>
+                    <a href="#" class="coming-soon"><i class='bx bx-medal'></i><span class="links_name">Achievements</span></a>
+                    <span class="tooltip">Achievements</span>
+                </li>
 
-            <button type="submit">Submit</button>
-        </form>
-        <ul id="tasklist"></ul>
+                <div class="line-split"></div>
+
+                <!-- Active Features -->
+                <li>
+                    <a href="#"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a>
+                    <span class="tooltip">Settings</span>
+                </li>
+                <li>
+                    <a href="#"><i class='bx bx-log-out'></i><span class="links_name">Log Out</span></a>
+                    <span class="tooltip">Log Out</span>
+                </li>
+
+                <!-- Focus Mode Highlight --> 
+                <li class="focus_info">
+                    <div class="focus-details">
+                        <i class='bx bxs-zap f_icon' style='color:#de1592'></i>
+                        <h3 class="name">Focus</h3>
+                        <p class="tagline">Web designer web designer Web designer Web designer Web designer Web designer</p>
+                    </div>
+                    <i class='bx bxs-zap f_switch' style='color:#FFF' id="f_icon"></i>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Horizontal Navbar -->
+        <section class="home-section">
+            <div class="text">Dashboard</div>
+        </section>
+    
         <script src="script.js"></script> <!-- script file link-->
     </body>
 </html>
