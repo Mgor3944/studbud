@@ -1,12 +1,19 @@
 /* Google Font Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins" , sans-serif;
+    font-family: "Montserrat" , sans-serif;
 }
+
+/*---------*/
+/*---------*/
+/* SIDEBAR */
+/*---------*/
+/*---------*/
 
 .sidebar {
     position: fixed;
@@ -15,7 +22,7 @@
     height: 100%;
     width: 78px;
     background: #1F222C;
-    padding: 6px 14px;
+    padding: 12px 14px;
     z-index: 99;
     transition: all 0.5s ease;
 }
@@ -31,16 +38,20 @@
     margin: 10% !important;
 }
 
-.sidebar .active { /* changes colour of item when it is active */
-    color: #8e72d6;
+.sidebar .navlink .active { /* changes colour of item icon when it is active */
+    color: #8e72d6 !important;
 }
 
-.sidebar.open .activeX { /* changes colour of item name when it is active */
-    color: #8e72d6;
+.sidebar.open .navlink .activeX { /* changes colour of item name when it is active */
+    color: #8e72d6 !important;
+    font-weight: 600 !important;
 }
 
-.sidebar .active:hover { /* Ensures colour reverts to normal on hover */
-    color: #1F222C;
+.sidebar .navlink:hover .active,
+.sidebar .navlink:hover .activeX { /* allows active colour to return to normal on hover */
+    color: #1F222C !important;
+    font-weight: 400 !important;
+    transition: all 0.5s ease-in !important;
 }
 
 .sidebar .logo-details {
@@ -90,7 +101,7 @@
 }
 
 .sidebar i {
-    color: #fff;
+    color: #E6E6E6; /* Changes Navbar Icon Colour */
     height: 60px;
     min-width: 50px;
     font-size: 28px;
@@ -138,51 +149,12 @@
     display: none;
 }
 
-.sidebar li .ft { /* ft ~ focus tooltip */
+/*.sidebar li .ft {  ft ~ focus tooltip 
     background: #de1592;
     color: #FFF;
-}
+} */
 
-.sidebar input {
-    font-size: 15px;
-    color: #FFF;
-    font-weight: 400;
-    outline: none;
-    height: 50px;
-    width: 100%;
-    width: 50px;
-    border: none;
-    border-radius: 12px;
-    transition: all 0.5s ease;
-    background: #1d1b31;
-}
-
-.sidebar.open input {
-    padding: 0 20px 0 50px;
-    width: 100%;
-}
-
-.sidebar .bx-search {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 22px;
-    background: #1d1b31;
-    color: #FFF;
-}
-
-.sidebar.open .bx-search:hover {
-    background: #1d1b31;
-    color: #FFF;
-}
-
-.sidebar .bx-search:hover {
-    background: #FFF;
-    color: #1F222C;
-}
-
-.sidebar li a {
+.sidebar li .navlink {
     display: flex;
     height: 100%;
     width: 100%;
@@ -193,12 +165,12 @@
     background: #1F222C;
 }
 
-.sidebar li a:hover {
+.sidebar li .navlink:hover {
     background: #FFF;
 }
 
-.sidebar li a .links_name {
-    color: #fff;
+.sidebar li .navlink .links_name {
+    color: #E6E6E6; /* Changes Navbar Link Colour */
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
@@ -207,13 +179,13 @@
     transition: 0.4s;
 }
 
-.sidebar.open li a .links_name {
+.sidebar.open li .navlink .links_name {
     opacity: 1;
     pointer-events: auto;
 }
 
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
+.sidebar li .navlink:hover .links_name,
+.sidebar li .navlink:hover i {
     transition: all 0.5s ease;
     color: #1F222C;
 }
@@ -236,60 +208,62 @@
     background: #333948;
     transition: all 0.5s ease;
     overflow: hidden;
-  }
+}
 
-  .sidebar.open li.focus_info {
+.sidebar.open li.focus_info {
     margin: auto;
     position: relative;
     margin-top: 20px !important;
-    width: 200px;
-    height: 190px;
+    width: 190px;
+    height: 180px;
     border-radius: 10px;
-  }
+}
 
-  .sidebar.open li.focus_info #f_icon {
+.sidebar.open li.focus_info #f_icon {
     opacity: 0;
-  }
+}
 
-  .sidebar li .focus-details {
+.sidebar li .focus-details {
     display: inline-block;
     width: 100%;
     opacity: 0;
-    top: 10px;
-  }
+    margin-top: 2%;
+}
 
-  .sidebar.open li .focus-details {
+.sidebar.open li .focus-details {
     opacity: 1;
-  }
+}
 
-  .focus_content {
+.focus_content {
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .f_icon {
-      font-size: 25px !important;
-      display: inline-block;
-      width: 100%;
-      margin-bottom: 2%;
-  }
+.f_icon {
+    font-size: 25px !important;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1%;
+}
 
-  .sidebar li.focus_info .name,
-  .sidebar li.focus_info .tagline {
-    font-size: 15px;
+.sidebar li.focus_info .title,
+.sidebar li.focus_info .tagline {
+    font-size: 16px;
     font-weight: 600;
-    color: #fff;
+    color: #B5BCCE;
     padding: 2%;
     text-align: center;
 
-  }
-  .sidebar li.focus_info .tagline {
+}
+.sidebar li.focus_info .tagline {
     font-size: 12px;
     font-weight: 400;
-    padding-top: 8px;
-  }
+    line-height: 17px;
+    font-weight: 400;
+    padding-top: 10px;
+}
 
-  .sidebar .focus_info #f_icon {
+.sidebar .focus_info #f_icon {
     position: absolute;
     top: 50%;
     right: 0;
@@ -301,14 +275,20 @@
     border-radius: 0px;
     transition: all 0.5s ease;
     cursor: pointer !important;
-  }
+}
 
-  .sidebar.open .focus_info #f_icon {
+.sidebar.open .focus_info #f_icon {
     width: 50px;
     background: none;
-  }
+}
 
-.home-section {
+/*-------------------*/
+/*-------------------*/
+/* DASHBOARD CONTENT */
+/*-------------------*/
+/*-------------------*/
+
+.dashboard {
     position: relative;
     background: #2B303E;
     min-height: 100vh;
@@ -317,19 +297,489 @@
     width: calc(100% - 78px);
     transition: all 0.5s ease;
     z-index: 2;
+
+    /* border: 2px orange solid; */
 }
 
-.sidebar.open ~ .home-section {
+.sidebar.open ~ .dashboard { /* Enables dashboard to move left/right with navbar slider */
     left: 250px;
     width: calc(100% - 250px);
 }
 
-.home-section .text {
-    display: inline-block;
+/*------------*/
+/*------------*/
+/* TOP NAVBAR */
+/*------------*/
+/*------------*/
+
+.dashboard .topbar {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 5px;
+    padding-top: 10px;
+    /* border: 2px pink solid; */
+}
+
+.dashboard .top_heading {
+    /* border: 2px violet solid; */
+    width: 35%;
+}
+
+.dashboard .topbar .top-tite {
     color: #E6E6E6;
-    font-size: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 25px;
+    margin-top: 18px;
+    margin-bottom: 5px;
+}
+
+.dashboard .topbar .top-date {
+    display: flex;
+}
+
+.dashboard .topbar .top-date #current_day,
+.dashboard .topbar .top-date #current_date{
+    color: #8e72d6;
+    font-size: 13px;
     font-weight: 500;
-    margin: 18px
+    margin-left: 25px;
+    margin-bottom: 12px;
+}
+
+.dashboard .topbar .top-date #current_date {
+    color: #939AAC;
+    margin-left: 6px;
+}
+
+.dashboard .top-icons-help {
+    display: flex;
+    /* border: 2px green solid; */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 17px;
+}
+
+.dashboard .top-icons-help .tih-link .feedback-title,
+.dashboard .top-icons-help .tih-link .help-title {
+    position: relative;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #E6E6E6;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.dashboard .top-icons-help .tih-link .help-title {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.dashboard .top-icons-help .tih-link .feedback-title:hover,
+.dashboard .top-icons-help .tih-link .help-title:hover {
+    color: #f4f4f4;
+    transition: 0.2s ease;
+}
+
+.dashboard .top-icons-help .tih-link {
+    text-decoration: none;
+}
+
+.dashboard .top-icons-help i {
+    position: relative;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #E6E6E6; /* Changes Navbar Icon Colour */
+    min-width: 45px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.dashboard .top-searchbar {
+    /* border: 2px blue solid; */
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 23%;
+    padding-top: 17px;
+}
+
+.dashboard .top-searchbar input {
+    font-size: 13px;
+    color: rgb(230, 230, 230);
+    font-weight: 400;
+    outline: none;
+    height: 55px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 0px 65px 0px 20px;
+    transition: all 0.5s ease;
+    background: #4B526A;
+}
+
+.dashboard .top-searchbar input::placeholder {
+    color: rgb(230, 230, 230, 0.5);
+    font-weight: 300;
+}
+
+.dashboard .top-searchbar #searchbar {
+    position: absolute;
+    top: 65%;
+    right: 0;
+    transform: translateY(-55%);
+    width: 40px;
+    height: 50px;
+    font-size: 22px;
+    line-height: 50px;
+    border-radius: 0 12px 12px 0;
+    background: #4B526A;
+    color: rgba(152, 156, 168, 0.5);
+}
+
+.dashboard .top-account {
+    display: flex;
+    /* border: 2px green solid; */
+    padding-left: 35px;
+    padding-right: 20px;
+    padding-top: 17px;
+    width: 24%;
+}
+
+.dashboard .top-account .account-wrapper {
+    /* border: 2px yellow solid; */
+    display: flex;
+    width: 100%;
+}
+
+.dashboard .top-account .account-wrapper #user_img {
+    position: relative;
+    top: 50%;
+    left: 13px;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    opacity: 0.7;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(189,163,240,0.8); 
+    box-shadow: 0px 0px 10px 2px rgba(189,163,240,0.8);
+}
+
+.dashboard .top-account .account-wrapper .account-details {
+    position: relative;
+    top: 50%;
+    left: 35px;
+    transform: translateY(-50%);
+}
+
+.dashboard .top-account .account-wrapper .account-details .name {
+    color: #E6E6E6;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 8px;
+}
+
+.dashboard .top-account .account-wrapper .account-details .occupation {
+    color: #B5BCCE;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.dashboard .top-account .account-wrapper i {
+    position: relative;
+    top: 50%;
+    left: 45px;
+    transform: translateY(-50%);
+    color: #E6E6E6; /* Changes Navbar Icon Colour */
+    height: 25px;
+    min-width: 40px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/*----------*/
+/*----------*/
+/* ELEMENTS */
+/*----------*/
+/*----------*/
+
+.dashboard .elements-tr {
+    display: flex;
+    /* border: 2px pink solid; */
+}
+
+.dashboard .elements-br {
+    display: flex;
+    /* border: 2px pink solid; */
+}
+
+/*--------------*/
+/*--------------*/
+/* WEEKLY TASKS */
+/*--------------*/
+/*--------------*/
+
+.dashboard .elements-tr .weekly-tasks {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    /* border: 2px pink solid; */
+    width: 46%;
+    height: 350px;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper {
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 20px;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper {
+    display: flex;
+    width: 100%;
+    height: 11.5%;
+    /* border: 1px pink solid; */
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .title {
+    width: 70%;
+    color: #E6E6E6;
+    font-weight: 600;
+    font-size: 17px;
+    margin-top: 5px;
+    /* background-color: red; */
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .button {
+    display: flex;
+    width: 30%;
+    /* border: 2px pink solid; */
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .button .tag-text {
+    background: #333948;
+    color: #E6E6E6;
+    width: 100%;
+    padding: 7px;
+    padding-left: 15px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .button .tag-text .btn-text {
+    font-family: "Nunito" , sans-serif;
+    font-size: 12px;
+}
+
+/*---------------*/
+/*---------------*/
+/* POMODOR TIMER */
+/*---------------*/
+/*---------------*/
+
+.dashboard .elements-tr .pom-timer {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    /* border: 2px pink solid; */
+    width: 29%;
+    height: 350px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 97%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 20px;
+}
+
+/*----------*/
+/*----------*/
+/* CALENDER */
+/*----------*/
+/*----------*/
+
+.dashboard .elements-tr .calender {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+    /* border: 2px pink solid; */
+    width: 25%;
+    height: 350px;
+}
+
+.dashboard .elements-tr .calender .cal-wrapper {
+    display: inline-block; /* allows divs to display underneath eachother */ 
+    width: 100%;
+    height: 95%;
+    /* border: 2px pink solid; */
+    border-radius: 20px;
+}
+
+.dashboard .elements-tr .calender .cal-wrapper .cal-box {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 89%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 20px;
+}
+
+.dashboard .elements-tr .calender .cal-wrapper .cal-text {
+    padding-left: 20px;
+    padding-top: 11px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 13%;
+    /* border: 2px pink solid; */
+    border-radius: 20px;
+}
+
+/*--------------*/
+/*--------------*/
+/* ACHIEVEMENTS */
+/*--------------*/
+/*--------------*/
+
+.dashboard .elements-br .achievements {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    /* border: 2px pink solid; */
+    width: 18%;
+    height: 350px;
+}
+
+.dashboard .elements-br .achievements .ach-wrapper {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 75%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 20px;
+}
+
+/*--------------*/
+/*--------------*/
+/* MUSIC PLAYER */
+/*--------------*/
+/*--------------*/
+
+.dashboard .elements-br .music-player {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    /* border: 2px pink solid; */
+    width: 20%;
+    height: 350px;
+}
+
+.dashboard .elements-br .music-player .mus-wrapper {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    /* border: 2px pink solid; */
+    background: #333948;
+    border-radius: 20px;
+}
+
+/*---------------*/
+/*---------------*/
+/* ACRONYM MAKER */
+/*---------------*/
+/*---------------*/
+
+.dashboard .elements-br .acronyms {
+    display: flesh; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 20px !important;
+    padding-right: 10px;
+    /* border: 2px pink solid; */
+    width: 22%;
+    height: 350px;
+}
+
+.dashboard .elements-br .acronyms .acr-wrapper {
+    display: inline-block; /* allows divs to display next to eachother */ 
+    width: 100%;
+    height: 100%;
+    /* border: 2px pink solid; */
+    border-radius: 20px;
+}
+
+.dashboard .elements-br .acronyms .acr-wrapper .acr-text {
+    padding-left: 10px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 10%;
+    /* border: 2px pink solid; */
+    border-radius: 20px;
+    color: #B5BCCE;
+}
+
+.dashboard .elements-br .acronyms .acr-wrapper .acr-box {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 87%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 20px;
+}
+
+.dashboard .elements-br .acronyms .acr-wrapper .acr-text .title {
+    font-size: 12px;
+}
+
+/*------------------*/
+/*------------------*/
+/* PROJECT OVERVIEW */
+/*------------------*/
+/*------------------*/
+
+.dashboard .elements-br .project-overview {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    padding-right: 25px;
+    /* border: 2px pink solid; */
+    width: 40%;
+    height: 350px;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper {
+    display: flex; /* allows divs to display next to eachother */ 
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    /* border: 2px pink solid; */
+    background: #3C4253;
+    border-radius: 15px;
 }
 
 @media (max-width: 420px) { /* ensures tooltil is only displayed when width is smaller than 420px */

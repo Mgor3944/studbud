@@ -1,2 +1,15 @@
+$purple: #8e72d6;
+$pink: hotpink;
+$darkBlue: #1F222C;
+$blue: #2B303E;
 
+$theme-colours: (
+    purple: $purple,
+    pink: $pink,
+    darkBlue: $darkBlue,
+    blue: $blue,
+);
 
+@function theme-colour($key) {
+    @return map-get($theme-colours, $key);
+}
