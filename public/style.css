@@ -1,14 +1,3 @@
-/* Google Font Link */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat" , sans-serif;
-}
-
 /*---------*/
 /*---------*/
 /* SIDEBAR */
@@ -255,6 +244,7 @@
     text-align: center;
 
 }
+
 .sidebar li.focus_info .tagline {
     font-size: 12px;
     font-weight: 400;
@@ -341,7 +331,7 @@
 .dashboard .topbar .top-date #current_date{
     color: #8e72d6;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 25px;
     margin-bottom: 12px;
 }
@@ -356,7 +346,7 @@
     /* border: 2px green solid; */
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 17px;
+    padding-top: 15px;
 }
 
 .dashboard .top-icons-help .tih-link .feedback-title,
@@ -403,7 +393,7 @@
     justify-content: center;
     align-items: center;
     width: 23%;
-    padding-top: 17px;
+    padding-top: 15px;
 }
 
 .dashboard .top-searchbar input {
@@ -444,7 +434,7 @@
     /* border: 2px green solid; */
     padding-left: 35px;
     padding-right: 20px;
-    padding-top: 17px;
+    padding-top: 15px;
     width: 24%;
 }
 
@@ -529,7 +519,6 @@
     padding-left: 25px;
     padding-bottom: 10px;
     padding-right: 10px;
-    /* border: 2px pink solid; */
     width: 46%;
     height: 350px;
 }
@@ -539,7 +528,6 @@
     padding: 20px;
     width: 100%;
     height: 100%;
-    /* border: 2px pink solid; */
     background: #3C4253;
     border-radius: 20px;
 }
@@ -557,7 +545,6 @@
     font-weight: 600;
     font-size: 17px;
     margin-top: 5px;
-    /* background-color: red; */
 }
 
 .dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .button {
@@ -592,7 +579,6 @@
     padding-left: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
-    /* border: 2px pink solid; */
     width: 29%;
     height: 350px;
 }
@@ -602,7 +588,6 @@
     position: relative;
     width: 100%;
     height: 97%;
-    /* border: 2px pink solid; */
     background: #3C4253;
     border-radius: 20px;
 }
@@ -724,24 +709,21 @@
     padding-left: 10px;
     padding-bottom: 10px;
     padding-right: 25px;
-    /* border: 2px pink solid; */
     width: 25%;
     height: 350px;
 }
 
-.dashboard .elements-tr .cal-container .cal-wrapper {
+.cal-container .cal-wrapper {
     display: inline-block;
     width: 100%;
     height: 95%;
-    /* border: 2px pink solid; */
     border-radius: 20px;
 }
 
-.dashboard .elements-tr .cal-container .cal-wrapper .cal-box {
+.cal-container .cal-wrapper .cal-box {
     display: inline-block; 
     width: 100%;
-    height: 89%;
-    /* border: 2px pink solid; */
+    height: 88%;
     background: #3C4253;
     border-radius: 20px;
 }
@@ -763,71 +745,115 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    font-weight: 300;
+    font-weight: 400;
     /* border: 2px orange solid; */
 }
 
-.cal-top .nav {
+.cal-top .month-year #currMonth {
+    padding-right: 3%;
+}
+
+.cal-top .left-arrow-cal,
+.cal-top .right-arrow-cal {
     width: 10%;
     font-size: 22px;
     color: #FFFFFF;
     /* border: 2px red solid; */
 }
 
-.calender {
+.cal-bottom {
     width: 100%;
-    height: 76.5%;
-    padding: 20px;
+    height: 77%;
     background: #333948;
     border-radius: 0px 0px 20px 20px;
+    /* border: 2px blue solid; */
+}
+
+.cal-bottom .calendar-week-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    color: white;
+    font-size: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
     /* border: 2px pink solid; */
 }
 
-.calendar-week-day {
-    display: grid;
-    grid-template-columns: repeat(7, 16%);
-    /* align-items: center; vertically aligns items */
-    height: 40px;
-    font-weight: 300;
-    color: #FFFFFF;
-    /* border: 2px pink solid; */
+.cal-bottom .cal-days {
+    width: 100%;
+    height: 80%;
+    overflow: hidden !important;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    color: #CDD1D8;
+    font-size: 13px;
+    padding-top: 18px;
+    padding-left: 9px;
+    padding-right: 9px;
+    /* border: 2px orange solid; */
 }
 
-.calendar-week-day div {
+.cal-bottom .cal-days .days {
     display: grid;
+    grid-template-columns: repeat(7, 14.3%);
+    grid-template-rows: repeat(5, 36%);
 }
 
-.calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    color: var(--color-txt);
+.today {
+    height: 20px;
+    color: #BDA3F0;
+    font-weight: 700;
 }
 
-.calendar-days div {
-    width: 50px;
-    height: 50px;
+#prev-month-days, #next-month-days {
+    opacity: 0.35;
+}
+
+.cal-container .cal-wrapper .cal-legend {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px;
-    position: relative;
-    cursor: pointer;
-    animation: to-top 1s forwards;
-    /* border-radius: 50%; */
-}
-
-.dashboard .elements-tr .cal-container .cal-wrapper .cal-text {
-    padding-left: 20px;
-    padding-top: 11px;
-    margin-bottom: 10px;
+    padding-left: 8px;
+    padding-top: 10px;
     width: 100%;
     height: 13%;
     /* border: 2px pink solid; */
     color: #B5BCCE;
-    font-size: 13px;
-    font-weight: 500;
     border-radius: 20px;
+}
+
+.cal-legend .title {
+    padding-right: 7%;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.cal-legend .currDateKey,
+.cal-legend .upcomDateKey {
+    display: flex;
+    padding-right: 3%;
+}
+
+.cal-legend .currDateKey .subtitle,
+.cal-legend .upcomDateKey .subtitle {
+    font-size: 11px;
+    width: 85px;
+    padding-top: 1px;
+}
+
+.cal-legend .upcomDateKey .subtitle {
+    width: 70px;
+}
+
+.cal-legend .currDateKey .key,
+.cal-legend .upcomDateKey .key {
+    font-size: 15px;
+    padding-right: 8%;
 }
 
 /*--------------*/
@@ -869,7 +895,6 @@
     padding-left: 10px;
     padding-bottom: 20px;
     padding-right: 10px;
-    /* border: 2px pink solid; */
     width: 20%;
     height: 350px;
 }
@@ -879,7 +904,6 @@
     padding: 20px;
     width: 100%;
     height: 100%;
-    /* border: 2px pink solid; */
     background: #333948;
     border-radius: 20px;
 }
@@ -914,7 +938,6 @@
     padding-left: 10px;
     padding-bottom: 20px !important;
     padding-right: 10px;
-    /* border: 2px pink solid; */
     width: 22%;
     height: 350px;
 }
@@ -923,7 +946,6 @@
     display: inline-block; /* allows divs to display next to eachother */ 
     width: 100%;
     height: 100%;
-    /* border: 2px pink solid; */
     border-radius: 20px;
 }
 
@@ -964,7 +986,6 @@
     padding-left: 10px;
     padding-bottom: 20px;
     padding-right: 25px;
-    /* border: 2px pink solid; */
     width: 40%;
     height: 350px;
 }
@@ -974,7 +995,6 @@
     padding: 20px;
     width: 100%;
     height: 100%;
-    /* border: 2px pink solid; */
     background: #3C4253;
     border-radius: 15px;
 }

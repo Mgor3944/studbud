@@ -154,13 +154,16 @@
                 <!-- Calender -->
                 <section class="cal-container">
                     <div class="cal-wrapper">
-                        <div class="cal-box">
+                        <div class="cal-box"> <!-- Actual Calender Box -->
                             <div class="cal-top">
-                                <a href="#" class="nav"><i class='bx bx-chevron-left'></i></a>
-                                <div class="month-year"><div id="curr-m-y"></div></div>
-                                <a href="#" class="nav"><i class='bx bx-chevron-right'></i></a>
+                                <a href="#" class="left-arrow-cal"><i class='bx bx-chevron-left'></i></a>
+                                <div class="month-year">
+                                    <div id="currMonth"></div>
+                                    <div id="currYear"></div>
+                                </div>
+                                <a href="#" class="right-arrow-cal"><i class='bx bx-chevron-right'></i></a>
                             </div>
-                            <div class="calender">
+                            <div class="cal-bottom">
                                 <div class="calendar-week-day">
                                     <div>S</div>
                                     <div>M</div>
@@ -170,10 +173,26 @@
                                     <div>F</div>
                                     <div>S</div>
                                 </div>
-                                <div class="calendar-days"></div>
+                                <div class="cal-days">
+                                    <div class="days" id="days">
+                                        <div id="prev-month-days"></div>
+                                        <div></div>
+                                        <div id="next-month-days"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="cal-text"><p class="title">Legend: </p></div>
+                        <div class="cal-legend">
+                            <p class="title">Legend</p>
+                            <div class="currDateKey">
+                                <i class='bx bxs-square-rounded key' style='color: #BDA3F0'></i>
+                                <p class="subtitle">Current Date</p>
+                            </div>
+                            <div class="upcomDateKey">
+                                <i class='bx bxs-square-rounded key' style='color: rgb(80, 233, 192, 0.7)'></i>
+                                <p class="subtitle">Due Dates</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </section>

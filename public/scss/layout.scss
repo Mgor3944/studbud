@@ -1,15 +1,16 @@
-$purple: #8e72d6;
-$pink: hotpink;
-$darkBlue: #1F222C;
-$blue: #2B303E;
-
-$theme-colours: (
-    purple: $purple,
-    pink: $pink,
-    darkBlue: $darkBlue,
-    blue: $blue,
-);
-
-@function theme-colour($key) {
-    @return map-get($theme-colours, $key);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat" , sans-serif;
 }
+
+// .weekly-tasks, .pom-timer, .cal-container, 
+// .achievements, .music-player, .acronyms, .project-overview { // dev feature ~ shows dashboard boxes highlight when building site  
+//     border: 1px pink solid;
+// }
+
+// .task-wrapper, .pom-wrapper, .cal-wrapper, 
+// .ach-wrapper, .mus-wrapper, .acr-wrapper, .proj-wrapper { // dev feature ~ shows dashboard boxes highlight when building site  
+//     border: 1px red solid;
+// }
