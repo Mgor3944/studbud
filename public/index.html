@@ -126,35 +126,59 @@
                 <!-- Pomodoro Timer -->
                 <section class="pom-timer">
                     <div class="pom-wrapper">
-                        <div class="headline">
-                            <div class="title">
+                        <div class="head-wrapper">
+                            <div class="text-box">
                                 <h3 class="title">Pomodoro</h3>
                                 <p class="tagline">Most Recent</p>
                             </div>
-                            <a href="#"><i class='bx bxs-bell' style='color: #8e72d6'></i></a>
-                            <a href="#"><i class='bx bxs-bell' style='color: #8e72d6'></i></a>
-                            <a href="#"><i class='bx bxs-bell' style='color: #8e72d6'></i></a>
+                            <div class="icon-box">
+                                <a href="#" class="pom-stop"><img id="button" src="../assets/pom_reset.svg" alt=""></a>
+                                <a href="#" class="pom-play"><img id="button" src="../assets/pom_play.svg" alt=""></a>
+                                <a href="#" class="pom-pause"><img id="button" src="../assets/pom_stop.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="head-footer">
+                            <div class="wrapper">
+                                <div class="con-left"><p class="l-text">45 Min Focus</p></div>
+                                <div class="toggle">
+                                    <div class="padding">
+                                        <a href="#" class="pom-stop"><img id="toggle-right" src="../assets/toggle_right.svg" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="con-right"><p class="r-text">15 Min Break</p></div>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Calender -->
-                <section class="calender">
+                <section class="cal-container">
                     <div class="cal-wrapper">
                         <div class="cal-box">
-                            <div class="headline">
-                                <h3 class="title">Calender</h3>
-                                <button class="taskBtn">Create a New Task</button>
+                            <div class="cal-top">
+                                <a href="#" class="nav"><i class='bx bx-chevron-left'></i></a>
+                                <div class="month-year"><div id="curr-m-y"></div></div>
+                                <a href="#" class="nav"><i class='bx bx-chevron-right'></i></a>
+                            </div>
+                            <div class="calender">
+                                <div class="calendar-week-day">
+                                    <div>S</div>
+                                    <div>M</div>
+                                    <div>T</div>
+                                    <div>W</div>
+                                    <div>T</div>
+                                    <div>F</div>
+                                    <div>S</div>
+                                </div>
+                                <div class="calendar-days"></div>
                             </div>
                         </div>
                         <div class="cal-text"><p class="title">Legend: </p></div>
                     </div>
                 </section>
-
             </section>
 
             <section class="elements-br">
-
                 <!-- Achievements -->
                 <section class="achievements">
                     <div class="ach-wrapper">
@@ -170,7 +194,9 @@
                     <div class="mus-wrapper">
                         <div class="headline">
                             <h3 class="title">Top Songs</h3>
-                            <button class="taskBtn">Create a New Task</button>
+                            <div class="button">
+                                <a href="#"><img id="button" src="../assets/plus_button_music.svg" alt=""></a>
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -28,7 +28,7 @@
 }
 
 .sidebar.open {
-    width: 250px;
+    width: 220px;
 }
 
 .line-split {
@@ -213,8 +213,8 @@
 .sidebar.open li.focus_info {
     margin: auto;
     position: relative;
-    margin-top: 20px !important;
-    width: 190px;
+    margin-top: 25px !important;
+    width: 170px;
     height: 180px;
     border-radius: 10px;
 }
@@ -302,8 +302,8 @@
 }
 
 .sidebar.open ~ .dashboard { /* Enables dashboard to move left/right with navbar slider */
-    left: 250px;
-    width: calc(100% - 250px);
+    left: 220px;
+    width: calc(100% - 220px);
 }
 
 /*------------*/
@@ -459,8 +459,8 @@
     top: 50%;
     left: 13px;
     transform: translateY(-50%);
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     opacity: 0.7;
     -webkit-box-shadow: 0px 0px 10px 2px rgba(189,163,240,0.8); 
@@ -524,6 +524,7 @@
 
 .dashboard .elements-tr .weekly-tasks {
     display: flex; /* allows divs to display next to eachother */ 
+    flex-direction: row-reverse;
     padding-top: 20px;
     padding-left: 25px;
     padding-bottom: 10px;
@@ -597,13 +598,118 @@
 }
 
 .dashboard .elements-tr .pom-timer .pom-wrapper {
-    display: flex; /* allows divs to display next to eachother */ 
-    padding: 20px;
+    display: inline-block; /* allows divs to display next to eachother */ 
+    position: relative;
     width: 100%;
     height: 97%;
     /* border: 2px pink solid; */
     background: #3C4253;
     border-radius: 20px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper
+.head-wrapper {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    /* border: 1px pink solid; */
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper
+.head-wrapper .text-box {
+    padding: 20px;
+    width: 50%;
+    /* background: purple; */
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper
+.head-wrapper .text-box .title {
+    color: #E6E6E6;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper
+.head-wrapper .text-box .tagline {
+    color: #B9B6B6;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper
+.head-wrapper .icon-box {
+    margin-top: 14px;
+    width: 50%;
+    text-align: center;
+}
+
+.head-footer {
+    position: absolute;
+    bottom: 0px;
+    background: #333948;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.head-footer .wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.head-footer .wrapper .con-left {
+    width: 37%; 
+    border-radius: 0px 0px 0px 20px;
+    /* background: red; */
+}
+
+.con-left .l-text {
+    padding: 16px;
+    font-size: 13px;
+    text-align: center;
+    color: rgb(80, 233, 192, 0.7);
+}
+
+.head-footer .wrapper .toggle {
+    width: 26%;
+    height: 48px;
+    /* background: green; */
+    position: relative;
+}
+
+.head-footer .wrapper .toggle .padding {
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+
+    width: 80%;
+    height: 80%;
+    background-color: #2B303E;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.head-footer .wrapper .toggle .padding #toggle-right {
+    margin: 0;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.head-footer .wrapper .con-right {
+    width: 37%; 
+    border-radius: 0px 0px 20px 0px;
+    /* background: orange; */
+}
+
+.con-right .r-text {
+    padding: 16px;
+    font-size: 13px;
+    text-align: center;
+    color: #E6E6E6;
 }
 
 /*----------*/
@@ -612,7 +718,7 @@
 /*----------*/
 /*----------*/
 
-.dashboard .elements-tr .calender {
+.dashboard .elements-tr .cal-container {
     display: flex; /* allows divs to display next to eachother */ 
     padding-top: 20px;
     padding-left: 10px;
@@ -623,17 +729,16 @@
     height: 350px;
 }
 
-.dashboard .elements-tr .calender .cal-wrapper {
-    display: inline-block; /* allows divs to display underneath eachother */ 
+.dashboard .elements-tr .cal-container .cal-wrapper {
+    display: inline-block;
     width: 100%;
     height: 95%;
     /* border: 2px pink solid; */
     border-radius: 20px;
 }
 
-.dashboard .elements-tr .calender .cal-wrapper .cal-box {
-    display: flex; /* allows divs to display next to eachother */ 
-    padding: 20px;
+.dashboard .elements-tr .cal-container .cal-wrapper .cal-box {
+    display: inline-block; 
     width: 100%;
     height: 89%;
     /* border: 2px pink solid; */
@@ -641,13 +746,87 @@
     border-radius: 20px;
 }
 
-.dashboard .elements-tr .calender .cal-wrapper .cal-text {
+.cal-top {
+    display: flex;
+    background: #3C4253;
+    color: #FFFFFF;
+    padding: 20px;
+    height: 23.5%;
+    border-radius: 20px 20px 0px 0px;
+    /* border: 2px orange solid; */
+}
+
+.cal-top .month-year {
+    display: flex;
+    width: 80%;
+    margin-top: 2px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+    /* border: 2px orange solid; */
+}
+
+.cal-top .nav {
+    width: 10%;
+    font-size: 22px;
+    color: #FFFFFF;
+    /* border: 2px red solid; */
+}
+
+.calender {
+    width: 100%;
+    height: 76.5%;
+    padding: 20px;
+    background: #333948;
+    border-radius: 0px 0px 20px 20px;
+    /* border: 2px pink solid; */
+}
+
+.calendar-week-day {
+    display: grid;
+    grid-template-columns: repeat(7, 16%);
+    /* align-items: center; vertically aligns items */
+    height: 40px;
+    font-weight: 300;
+    color: #FFFFFF;
+    /* border: 2px pink solid; */
+}
+
+.calendar-week-day div {
+    display: grid;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: var(--color-txt);
+}
+
+.calendar-days div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+    /* border-radius: 50%; */
+}
+
+.dashboard .elements-tr .cal-container .cal-wrapper .cal-text {
     padding-left: 20px;
     padding-top: 11px;
     margin-bottom: 10px;
     width: 100%;
     height: 13%;
     /* border: 2px pink solid; */
+    color: #B5BCCE;
+    font-size: 13px;
+    font-weight: 500;
     border-radius: 20px;
 }
 
@@ -703,6 +882,24 @@
     /* border: 2px pink solid; */
     background: #333948;
     border-radius: 20px;
+}
+
+.dashboard .elements-br .music-player .mus-wrapper .headline {
+    display: flex;
+    height: 20%;
+    width: 100%;
+}
+
+.dashboard .elements-br .music-player .mus-wrapper .headline .title {
+    width: 85%;
+    color: #E6E6E6;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.dashboard .elements-br .music-player .mus-wrapper .headline .button {
+    width: 15%;
 }
 
 /*---------------*/
