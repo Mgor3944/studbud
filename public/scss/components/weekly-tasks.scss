@@ -1,0 +1,67 @@
+/*--------------*/
+/*--------------*/
+/* WEEKLY TASKS */
+/*--------------*/
+/*--------------*/
+
+.dashboard {
+    .elements-tr { // top row of dashboard
+        .weekly-tasks { // weekly tasks box outer
+            display: flex; 
+            flex-direction: row-reverse;
+            padding-top: 20px;
+            padding-left: 25px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+            width: 46%;
+            height: 350px;
+
+            .task-wrapper { // weekly tasks box 
+                display: flex;
+                padding: 20px;
+                width: 100%;
+                height: 100%;
+                background: #3C4253;
+                border-radius: 20px;
+
+                .head-wrapper { // tasks heading box
+                    display: flex;
+                    width: 100%;
+
+                    .title { // heading title
+                        width: 70%;
+                        color: #E6E6E6;
+                        font-weight: 600;
+                        font-size: 17px;
+                        margin-top: 5px;
+                    }
+
+                    .button { // heading button
+                        display: flex;
+                        width: 30%;
+
+                        .btn-box { // button box
+                            background: #333948;
+                            color: #E6E6E6;
+                            width: 100%;
+                            height: 32px;
+                            padding: 7px;
+                            padding-left: 15px;
+                            border-radius: 3px 0px 0px 3px;
+
+                            .btn-text { // button text
+                                font-family: "Nunito" , sans-serif;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.sidebar.open ~ .dashboard .task-wrapper .head-wrapper .button { /* resizes font size when dash is open */
+    width: 35%;
+}
