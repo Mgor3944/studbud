@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56.131" height="29.18" viewBox="0 0 56.131 29.18">
+  <defs>
+    <filter id="Shape_35_copy" x="0" y="0" width="56.131" height="29.18" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"></feOffset>
+      <feGaussianBlur stdDeviation="1.5" result="blur"></feGaussianBlur>
+      <feFlood flood-color="#50e9c0"></feFlood>
+      <feComposite operator="in" in2="blur"></feComposite>
+      <feComposite in="SourceGraphic"></feComposite>
+    </filter>
+    <filter id="Shape_36_copy" x="6.386" y="5.21" width="18.775" height="18.76" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"></feOffset>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"></feGaussianBlur>
+      <feFlood flood-color="#50e9c0" flood-opacity="0.502"></feFlood>
+      <feComposite operator="in" in2="blur-2"></feComposite>
+      <feComposite in="SourceGraphic"></feComposite>
+    </filter>
+  </defs>
+  <g id="slide_right" data-name="slide right" transform="translate(-1206.69 -975.9)">
+    <g transform="matrix(1, 0, 0, 1, 1206.69, 975.9)" filter="url('#Shape_35_copy')">
+      <path id="Shape_35_copy-2" data-name="Shape 35 copy" d="M37.042,20.18H10.09A10.09,10.09,0,0,1,10.09,0H37.042a10.09,10.09,0,0,1,0,20.18ZM10.906,2.69a7.4,7.4,0,0,0,0,14.8H36.232a7.4,7.4,0,0,0,0-14.8Z" transform="translate(4.5 3.5)" fill="rgba(80,233,192,0.7)"></path>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1206.69, 975.9)" filter="url('#Shape_36_copy')">
+      <ellipse id="Shape_36_copy-2" data-name="Shape 36 copy" cx="4.888" cy="4.88" rx="4.888" ry="4.88" transform="translate(10.89 8.71)" fill="rgba(80,233,192,0.7)"></ellipse>
+    </g>
+  </g>
+</svg>

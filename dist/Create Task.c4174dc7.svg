@@ -1,0 +1,8 @@
+<svg id="Create_Task" data-name="Create Task" xmlns="http://www.w3.org/2000/svg" width="117" height="32" viewBox="0 0 117 32">
+  <g id="Add_new_service" data-name="Add new service" transform="translate(104.596)">
+    <rect id="Shape_BG" data-name="Shape BG" width="117" height="32" rx="4" transform="translate(-104.596)" fill="#8e72d6"></rect>
+    <path id="Shape_BG-2" data-name="Shape BG" d="M0,0H16A12,12,0,0,1,28,12v8A12,12,0,0,1,16,32H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z" transform="translate(-15.596)" fill="#8e72d6"></path>
+    <path id="icon" d="M5.313,9.313v-4h4V4h-4V0H4V4H0V5.313H4v4Z" transform="translate(-9.253 11.344)" fill="#fff"></path>
+  </g>
+  <text id="Jan_-_Feb_2020" data-name="Jan - Feb 2020" transform="translate(17 20)" fill="#fff" font-size="11" font-family="Nunito-SemiBold, Nunito" font-weight="600"><tspan x="0" y="0">Create Task</tspan></text>
+</svg>

@@ -1,104 +1,620 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:400";
-html {
-  font-size: 100%;
-}
-
-body {
-  color: #000;
-  background: #fff;
-  font-family: Poppins, sans-serif;
-  font-weight: 400;
-  line-height: 1.75;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-h1, h2, h3, h4, h5 {
-  margin: 3rem 0 1.38rem;
-  font-family: Poppins, sans-serif;
-  font-weight: 400;
-  line-height: 1.3;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 3.052rem;
-}
-
-h2 {
-  font-size: 2.441rem;
-}
-
-h3 {
-  font-size: 1.953rem;
-}
-
-h4 {
-  font-size: 1.563rem;
-}
-
-h5 {
-  font-size: 1.25rem;
-}
-
-small, .text_small {
-  font-size: .8rem;
-}
-
-*, :before, :after {
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap";
+* {
   box-sizing: border-box;
-}
-
-ul[class], ol[class] {
-  padding: 0;
-}
-
-body, h1, h2, h3, h4, p, ul[class], ol[class], li, figure, figcaption, blockquote, dl, dd {
   margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizespeed;
-  line-height: 1.5;
+.dashboard .elements-tr {
+  flex-flow: wrap;
+  display: flex;
 }
 
-ul[class], ol[class] {
-  list-style: none;
+.dashboard .elements-br {
+  flex-wrap: wrap;
+  display: flex;
 }
 
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
+@media only screen and (min-width: 1700px), screen and (min-height: 800px) {
+  .dashboard .elements-tr .weekly-tasks, .dashboard .elements-tr .pom-timer, .dashboard .elements-br .music-player, .dashboard .elements-br .acronyms, .dashboard .elements-br .project-overview {
+    height: 438px !important;
+  }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-article > * + * {
-  margin-top: 1em;
-}
-
-input, button, textarea, select {
-  font: inherit;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
+  .dashboard .elements-tr .cal-container, .dashboard .elements-br .achievements {
+    height: 370px !important;
   }
 }
 
-body {
-  background-color: #ffc8c8;
-  margin: 4em;
+@media only screen and (min-width: 1700px) {
+  .dashboard .top_heading {
+    width: 55%;
+  }
+}
+
+@media only screen and (min-width: 1550px) and (max-width: 1699px) {
+  .dashboard .top_heading {
+    width: 45%;
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1450px) {
+  .dashboard, .sidebar {
+    opacity: 0 !important;
+  }
+}
+
+.dashboard .elements-tr .weekly-tasks {
+  width: 46%;
+  padding: 20px 10px 10px 25px;
+  display: flex;
+  position: relative;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper {
+  width: 95.5%;
+  height: 93.5%;
+  background: #3c4253;
+  border-radius: 20px;
+  padding: 20px;
+  display: block;
+  position: absolute;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper {
+  width: 100%;
+  opacity: .3;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .title {
+  width: 75%;
+  color: #e6e6e6;
+  margin-top: 5px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .head-wrapper .button {
+  width: 25%;
+  pointer-events: none;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list {
+  height: 91%;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list .heading {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list .heading .first-task {
+  font-size: 65px;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list .heading .title {
+  color: #e6e6e6;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-family: Michelangelo, sans-serif;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list .heading strong {
+  color: #8e72d6;
+  font-family: Michelangelo, sans-serif;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .task-wrapper .task-list .before-list .heading .info {
+  color: #b9b6b6;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper {
+  width: 95.4%;
+  height: 93.4%;
+  background: #3c4253;
+  border-radius: 20px;
+  padding: 20px;
+  display: none;
+  position: absolute;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .newtask-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .newtask-wrapper .title {
+  width: 73%;
+  color: #e6e6e6;
+  margin-top: 5px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .newtask-wrapper .button {
+  width: 25%;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .newtask-wrapper .button #cr-button {
+  margin-top: 2px;
+  margin-right: 17px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper {
+  height: 91%;
+  border-radius: 0 0 10px 10px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks {
+  padding-top: 20px;
+  padding-bottom: 0;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName {
+  width: 50%;
+  float: left;
+  flex-direction: column;
+  margin-right: 10%;
+  padding-bottom: 30px;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName input {
+  appearance: none;
+  color: #b9b6b6;
+  background: #333948;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  padding: 17px 20px 17px 15px;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName input:focus {
+  color: #b9b6b6;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName input::placeholder {
+  color: #b9b6b699;
+  letter-spacing: .2px;
+  font-weight: 400;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName input:focus::placeholder {
+  color: #0000;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .taskName input:active {
+  color: #b9b6b6;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject {
+  width: 40%;
+  float: left;
+  outline: none;
+  flex-direction: column;
+  padding-bottom: 30px;
+  display: flex;
+  position: relative;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject input {
+  appearance: none;
+  color: #b9b6b6;
+  background: #333948;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 17px 55px 17px 15px;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject input:focus {
+  color: #b9b6b6;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject input::placeholder {
+  color: #b9b6b699;
+  letter-spacing: .2px;
+  font-weight: 400;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject input:focus::placeholder {
+  color: #0000;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .newProject .new-proj-icon {
+  width: 35px;
+  height: 35px;
+  display: block;
+  position: absolute;
+  top: 34px;
+  right: 10px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo {
+  width: 50%;
+  float: left;
+  margin-right: 10%;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .dueDate {
+  width: 48%;
+  float: left;
+  flex-direction: column;
+  margin-right: 10%;
+  padding-bottom: 30px;
+  display: flex;
+  position: relative;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .dueDate input {
+  appearance: none;
+  color: #b9b6b6;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 17px 20px 17px 12px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .dueDate input:focus {
+  color: #b9b6b6;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .dueDate input::placeholder {
+  color: #b9b6b699;
+  letter-spacing: .2px;
+  font-weight: 400;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .dueDate input::-webkit-calendar-picker-indicator {
+  background: url("duedatecal.6d5513c4.svg") 90% / 95% no-repeat;
+  position: absolute;
+  right: 15px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .priority {
+  width: 42%;
+  float: left;
+  flex-direction: column;
+  padding-bottom: 30px;
+  display: flex;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .priority select {
+  appearance: none;
+  cursor: pointer;
+  background: url("priorityarrows.29c11a53.svg") 90% / 9% no-repeat;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 17px 55px 17px 14px;
+  color: #e6e6e6cc !important;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .comtime {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .comtime input {
+  appearance: none;
+  color: #b9b6b6;
+  background: url("timeicon.0d11a682.svg") 95% / 7% no-repeat;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 17px 65px 17px 15px;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .comtime input:focus {
+  color: #b9b6b6;
+  font-weight: 500;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .comtime input::placeholder {
+  color: #b9b6b699;
+  letter-spacing: .2px;
+  font-weight: 400;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .tasks-combo .comtime input:focus::placeholder {
+  color: #0000;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects {
+  width: 40%;
+  height: 200px;
+  float: left;
+  padding-bottom: 10px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item {
+  max-width: 150px;
+  color: #0f0;
+  cursor: pointer;
+  float: left;
+  border: 1.5px solid #0f0;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  margin-right: 12px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(1) {
+  color: #65f9ffb3;
+  border: 1.5px solid #65f9ffb3;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(1):hover {
+  color: #fff;
+  background: #65f9ffcc;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(2) {
+  color: #c59f4a;
+  border: 1.5px solid #c59f4a;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(2):hover {
+  color: #fff;
+  background: #c59f4a;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(3) {
+  color: #c54ab2;
+  border: 1.5px solid #c54ab2;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(3):hover {
+  color: #fff;
+  background: #c54ab2;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(4) {
+  color: #c5534a;
+  border: 1.5px solid #c5534a;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(4):hover {
+  color: #fff;
+  background: #c5534a;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(5) {
+  color: #bcc54a;
+  border: 1.5px solid #bcc54a;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(5):hover {
+  color: #fff;
+  background: #bcc54a;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(6) {
+  color: #4ac57e;
+  border: 1.5px solid #4ac57e;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form .existing-projects .projects .item:nth-child(6):hover {
+  color: #fff;
+  background: #4ac57e;
+  transition: all .5s;
+}
+
+.dashboard .elements-tr .weekly-tasks .create-wrapper .crtask-wrapper .createTasks .tasks-form label {
+  color: #dbdbdb;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.dashboard .elements-tr .pom-timer {
+  width: 29%;
+  height: 350px;
+  padding: 20px 10px 10px;
+  display: flex;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper {
+  width: 100%;
+  height: 97%;
+  background: #3c4253;
+  border-radius: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-wrapper {
+  width: 100%;
+  height: 20%;
+  display: flex;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-wrapper .text-box {
+  width: 50%;
+  padding: 20px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-wrapper .text-box .title {
+  color: #e6e6e6;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-wrapper .text-box .tagline {
+  color: #b9b6b6;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-wrapper .icon-box {
+  width: 50%;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer {
+  width: 100%;
+  background: #333948;
+  border-radius: 0 0 20px 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper {
+  align-items: center;
+  display: flex;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .con-left {
+  width: 37%;
+  border-radius: 0 0 0 20px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .con-left .l-text {
+  text-align: center;
+  color: #50e9c0b3;
+  padding: 16px;
+  font-size: 13px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .toggle {
+  width: 26%;
+  height: 48px;
+  position: relative;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .toggle .padding {
+  width: 80%;
+  height: 80%;
+  background-color: #2b303e;
+  border-radius: 20px 20px 0 0;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .toggle .padding #toggle-right {
+  margin: 0;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .con-right {
+  width: 37%;
+  border-radius: 0 0 20px;
+}
+
+.dashboard .elements-tr .pom-timer .pom-wrapper .head-footer .wrapper .con-right .r-text {
+  text-align: center;
+  color: #e6e6e6;
+  padding: 16px;
+  font-size: 13px;
+}
+
+.dashboard .elements-br .project-overview {
+  width: 41%;
+  height: 350px;
+  padding: 20px 25px 20px 10px;
+  display: flex;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #3c4253;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper .head-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper .head-wrapper .title {
+  width: 62%;
+  color: #e6e6e6;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper .head-wrapper .proj-selection {
+  width: 38%;
+  display: flex;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper .head-wrapper .proj-selection select {
+  width: 220px;
+  letter-spacing: .2px;
+  height: 45px;
+  appearance: none;
+  cursor: pointer;
+  background: #fff url("proj-select-down-arrow.e01184f4.svg") 90% / 9% no-repeat;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 5px 5px 20px;
+  font-family: Nunito, sans-serif;
+  font-size: 15px;
+  color: #e6e6e6cc !important;
+}
+
+.dashboard .elements-br .project-overview .proj-wrapper .head-wrapper .proj-selection select:after {
+  appearance: none;
+  border: none !important;
 }
 
 /*# sourceMappingURL=index.c74267d1.css.map */
