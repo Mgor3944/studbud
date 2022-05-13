@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="Delete_Task" data-name="Delete Task" transform="translate(-416 -27)">
+    <g id="New_Project" data-name="New Project" transform="translate(379.812 -282)">
+      <g id="New_Project-2" data-name="New Project" transform="translate(36.188 309)">
+        <rect id="New_Task_bg" data-name="New Task bg" width="36" height="36" rx="5" fill="#4b526a"/>
+      </g>
+    </g>
+    <g id="Icon" transform="translate(424 35)">
+      <rect id="Area" width="20" height="20" fill="#fcfcfc" opacity="0"/>
+      <g id="Icon-2" data-name="Icon" transform="translate(1.29 2.499)">
+        <path id="Path" d="M2.5,5h15" transform="translate(-1.29 -2.499)" fill="none" stroke="rgba(80,233,192,0.7)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path id="Path-2" data-name="Path" d="M15.833,5V16.667a1.666,1.666,0,0,1-1.666,1.666H5.833a1.666,1.666,0,0,1-1.666-1.666V5m2.5,0V3.333A1.666,1.666,0,0,1,8.333,1.667h3.334a1.666,1.666,0,0,1,1.666,1.666V5" transform="translate(-1.29 -2.499)" fill="none" stroke="rgba(80,233,192,0.7)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <line id="Line" y2="5" transform="translate(7.043 6.668)" fill="none" stroke="rgba(80,233,192,0.7)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <line id="Line-2" data-name="Line" y2="5" transform="translate(10.377 6.668)" fill="none" stroke="rgba(80,233,192,0.7)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>
