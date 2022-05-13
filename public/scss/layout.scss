@@ -5,6 +5,74 @@
     font-family: "Montserrat" , sans-serif;
 }
 
+.dashboard .elements-tr {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.dashboard .elements-br {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+// If screen size is bigger than standard 15" display
+
+@media only screen and (min-width: 1700px),
+screen and (min-height: 800px) {
+    // .dashboard .elements-tr {
+    //     border: 2px orange solid;
+    // }
+
+    // .dashboard .elements-br {
+    //     border: 2px pink solid;
+    // }
+
+    .dashboard .elements-tr .weekly-tasks,
+    .dashboard .elements-tr .pom-timer,
+    .dashboard .elements-br .music-player,
+    .dashboard .elements-br .acronyms,
+    .dashboard .elements-br .project-overview {
+        height: 438px !important;
+    }
+
+    .dashboard .elements-tr .cal-container  {
+        height: 370px !important;
+    }
+
+    .dashboard .elements-br .achievements  {
+        height: 370px !important;
+    }
+}
+
+/* Resizing Navbar Top */
+
+@media only screen and (min-width: 1700px) {
+    .dashboard .top_heading {
+        width: 55%;
+    }
+}
+
+@media only screen and (min-width: 1550px) and (max-width: 1699px) {
+    .dashboard .top_heading {
+        width: 45%;
+    }
+}
+
+/* Breakpoint Notifcation */
+
+@media only screen and (min-width: 900px) and (max-width: 1450px) {
+    .dashboard {
+        opacity: 0 !important;
+    }
+
+    .sidebar {
+        opacity: 0 !important;
+    }
+}
+
+// DEV BOXES HIGHLIGHTS
+
 // .weekly-tasks, .pom-timer, .cal-container, 
 // .achievements, .music-player, .acronyms, .project-overview { // dev feature ~ shows dashboard boxes highlight when building site  
 //     border: 1px pink solid;
