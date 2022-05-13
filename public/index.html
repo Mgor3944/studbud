@@ -14,6 +14,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <!-- Mid Breakpoint Notification -->
+        <section class="mid-breakpoint-notif">
+            <div class="text">
+                <h1>404</h1>
+                <h2>Sorry, this app is only available on laptop and mobile devices</h2>
+                <p>Please reduce or increase your screen size to display the StudBud</p>
+            </div>
+        </section>
+
         <!-- Vertical Navbar -->
         <div class="sidebar">
 
@@ -55,14 +64,8 @@
                 <div class="line-split"></div>
 
                 <!-- Active Features -->
-                <li>
-                    <a href="#" class="navlink"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a>
-                    <span class="tooltip">Settings</span>
-                </li>
-                <li>
-                    <a href="#" class="navlink"><i class='bx bx-log-out'></i><span class="links_name">Log Out</span></a>
-                    <span class="tooltip">Log Out</span>
-                </li>
+                <li><a href="#" class="navlink"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a></li>
+                <li><a href="#" class="navlink"><i class='bx bx-log-out'></i><span class="links_name">Log Out</span></a></li>
 
                 <!-- Focus Mode Highlight --> 
                 <li class="focus_info">
@@ -113,11 +116,77 @@
                 <!-- Weekly Tasks -->
                 <section class="weekly-tasks">
                     <div class="task-wrapper">
+                        <!-- Top Section -->
                         <div class="head-wrapper">
-                            <h3 class="title">Weekly Tasks</h3>
+                            <h3 class="title">Today's Tasks</h3>
                             <div class="button">
-                                <div class="tag-text"><p class="btn-text">Create a New Task</p></div>
-                                <a href="#"><img id="button" src="../assets/plus_button.svg" alt=""></a>
+                                <a href="#" id="createTaskBtn"><img id="crTaskbutton" src="../assets/newTaskBtn.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <!-- Task List -->
+                        <div class="task-list">
+                            <div class="before-list">
+                                <div class="heading">
+                                    <a href="#" class="first-task"><i class='bx bxs-plus-square' id="change-col" style='color: #E6E6E6'></i></a>
+                                    <h1 class="title">Looks like you dont have any tasks. <strong>Create One!</strong></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="create-wrapper">
+                        <!-- Top Section -->
+                        <div class="newtask-wrapper">
+                            <h3 class="title">Create New Task</h3>
+                            <div class="button">
+                                <a href="#"><img id="cr-button" src="../assets/Create Task.svg" alt=""></a>
+                                <a href="#" id="deleteTaskBtn"><img id="del-button" src="../assets/DelTask.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <!-- Create New Task -->
+                        <div class="crtask-wrapper">
+                            <div class="createTasks">
+                                <form class="tasks-form" action="#">
+
+                                    <div class="taskName">
+                                        <label for="task-name">Task Name</label>
+                                        <input type="text" id="tasknme" name="tasknme" placeholder="E.g. Coding Project">
+                                    </div>
+
+                                    <div class="newProject">
+                                        <label for="new-project">New Project</label>
+                                        <input type="text" id="newprojsave" name="newproj" placeholder="Give it a 2 word name">
+                                        <a href="#" id="saveprojectname"><img class="new-proj-icon" id="new-proj-icon" src="../assets/newprojbutton.svg"></a>
+                                    </div>
+
+                                    <div class="tasks-combo">
+                                        <div class="dueDate">
+                                            <label for="due-date">Due Date</label>
+                                            <input type="date" id="duedate" name="duedte" placeholder="DD MM YYYY" style="background-color: #495165;">
+                                        </div>
+
+                                        <div class="priority">
+                                            <label for="priority">Priority</label>
+                                            <select id="p-measure" name="p-measure" style="background-color: #495165;">
+                                                <option value="0">Choose</option>
+                                                <option value="1">Low</option>
+                                                <option value="2">Medium</option>
+                                                <option value="2">High</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="comtime">
+                                            <label for="complete-time">Completion Time</label>
+                                            <input type="text" id="completetime" name="completetime" placeholder="E.g. 2hr 30min" style="background-color: #333948;">
+                                        </div>
+                                    </div>
+
+                                    <div class="existing-projects">
+                                        <label for="existproj" id="projectLabel">Select An Existing Project</label>
+                                        <div class="projects">
+                                            <!-- <output class="projOutput"></output> -->
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -198,13 +267,45 @@
             </section>
 
             <section class="elements-br">
+
                 <!-- Achievements -->
                 <section class="achievements">
-                    <div class="ach-wrapper">
-                        <div class="headline">
-                            <h3 class="title">Achievements</h3>
-                            <button class="taskBtn">Create a New Task</button>
+                    <div class="ach-container">
+                        <div class="ach-wrapper ach-tasks">
+                            <div class="box">
+                                <div class="top-wrap">
+                                    <img class="tasks-icon" src="../assets/ach-tasks-icon.svg" alt="">
+                                    <div class="complete-tasks">25</div>
+                                </div>
+                                <h3 class="title">Tasks</h3>
+                                <p class="body">You have completed 25 tasks this <b>week</b>. Nice Work!</p>
+                                <a href="#" class="achieve-link"><span class="link">Achievements</span><i class='bx bx-chevron-right'></i></a>
+                            </div>
                         </div>
+                        <div class="ach-wrapper ach-focus">
+                            <div class="box">
+                                <div class="top-wrap">
+                                    <img class="tasks-icon" src="../assets/ach-tasks-icon.svg" alt="">
+                                    <div class="complete-tasks">12hr</div>
+                                </div>
+                                <h3 class="title">Focus</h3>
+                                <p class="body">You have completed 12hrs of focus <b>week</b>. Nice Work!</p>
+                                <a href="#" class="achieve-link"><span class="link">Achievements</span><i class='bx bx-chevron-right'></i></a>
+                            </div>
+                        </div>
+                        <div class="ach-wrapper ach-proj">
+                            <div class="box">
+                                <div class="top-wrap">
+                                    <img class="tasks-icon" src="../assets/ach-tasks-icon.svg" alt="">
+                                    <div class="complete-tasks">03</div>
+                                </div>
+                                <h3 class="title">Projects</h3>
+                                <p class="body">You have completed 25 tasks this <b>week</b>. Nice Work!</p>
+                                <a href="#" class="achieve-link"><span class="link">Achievements</span><i class='bx bx-chevron-right'></i></a>
+                            </div>
+                        </div>
+                        <div class="ach-wrapper ach-focus-box"></div>
+                        <div class="ach-wrapper ach-projects-box"></div>
                     </div>
                 </section>
 
@@ -227,7 +328,6 @@
                         <div class="acr-box">
                             <div class="headline">
                                 <h3 class="title">Acronym Maker</h3>
-                                <button class="taskBtn">Create a New Task</button>
                             </div>
                         </div>
                     </div>
@@ -236,9 +336,16 @@
                 <!-- Project Overview  -->
                 <section class="project-overview">
                     <div class="proj-wrapper">
-                        <div class="headline">
+                        <div class="head-wrapper">
                             <h3 class="title">Project Overview</h3>
-                            <button class="taskBtn">Create a New Task</button>
+                            <div class="proj-selection">
+                                <select class="chooseProject" style="background-color: #4B526A;">
+                                    <option value="0" class="proj placeholder">Select Project</option>
+                                    <option value="1" class="proj">Audi</option>
+                                    <option value="2" class="proj">BMW</option>
+                                    <option value="3" class="proj">Mazda</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </section>
