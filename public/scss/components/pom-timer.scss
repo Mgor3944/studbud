@@ -8,12 +8,12 @@
     .elements-tr {
         .pom-timer {
             display: flex; /* allows divs to display next to eachother */ 
+            width: 29%;
+            height: 350px;
             padding-top: 20px;
             padding-left: 10px;
             padding-bottom: 10px;
             padding-right: 10px;
-            width: 29%;
-            height: 350px;
 
             .pom-wrapper {
                 display: inline-block; /* allows divs to display next to eachother */ 

@@ -7,29 +7,32 @@
 .dashboard {
     .elements-tr { // top row of dashboard
         .weekly-tasks { // weekly tasks box outer
-            display: flex; 
-            flex-direction: row-reverse;
+            position: relative;
+            display: flex;
+            width: 46%;
+            // flex-direction: row-reverse;
             padding-top: 20px;
             padding-left: 25px;
             padding-bottom: 10px;
             padding-right: 10px;
-            width: 46%;
-            height: 350px;
 
             .task-wrapper { // weekly tasks box 
+                position: absolute;
                 display: flex;
                 padding: 20px;
-                width: 100%;
-                height: 100%;
+                width: 95.5%;
+                height: 93.5%;
                 background: #3C4253;
                 border-radius: 20px;
+                display: block;
 
                 .head-wrapper { // tasks heading box
                     display: flex;
                     width: 100%;
+                    opacity: 0.3;
 
                     .title { // heading title
-                        width: 70%;
+                        width: 75%;
                         color: #E6E6E6;
                         font-weight: 600;
                         font-size: 17px;
@@ -38,30 +41,420 @@
 
                     .button { // heading button
                         display: flex;
-                        width: 30%;
+                        width: 25%;
+                        pointer-events: none;
+                    }
+                }
 
-                        .btn-box { // button box
-                            background: #333948;
-                            color: #E6E6E6;
-                            width: 100%;
-                            height: 32px;
-                            padding: 7px;
-                            padding-left: 15px;
-                            border-radius: 3px 0px 0px 3px;
+                .task-list {
+                    height: 91%;
+                    border-radius: 0px 0px 10px 10px ; // top-left, top-right, bottom-right, bottom-left
+                    position: relative;
 
-                            .btn-text { // button text
-                                font-family: "Nunito" , sans-serif;
-                                font-size: 12px;
+                    .before-list {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 80%;
+                        // background-color: pink;
+
+                        .heading {
+                            padding: 20px;
+                            align-items: center;
+                            text-align: center;
+                            justify-content: center;
+
+                            .first-task {
+                                font-size: 65px;
+                            }
+    
+                            .title {
+                                font-family: 'Michelangelo', sans-serif;
+                                color: #E6E6E6;
+                                text-align: center;
+                                font-size: 38px;
+                                font-weight: 500;
+                                padding-top: 20px;
+                                padding-bottom: 30px;
+                            }
+
+                            strong {
+                                font-family: 'Michelangelo', sans-serif;
+                                font-weight: 500;
+                                color: #8E72D6;
+                            }
+
+                            .info {
+                                font-family: 'Montserrat', sans-serif;
+                                font-weight: 500;
+                                color: #B9B6B6;
+                                line-height: 20px;
                             }
                         }
                     }
                 }
             }
+
+            .create-wrapper {
+                position: absolute;
+                display: flex;
+                padding: 20px;
+                width: 95.4%;
+                height: 93.4%;
+                background: #3C4253;
+                border-radius: 20px;
+                display: none; //change back to none after!!!
+
+                .newtask-wrapper {
+                    display: flex;
+                    width: 100%;
+
+                    .title { // heading title
+                        width: 73%;
+                        color: #E6E6E6;
+                        font-weight: 600;
+                        font-size: 17px;
+                        margin-top: 5px;
+                    }
+    
+                    .button { // heading button
+                        display: flex;
+                        width: 25%;
+    
+                        #cr-button {
+                            margin-top: 2px;
+                            margin-right: 17px;
+                        }
+                    }
+
+                }
+
+                .crtask-wrapper {
+                    height: 91%;
+                    border-radius: 0px 0px 10px 10px;
+
+                    .createTasks {
+                        padding-top: 20px;
+                        padding-bottom: 0px;
+
+                        // create a task form 
+                        .tasks-form {
+                            
+                            // task name input box
+                            .taskName {
+                                width: 50%;
+                                float: left;
+                                margin-right: 10%;
+                                padding-bottom: 30px;
+                                display: flex;
+                                flex-direction: column;
+
+                                input {
+                                    padding: 17px 20px 17px 15px;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -ms-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    outline: none;
+                                    border-radius: 8px;
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                    background: #333948;
+                                }
+
+                                input:focus {
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                }
+
+                                input::placeholder {
+                                    color: rgb(185, 182, 182, 0.6);
+                                    font-weight: 400;
+                                    letter-spacing: 0.2px;
+                                }
+
+                                input:focus::placeholder {
+                                    color: transparent;
+                                }
+
+                                input:active {
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            // new project input box
+                            .newProject {
+                                position: relative;
+                                width: 40%;
+                                float: left;
+                                padding-bottom: 30px;
+                                display: flex;
+                                flex-direction: column;
+                                outline: none;
+
+                                input {
+                                    padding: 17px 55px 17px 15px;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -ms-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    outline: none;
+                                    border-radius: 5px;
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                    background: #333948;
+                                }
+
+                                input:focus {
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                }
+
+                                input::placeholder {
+                                    color: rgb(185, 182, 182, 0.6);
+                                    font-weight: 400;
+                                    letter-spacing: 0.2px;
+                                }
+
+                                input:focus::placeholder {
+                                    color: transparent;
+                                }
+
+                                .new-proj-icon {
+                                    position: absolute;
+                                    width: 35px;
+                                    height: 35px;
+                                    right: 10px;
+                                    top: 34px;
+                                    display: block;
+                                }
+                            }
+
+                            .tasks-combo {
+                                width: 50%;
+                                margin-right: 10%;
+                                float: left;
+
+                                // due date input box
+                                .dueDate {
+                                    position: relative;
+                                    width: 48%;
+                                    margin-right: 10%;
+                                    padding-bottom: 30px;
+                                    float: left;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    input {
+                                        padding: 17px 20px 17px 12px;
+                                        border: none;
+                                        -webkit-appearance: none;
+                                        -ms-appearance: none;
+                                        -moz-appearance: none;
+                                        appearance: none;
+                                        outline: none;
+                                        border-radius: 5px;
+                                        color: #B9B6B6;
+							            cursor: pointer;
+                                    }
+    
+                                    input:focus {
+                                        color: #b9b6b6;
+                                    }
+    
+                                    input::placeholder {
+                                        color: rgb(185, 182, 182, 0.6);
+                                        font-weight: 400;
+                                        letter-spacing: 0.2px;
+                                    }
+
+                                    input::-webkit-calendar-picker-indicator {
+                                        position: absolute;
+                                        right: 15px;
+                                        background: url(../../assets/duedatecal.svg) 90% / 95% no-repeat;
+                                    }
+                                }
+
+                                // priority selection input box
+                                .priority {
+                                    width: 42%;
+                                    padding-bottom: 30px;
+                                    float: left;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    select {
+                                        padding: 17px 55px 17px 14px;
+                                        border: none;
+                                        -webkit-appearance: none;
+                                        -ms-appearance: none;
+                                        -moz-appearance: none;
+                                        appearance: none;
+                                        outline: none;
+                                        border-radius: 5px;
+                                        color: rgb(230, 230, 230, 0.8) !important;
+                                        background: url(../../assets/priorityarrows.svg) 90% / 9% no-repeat;
+							            cursor: pointer;
+                                    }
+                                }
+
+                                // completion time input box
+                                .comtime {
+                                    position: relative;
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    input {
+                                        padding: 17px 65px 17px 15px;
+                                        border: none;
+                                        -webkit-appearance: none;
+                                        -ms-appearance: none;
+                                        -moz-appearance: none;
+                                        appearance: none;
+                                        outline: none;
+                                        border-radius: 5px;
+                                        color: #b9b6b6;
+                                        font-weight: 500;
+                                        background: url(../../assets/timeicon.svg) 95% / 7% no-repeat;
+                                    }
+    
+                                    input:focus {
+                                        color: #b9b6b6;
+                                        font-weight: 500;
+                                    }
+    
+                                    input::placeholder {
+                                        color: rgb(185, 182, 182, 0.6);
+                                        font-weight: 400;
+                                        letter-spacing: 0.2px;
+                                    }
+    
+                                    input:focus::placeholder {
+                                        color: transparent;
+                                    }
+                                }
+
+                            }
+
+                            .existing-projects {
+                                width: 40%;
+                                height: 200px;
+                                float: left;
+                                // background: green;
+                                padding-bottom: 10px;
+
+                                .projects {
+                                    margin-top: 20px;
+                                    width: 100%;
+
+                                    .item {
+                                        max-width: 150px;
+                                        border: 1.5px solid lime;
+                                        border-radius: 5px;
+                                        padding: 10px 16px 10px 16px;
+                                        color: lime;
+                                        font-weight: 400;
+                                        font-size: 15px;
+                                        cursor: pointer;
+                                        margin-right: 12px;
+                                        margin-bottom: 12px;
+                                        float: left;
+                                        overflow: hidden;
+                                    }
+
+                                    // first project
+                                    .item:nth-child(1) {
+                                        color: rgb(101, 249, 255, 0.7);
+                                        border: 1.5px solid rgb(101, 249, 255, 0.7);
+                                    }
+
+                                    .item:nth-child(1):hover {
+                                        background: rgb(101, 249, 255, 0.8);
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    // second project
+                                    .item:nth-child(2) {
+                                        color: #C59F4A;
+                                        border: 1.5px solid #C59F4A;
+                                    }
+
+                                    .item:nth-child(2):hover {
+                                        background: #C59F4A;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    // third project
+                                    .item:nth-child(3) {
+                                        color: #C54AB2;
+                                        border: 1.5px solid #C54AB2;
+                                    }
+
+                                    .item:nth-child(3):hover {
+                                        background: #C54AB2;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    // fourth project
+                                    .item:nth-child(4) {
+                                        color: #C5534A;
+                                        border: 1.5px solid #C5534A;
+                                    }
+
+                                    .item:nth-child(4):hover {
+                                        background: #C5534A;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    // fifth project
+                                    .item:nth-child(5) {
+                                        color: #BCC54A;
+                                        border: 1.5px solid #BCC54A;
+                                    }
+
+                                    .item:nth-child(5):hover {
+                                        background: #BCC54A;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    // last project
+                                    .item:nth-child(6) {
+                                        color: #4AC57E;
+                                        border: 1.5px solid #4AC57E;
+                                    }
+
+                                    .item:nth-child(6):hover {
+                                        background: #4AC57E;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+                                }
+                            }
+
+                            label { // label styling for each form input 
+                                padding-left: 5px;
+                                color: #DBDBDB;
+                                padding-bottom: 10px;
+                                font-weight: 400;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 
 }
 
-.sidebar.open ~ .dashboard .task-wrapper .head-wrapper .button { /* resizes font size when dash is open */
-    width: 35%;
-}
