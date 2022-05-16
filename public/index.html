@@ -120,7 +120,7 @@
                         <div class="head-wrapper">
                             <h3 class="title">Today's Tasks</h3>
                             <div class="button">
-                                <a href="#" id="createTaskBtn"><img id="crTaskbutton" src="../assets/newTaskBtn.svg" alt=""></a>
+                                <a href="#" id="crNewTaskBtn"><img id="crTaskbutton" src="../assets/newTaskBtn.svg" alt=""></a>
                             </div>
                         </div>
                         <!-- Task List -->
@@ -131,25 +131,38 @@
                                     <h1 class="title">Looks like you dont have any tasks. <strong>Create One!</strong></h1>
                                 </div>
                             </div>
+                            <div class="taskListOutput">
+                                <!-- task list will be embedded here 
+                                <div class="taskitem"> 
+                                    <div class="nameFromTask">TaskName</div>
+                                    <div class="projectsFromTask">ProjectName</div>
+                                    <div class="timeFromTask">CompletionTime</div>
+                                    <div class="priorityFromTask">SelectedPriority</div>
+                                    <input type="checkbox" class="finishedTask" id="uniquekey" complete>
+                                    <label class="hiddenTaskFinish" for="uniquekey"></label>
+                                    <button class="delete-button">X</button>
+                                </div>
+                                -->
+                            </div>
                         </div>
                     </div>
                     <div class="create-wrapper">
-                        <!-- Top Section -->
-                        <div class="newtask-wrapper">
-                            <h3 class="title">Create New Task</h3>
-                            <div class="button">
-                                <a href="#"><img id="cr-button" src="../assets/Create Task.svg" alt=""></a>
-                                <a href="#" id="deleteTaskBtn"><img id="del-button" src="../assets/DelTask.svg" alt=""></a>
+                        <form class="tasks-form" action="#">
+                            <!-- Top Section -->
+                            <div class="newtask-wrapper">
+                                <h3 class="title">Create New Task</h3>
+                                <div class="button">
+                                    <button id="createTaskBtn" type="submit" name="mysubmitbutton"><img id="createTaskImg" src="../assets/Create Task.svg" alt=""></button>
+                                    <!-- <a href="#" id="createTaskBtn"><img id="createTaskImg" src="../assets/Create Task.svg" alt=""></a> -->
+                                    <a href="#" id="deleteTaskBtn"><img id="del-button" src="../assets/DelTask.svg" alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Create New Task -->
-                        <div class="crtask-wrapper">
-                            <div class="createTasks">
-                                <form class="tasks-form" action="#">
-
+                            <!-- Create New Task -->
+                            <div class="crtask-wrapper">
+                                <div class="createTasks">
                                     <div class="taskName">
-                                        <label for="task-name">Task Name</label>
-                                        <input type="text" id="tasknme" name="tasknme" placeholder="E.g. Coding Project">
+                                        <label for="task-name">Task Name *</label>
+                                        <input type="text" id="taskNameInput" name="tasknme" placeholder="E.g. Coding Project">
                                     </div>
 
                                     <div class="newProject">
@@ -160,35 +173,35 @@
 
                                     <div class="tasks-combo">
                                         <div class="dueDate">
-                                            <label for="due-date">Due Date</label>
-                                            <input type="date" id="duedate" name="duedte" placeholder="DD MM YYYY" style="background-color: #495165;">
+                                            <label for="due-date">Due Date *</label>
+                                            <input type="date" id="duedate" name="dueDateInput" placeholder="DD MM YYYY" style="background-color: #495165;">
                                         </div>
 
                                         <div class="priority">
-                                            <label for="priority">Priority</label>
-                                            <select id="p-measure" name="p-measure" style="background-color: #495165;">
-                                                <option value="0">Choose</option>
-                                                <option value="1">Low</option>
-                                                <option value="2">Medium</option>
-                                                <option value="2">High</option>
+                                            <label for="priority">Priority *</label>
+                                            <select id="p-measure" name="priorityInput" style="background-color: #495165;">
+                                                <option value="">Choose</option>
+                                                <option value="low">Low</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="high">High</option>
                                             </select>
                                         </div>
 
                                         <div class="comtime">
-                                            <label for="complete-time">Completion Time</label>
-                                            <input type="text" id="completetime" name="completetime" placeholder="E.g. 2hr 30min" style="background-color: #333948;">
+                                            <label for="complete-time">Completion Time *</label>
+                                            <input type="text" id="completetime" name="timeInput" placeholder="E.g. 2hr 30min" style="background-color: #333948;">
                                         </div>
                                     </div>
 
                                     <div class="existing-projects">
-                                        <label for="existproj" id="projectLabel">Select An Existing Project</label>
+                                        <label for="existproj" id="projectLabel" required>Select An Existing Project *</label>
                                         <div class="projects">
-                                            <!-- <output class="item"></output> -->
+                                            <!-- <div class="item" data-key=""><input type="checkbox" class="checkbox"></div> -->
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </section>
 

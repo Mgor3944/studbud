@@ -42,7 +42,10 @@
                     .button { // heading button
                         display: flex;
                         width: 25%;
-                        pointer-events: none; // remove once a task is created
+
+                        #crNewTaskBtn {
+                            pointer-events: none; // remove once a task is created
+                        }
                     }
                 }
 
@@ -50,6 +53,7 @@
                     height: 91%;
                     border-radius: 0px 0px 10px 10px ; // top-left, top-right, bottom-right, bottom-left
                     position: relative;
+                    // background: white;
 
                     .before-list {
                         position: absolute;
@@ -57,7 +61,7 @@
                         left: 50%;
                         transform: translate(-50%, -50%);
                         width: 80%;
-                        // background-color: pink;
+                        display: none;
 
                         .heading {
                             padding: 20px;
@@ -93,6 +97,20 @@
                             }
                         }
                     }
+
+                    .taskListOutput {
+                        background: grey;
+                        width: 100%;
+                        height: 100%;
+                        padding-top: 10px;
+
+                        .taskitem {
+                            background: white;
+                            width: 100%;
+                            padding: 15px 5px 15px 5px;
+                            display: flex;
+                        }
+                    }
                 }
             }
 
@@ -106,41 +124,45 @@
                 border-radius: 20px;
                 display: none; //change back to none after!!!
 
-                .newtask-wrapper {
-                    display: flex;
-                    width: 100%;
+                // create a task form 
+                .tasks-form {
 
-                    .title { // heading title
-                        width: 73%;
-                        color: #E6E6E6;
-                        font-weight: 600;
-                        font-size: 17px;
-                        margin-top: 5px;
-                    }
-    
-                    .button { // heading button
+                    .newtask-wrapper {
                         display: flex;
-                        width: 25%;
-    
-                        #cr-button {
-                            margin-top: 2px;
-                            margin-right: 17px;
+                        width: 100%;
+
+                        .title { // heading title
+                            width: 73%;
+                            color: #E6E6E6;
+                            font-weight: 600;
+                            font-size: 17px;
+                            margin-top: 5px;
                         }
+        
+                        .button { // heading button
+                            display: flex;
+                            width: 25%;
+        
+                            #createTaskBtn {
+                                background-color: Transparent;
+                                background-repeat:no-repeat;
+                                border: none;
+                                margin-top: 2px;
+                                margin-right: 17px;
+                                cursor: pointer;
+                            }
+                        }
+
                     }
 
-                }
+                    .crtask-wrapper {
+                        height: 91%;
+                        border-radius: 0px 0px 10px 10px;
 
-                .crtask-wrapper {
-                    height: 91%;
-                    border-radius: 0px 0px 10px 10px;
-
-                    .createTasks {
-                        padding-top: 20px;
-                        padding-bottom: 0px;
-
-                        // create a task form 
-                        .tasks-form {
-                            
+                        .createTasks {
+                            padding-top: 20px;
+                            padding-bottom: 0px;
+                                
                             // task name input box
                             .taskName {
                                 width: 50%;
@@ -259,7 +281,7 @@
                                         outline: none;
                                         border-radius: 5px;
                                         color: #B9B6B6;
-							            cursor: pointer;
+                                        cursor: pointer;
                                     }
     
                                     input:focus {
@@ -298,7 +320,7 @@
                                         border-radius: 5px;
                                         color: rgb(230, 230, 230, 0.8) !important;
                                         background: url(../../assets/priorityarrows.svg) 90% / 9% no-repeat;
-							            cursor: pointer;
+                                        cursor: pointer;
                                     }
                                 }
 
@@ -349,19 +371,12 @@
                                 padding-bottom: 10px;
 
                                 .projects {
-                                    // background-color: #8E72D6;
                                     margin-top: 20px;
                                     width: 100%;
                                     height: 165px;
                                     overflow: scroll; // creates scrollbars when there are lots of projects
 
                                     .item {
-                                        position: relative;
-                                        max-width: 150px;
-                                        border: 1.5px solid lime;
-                                        border-radius: 5px;
-                                        padding: 10px 16px 10px 16px;
-                                        color: lime;
                                         font-weight: 400;
                                         font-size: 15px;
                                         cursor: pointer;
@@ -371,86 +386,159 @@
                                         overflow: hidden;
                                     }
 
-                                    // first project
-                                    .item:nth-child(1) {
-                                        color: rgb(101, 249, 255, 0.7);
-                                        border: 1.5px solid rgb(101, 249, 255, 0.7);
-
-                                        // background: rgb(101, 249, 255, 0.8);
-                                        // color: white;
-                                        // transition: all 0.5s ease;
+                                    .hiddenbox {
+                                        padding: 10px 16px 10px 16px;
+                                        border-radius: 5px;
+                                        display: inline-block;
+                                        cursor: pointer;
                                     }
 
-                                    // second project
-                                    .item:nth-child(2) {
+                                    .projcheckbox {
+                                        display: none;
+                                    }
+
+                                    // project box number one
+                                    .item:nth-child(1) .hiddenbox {
+                                        color: #4ab5c5;
+                                        border: 1.5px solid #4ab5c5;
+                                    }
+
+                                    .item:nth-child(1) .hiddenbox:hover {
+                                        background: #4ab5c5;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    .item:nth-child(1) .projcheckbox:checked + .hiddenbox{
+                                        background: #4ab5c5;
+                                        color: white;
+                                    }
+
+                                    // project box number two
+
+                                    .item:nth-child(2) .hiddenbox {
                                         color: #C59F4A;
                                         border: 1.5px solid #C59F4A;
                                     }
 
-                                    .item:nth-child(2):hover {
+                                    .item:nth-child(2) .hiddenbox:hover {
                                         background: #C59F4A;
                                         color: white;
                                         transition: all 0.5s ease;
                                     }
 
-                                    // third project
-                                    .item:nth-child(3) {
+                                    .item:nth-child(2) .projcheckbox:checked + .hiddenbox {
+                                        background: #C59F4A;
+                                        color: white;
+                                    }
+
+                                    // project box number three
+
+                                    .item:nth-child(3) .hiddenbox {
                                         color: #C54AB2;
                                         border: 1.5px solid #C54AB2;
                                     }
 
-                                    .item:nth-child(3):hover {
+                                    .item:nth-child(3) .hiddenbox:hover {
                                         background: #C54AB2;
                                         color: white;
                                         transition: all 0.5s ease;
                                     }
 
-                                    // fourth project
-                                    .item:nth-child(4) {
+                                    .item:nth-child(3) .projcheckbox:checked + .hiddenbox {
+                                        background: #C54AB2;
+                                        color: white;
+                                    }
+
+                                    // project box number four
+
+                                    .item:nth-child(4) .hiddenbox {
                                         color: #C5534A;
                                         border: 1.5px solid #C5534A;
                                     }
 
-                                    .item:nth-child(4):hover {
+                                    .item:nth-child(4) .hiddenbox:hover {
                                         background: #C5534A;
                                         color: white;
                                         transition: all 0.5s ease;
                                     }
 
-                                    // fifth project
-                                    .item:nth-child(5) {
+                                    .item:nth-child(4) .projcheckbox:checked + .hiddenbox {
+                                        background: #C5534A;
+                                        color: white;
+                                    }
+
+                                    // project box number five
+
+                                    .item:nth-child(5) .hiddenbox {
                                         color: #BCC54A;
                                         border: 1.5px solid #BCC54A;
                                     }
 
-                                    .item:nth-child(5):hover {
+                                    .item:nth-child(5) .hiddenbox:hover {
                                         background: #BCC54A;
                                         color: white;
                                         transition: all 0.5s ease;
                                     }
 
-                                    // last project
-                                    .item:nth-child(6) {
+                                    .item:nth-child(5) .projcheckbox:checked + .hiddenbox {
+                                        background: #BCC54A;
+                                        color: white;
+                                    }
+
+                                    // project box number six
+
+                                    .item:nth-child(6) .hiddenbox {
                                         color: #4AC57E;
                                         border: 1.5px solid #4AC57E;
                                     }
 
-                                    .item:nth-child(6):hover {
+                                    .item:nth-child(6) .hiddenbox:hover {
                                         background: #4AC57E;
                                         color: white;
                                         transition: all 0.5s ease;
                                     }
 
-                                    .checkbox {
-                                        position: absolute;
-                                        right: 0px;
-                                        bottom: 0px;
+                                    .item:nth-child(6) .projcheckbox:checked + .hiddenbox {
+                                        background: #4AC57E;
+                                        color: white;
                                     }
 
-                                    .checkbox:checked {
-                                        background-color: #C54AB2;
+                                    // project box number seven
+
+                                    .item:nth-child(7) .hiddenbox {
+                                        color: #f0edf4;
+                                        border: 1.5px solid #f0edf4;
                                     }
 
+                                    .item:nth-child(7) .hiddenbox:hover {
+                                        background: #f0edf4;
+                                        color: rgb(39, 39, 39);
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    .item:nth-child(7) .projcheckbox:checked + .hiddenbox {
+                                        background: #f0edf4;
+                                        color: rgb(39, 39, 39);
+                                    }
+
+                                    // project box number eight
+
+                                    .item:nth-child(8) .hiddenbox {
+                                        color: #7369e2;
+                                        border: 1.5px solid #544ac5;
+                                    }
+
+                                    .item:nth-child(8) .hiddenbox:hover {
+                                        background: #544ac5;
+                                        color: white;
+                                        transition: all 0.5s ease;
+                                    }
+
+                                    .item:nth-child(8) .projcheckbox:checked + .hiddenbox {
+                                        background: #544ac5;
+                                        color: white;
+                                    }
                                 }
                             }
 
@@ -465,9 +553,7 @@
                     }
                 }
             }
-
         }
     }
-
 }
 

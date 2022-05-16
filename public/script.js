@@ -56,20 +56,25 @@ fswitchBtn.addEventListener("click", ()=> { // Sidebar open when you click on th
 /* TOGGLE NEW TASK CREATION */
 /*--------------------------*/
 /*--------------------------*/
-
+let crNewTaskBtn = document.querySelector("#crNewTaskBtn");
 let crTaskBtn = document.querySelector("#createTaskBtn");
 let remTaskBtn = document.querySelector("#deleteTaskBtn");
 
 let CrTask = document.querySelector(".task-wrapper");
 let RemTask = document.querySelector(".create-wrapper");
 
-crTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
-    console.log('switch');
+crNewTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
+    console.log('create a task');
     switchVisible();
-});
+}); 
+
+crTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
+    console.log('create new task');
+    switchVisible();
+}); 
 
 remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you click delete button
-    console.log('switch back');
+    console.log('deleted task');
     switchVisible();
 });
 
@@ -125,20 +130,19 @@ function switchVisible() {
     }
 }
 
-/*---------------------------------*/
-/*---------------------------------*/
-/* STORING INPUTS IN LOCAL STORAGE */
-/*---------------------------------*/
-/*---------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+/* STORING/DISPLAYING PROJECT NAME INPUT */
+/*---------------------------------------*/
+/*---------------------------------------*/
 
 let projectnamesArr = []; // Array containing each project name created
 
 let projBtnImg = document.querySelector("#new-proj-icon"); // gets submit btn (img)
 let submitProjName = document.querySelector("#saveprojectname"); // gets submit btn
-let projectname = document.querySelector("#newprojsave"); // gets project name input
+let projectnameInput = document.querySelector("#newprojsave"); // gets project name input
 let projects = document.querySelector('.projects'); // gets project div
 let projectLabel = document.querySelector('#new-project'); // gets project label
-
 
 // let taskForm = document.querySelector(".tasks-form")
 
@@ -165,7 +169,7 @@ function addProjectName(item) {
       addProjNameLocalStorage(projectnamesArr); // then renders them between <output>
 
        // finally clear the input box value
-       projectname.value = '';
+       projectnameInput.value = '';
     }
 }
 
@@ -180,7 +184,7 @@ function renderProjects(projectnamesArr) {
         const checked = item.selected ? 'checked': null;
 
         // make a <output> element and set attributes
-        const pOutput = document.createElement('output'); // <output> </output>
+        const pOutput = document.createElement('div'); // <output> </output>
         pOutput.setAttribute('class', 'item'); // <output class="item"> </output>
         pOutput.setAttribute('data-key', item.id); // <output class="item" data-key="20200708"> </output>
 
@@ -189,8 +193,8 @@ function renderProjects(projectnamesArr) {
         }
 
         pOutput.innerHTML = `
-        <input type="checkbox" class="checkbox" ${checked}>
-        ${item.name}
+        <input type="checkbox" class="projcheckbox" id="${item.id}" ${checked}>
+        <label class="hiddenbox" for="${item.id}">${item.name}</label>
         `;
 
         // finally add the <output> to <div>
@@ -218,7 +222,7 @@ function getProjNameFromLocalStorage() {
 
 function toggle(id) {
     projectnamesArr.forEach(function(item) {
-        // use == not ===, because here types are different. One is number and other is string
+        // used == not ===, because types are different. One is number and other is string
         if (item.id == id) {
             // toggle the value
             item.selected = !item.selected;
@@ -228,10 +232,13 @@ function toggle(id) {
     addProjNameLocalStorage(projectnamesArr);
 }
 
-// checks if array has reached 6 items and makes changes accordingly
+// initially get everything from localStorage
+getProjNameFromLocalStorage();
+
+// checks if array has reached 8 items and makes changes accordingly
 function stopArray() {
     if (projectnamesArr.length === 8) {
-        console.log('project array has reached max capacity ');
+        // console.log('project array has reached max capacity ');
         projBtnImg.style.display = 'none';
     } else {
         console.log(projectnamesArr.length);
@@ -239,10 +246,7 @@ function stopArray() {
     }
 }
 
-// initially get everything from localStorage
-getProjNameFromLocalStorage();
-
-// removes project name submit btn when no. of projects equal 6 
+// removes project name submit btn when no. of projects equal 8
 stopArray();
 
 projects.addEventListener('click', (event)=> {
@@ -254,34 +258,223 @@ projects.addEventListener('click', (event)=> {
     }
 });
 
-function checkInputName () {
-    if (projectnamesArr.length > 0 ) {
-        projectnamesArr.forEach(function(item) {
+// check condition of new project input
+function checkInputName() {
+    if (projectnamesArr.length > 0 ) { // array has 1 or more entries
+        let hasMatch = false;
 
-            if (projectname.value == item.name) {
-                console.log(projectname.value + " is already used in project selection as " + item.name);
-                projectname.value = ''; // clears input box
-                // projectLabel.style.color = 'red'; // alerts user of an error
-                return;
-            }
-            
-            if (projectname.value != item.name) {
-                console.log('new product name');
-                addProjectName(projectname.value); // call addprojectname function with input box current value
+        projectnamesArr.forEach(function(item) {
+            if (item.name == projectnameInput.value) { // checks if user input already exists in array
+                hasMatch = true;
+                console.log('the project name ' + item.name + ' already exists');
             }
         });
-    } else if (projectnamesArr.length === 0 ) {
-        addProjectName(projectname.value); // call addprojectname function with input box current value
+
+        if(hasMatch) {
+            // don't add/duplicate
+            projectnameInput.value = ''; // clears input box
+            projectLabel.style.color = 'red';
+        } else {
+          // safe to add
+          console.log('project name does not exist');
+          addProjectName(projectnameInput.value);
+        }
+    } else {
+        console.log(projectnameInput.value + ' is your first project');
+        addProjectName(projectnameInput.value);
     }
 }
 
-
 // console log project names array
 console.log(projectnamesArr);
-console.log(localStorage.getItem('projectnamesArr'));
+console.log('project name arr local storage ' + localStorage.getItem('projectnamesArr'));
 
 //localStorage.clear();
 
+/*--------------------------*/
+/*--------------------------*/
+/* STORING/DISPLAYING TASKS */
+/*--------------------------*/
+/*--------------------------*/
+
+let taskListArray = []; // Array containing each project name created
+
+let taskForm = document.querySelector('.tasks-form'); // gets form input
+
+let taskName = document.querySelector("#taskNameInput"); // gets taskName input
+let taskDueDate = document.querySelector("#duedate"); // gets due date input
+let taskCompTime = document.querySelector("#completetime"); // gets completion time input
+let taskPriority = document.querySelector("#p-measure"); // gets priority input
+//let selectedProjects = document.querySelectorAll('.projcheckbox:checked'); // checks which projects have been selected
+
+let taskListOutput = document.querySelector('.taskListOutput'); // gets output div
+
+taskForm.addEventListener('submit', function(event) {
+    // prevent the page from reloading when submitting the form
+    event.preventDefault();
+    addTask(taskName.value, taskDueDate.value, taskCompTime.value, taskPriority.value);
+});
+
+// function to add task
+function addTask(taskitem) {
+    // if item is not empty
+    if (taskitem !== '') {
+        // make a task object, which has id, name, and completed properties
+        const task = {
+            key: Date.now(),
+            title: taskitem,
+            completed: false
+        };
+
+        // then add it to Task List Array 
+        taskListArray.push(task);
+        addTaskToLocalStorage(taskListArray);
+
+        // clear the input box values
+        taskName.value = '';
+        taskDueDate.value = '';
+        taskCompTime.value = '';
+        taskPriority.value = '';
+    }
+}
+
+// function to render given todos to screen
+function renderTaskList(taskListArray) {
+    // clear everything inside <div> with class=taskListOutput
+    taskListOutput.innerHTML = '';
+
+    // run through each item inside tasklistarray
+    taskListArray.forEach(function(taskitem) {
+
+        // check if the item is completed
+        const complete = taskitem.completed ? 'checked': null;
+    
+        // make a <div> element and fill it
+        // <div> </div>
+        const taskDiv = document.createElement('div');
+
+        // <div class="taskitem"> </div>
+        taskDiv.setAttribute('class', 'taskitem');
+
+        // <div class="taskitem" data-key="20200708"> </div>
+        taskDiv.setAttribute('unique-key', taskitem.key);
+
+        // if item is completed, then add a class to <li> called 'checked', which will add line-through style
+        if (taskitem.completed === true) {
+            taskDiv.classList.add('checked');
+        }
+
+        taskDiv.innerHTML = `
+        <div class="nameFromTask">${taskName.value}</div>
+        <div class="timeFromTask">${taskCompTime.value}</div>
+        <div class="priorityFromTask">${taskPriority.value}</div>
+		<div class="dueDateFromTask">${taskDueDate.value}</div>
+		<input type="checkbox" class="finishedTask" id="${taskitem.key}" ${complete}>
+		<label class="hiddenTaskFinish" for="${taskitem.key}">${taskitem.title}</label>
+		<button class="delete-button">X</button>
+        `;
+        
+        // finally add the task to the <div>
+        taskListOutput.append(taskDiv);
+    });
+} 
+
+// function to add task to local storage
+function addTaskToLocalStorage(taskListArray) {
+    // conver the array to string then store it.
+    localStorage.setItem('taskListArray', JSON.stringify(taskListArray));
+    // render them to screen
+    renderTaskList(taskListArray);
+}
+
+// function helps to get everything from local storage
+function getTaskFromLocalStorage() {
+	const taskReference = localStorage.getItem('taskListArray');
+	// if reference exists
+	if (taskReference) {
+	  // converts back to array and store it in todos array
+	  taskListArray = JSON.parse(taskReference);
+	  renderTaskList(taskListArray);
+	}
+}
+
+// toggle the value to completed and not completed
+function toggleTaskStatus(key) {
+	taskListArray.forEach(function(taskitem) {
+	  // use == not ===, because here types are different. One is number and other is string
+	  if (taskitem.key == key) {
+		// toggle the value
+		taskitem.completed = !taskitem.completed;
+	  }
+	});
+	addTaskToLocalStorage(taskListArray);
+}
+
+// deletes a todo from todos array, then updates localstorage and renders updated list to screen
+function deleteTask(key) {
+	// filters out the <div> with the key and updates the todos array
+	taskListArray = taskListArray.filter(function(taskitem) {
+	  // use != not !==, because here types are different. One is number and other is string
+	  return taskitem.key != key;
+	});
+  	// update the localStorage
+	addTaskToLocalStorage(taskListArray);
+}
+
+// initially get everything from localStorage
+getTaskFromLocalStorage();
+
+//listen for click event in all delete-button and checkbox
+taskListOutput.addEventListener('click', function(event) {
+	// check if the event is on checkbox
+	if (event.target.type === 'checkbox') {
+	  // toggle the state
+	  toggleTaskStatus(event.target.parentElement.getAttribute('unique-key'));
+	}
+  	// check if that is a delete-button
+	if (event.target.classList.contains('delete-button')) {
+	  // get id from data-key attribute's value of parent <li> where the delete-button is present
+	  deleteTask(event.target.parentElement.getAttribute('unique-key'));
+	  console.log(event.target.parentElement.getAttribute('unique-key'));
+	}
+});
+
+// console log project names array
+console.log(taskListArray);
+console.log(localStorage.getItem('taskListArray'));
+
+//localStorage.removeItem('taskListArray');
+
+/*---------------------*/
+/*---------------------*/
+/* TASK DISPLAY TOGGLE */
+/*---------------------*/
+/*---------------------*/
+
+let headWrapperDiv = document.querySelector(".head-wrapper"); // gets header wrapper div
+let newTaskBtn = document.querySelector("#crNewTaskBtn"); // gets new task button
+let taskListInfo = document.querySelector(".before-list"); // gets before task list div
+
+function toggleTaskListDisplay() {
+	if (taskListArray.length > 0 ) { // array has 1 or more entries
+		// console.log('taskarray is valid');
+
+		taskListOutput.style.display = 'block'; 
+		taskListInfo.style.display = 'none'; 
+		headWrapperDiv.style.opacity = '1';
+		newTaskBtn.style.pointerEvents = "all";
+		
+	} else {
+		// console.log('taskarray has no entries');
+
+		taskListOutput.style.display = 'none'; 
+		taskListInfo.style.display = 'block'; 
+		headWrapperDiv.style.opacity = '0.3';
+		newTaskBtn.style.pointerEvents = 'none';
+	}
+}
+
+toggleTaskListDisplay(); // check how task list over displays
 
 /*-----------------*/
 /*-----------------*/
