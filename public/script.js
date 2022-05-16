@@ -137,6 +137,8 @@ let projBtnImg = document.querySelector("#new-proj-icon"); // gets submit btn (i
 let submitProjName = document.querySelector("#saveprojectname"); // gets submit btn
 let projectname = document.querySelector("#newprojsave"); // gets project name input
 let projects = document.querySelector('.projects'); // gets project div
+let projectLabel = document.querySelector('#new-project'); // gets project label
+
 
 // let taskForm = document.querySelector(".tasks-form")
 
@@ -145,7 +147,7 @@ let projects = document.querySelector('.projects'); // gets project div
 // });
 
 submitProjName.addEventListener('click', ()=> {  // add an eventListener on form, and listen for project name submit
-    addProjectName(projectname.value); // call addprojectname function with input box current value
+    checkInputName();
 });
 
 function addProjectName(item) {
@@ -155,6 +157,7 @@ function addProjectName(item) {
       const projectName = {
         id: Date.now(),
         name: item,
+        selected: false
       };
 
       // then add it to project names array
@@ -170,22 +173,27 @@ function renderProjects(projectnamesArr) {
 
     projects.innerHTML = '';
 
-    // run through each item inside todos
+    // run through each item inside project array
     projectnamesArr.forEach(function(item) {
 
-        // make a <output> element and fill it
-        // <p> </p>
-        const pOutput = document.createElement('output');
-        // <p class="projOutput"> </p>
-        pOutput.setAttribute('class', 'item'); 
-        // <p class="item" data-key="20200708"> </p>
-        pOutput.setAttribute('data-key', item.id);
+        // checks if the item is selected or not
+        const checked = item.selected ? 'checked': null;
+
+        // make a <output> element and set attributes
+        const pOutput = document.createElement('output'); // <output> </output>
+        pOutput.setAttribute('class', 'item'); // <output class="item"> </output>
+        pOutput.setAttribute('data-key', item.id); // <output class="item" data-key="20200708"> </output>
+
+        if (item.selected === true) {
+            pOutput.classList.add('checked');
+        }
 
         pOutput.innerHTML = `
+        <input type="checkbox" class="checkbox" ${checked}>
         ${item.name}
         `;
-        
-        // finally add the <li> to the <ul>
+
+        // finally add the <output> to <div>
         projects.append(pOutput);
     });
 }
@@ -208,8 +216,21 @@ function getProjNameFromLocalStorage() {
     }
 }
 
+function toggle(id) {
+    projectnamesArr.forEach(function(item) {
+        // use == not ===, because here types are different. One is number and other is string
+        if (item.id == id) {
+            // toggle the value
+            item.selected = !item.selected;
+        }
+    });
+
+    addProjNameLocalStorage(projectnamesArr);
+}
+
+// checks if array has reached 6 items and makes changes accordingly
 function stopArray() {
-    if (projectnamesArr.length === 6) {
+    if (projectnamesArr.length === 8) {
         console.log('project array has reached max capacity ');
         projBtnImg.style.display = 'none';
     } else {
@@ -224,11 +245,42 @@ getProjNameFromLocalStorage();
 // removes project name submit btn when no. of projects equal 6 
 stopArray();
 
+projects.addEventListener('click', (event)=> {
+    // check if the event is on the checkbox
+    if (event.target.type === 'checkbox') {
+      // toggle the state
+      toggle(event.target.parentElement.getAttribute('data-key'));
+      console.log(event.target.parentElement.getAttribute('data-key'));
+    }
+});
+
+function checkInputName () {
+    if (projectnamesArr.length > 0 ) {
+        projectnamesArr.forEach(function(item) {
+
+            if (projectname.value == item.name) {
+                console.log(projectname.value + " is already used in project selection as " + item.name);
+                projectname.value = ''; // clears input box
+                // projectLabel.style.color = 'red'; // alerts user of an error
+                return;
+            }
+            
+            if (projectname.value != item.name) {
+                console.log('new product name');
+                addProjectName(projectname.value); // call addprojectname function with input box current value
+            }
+        });
+    } else if (projectnamesArr.length === 0 ) {
+        addProjectName(projectname.value); // call addprojectname function with input box current value
+    }
+}
+
+
 // console log project names array
 console.log(projectnamesArr);
 console.log(localStorage.getItem('projectnamesArr'));
 
-// localStorage.clear();
+//localStorage.clear();
 
 
 /*-----------------*/
@@ -258,14 +310,14 @@ let cMonth = [
 ][topDate.getMonth()];
 
 let cWDay = [
+    "Sunday",
     "Monday",
-    "Tuesday",
-    "Wednesday", 
+    "Tuesday", 
+    "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday",
-    "Sunday"
-][topDate.getDay() - 1];
+    "Saturday"
+][topDate.getDay()];
 
 // Setting Top Navbar Current Date (Custom Display)
 currDay.innerHTML = cWDay + ", ";
