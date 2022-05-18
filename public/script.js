@@ -136,92 +136,156 @@ function switchVisible() {
 /*---------------------------------------*/
 /*---------------------------------------*/
 
-let projectnamesArr = []; // Array containing each project name created
+/* 
 
-let projBtnImg = document.querySelector("#new-proj-icon"); // gets submit btn (img)
-let submitProjName = document.querySelector("#saveprojectname"); // gets submit btn
-let projectnameInput = document.querySelector("#newprojsave"); // gets project name input
-let projects = document.querySelector('.projects'); // gets project div
+Questions to ask Sam:
+
+1. How do I make the seleted project de-select itself on page reload
+2. Is it worth having an alert box show up when the user clicks on a project? that way they can decide whether to select or delete it?
+3. How is each new task being added to local storage if I dont have somethn adding it?
+
+*/
+
+/*
+
+Project Data model:
+- All projects are stored in an array called projects, which is stored in localStorage as localStorage.getItem('projects').
+- This is synched with the variable allProjects on pageload/change
+- data is in the following format:
+[
+	{
+		"name": "Project 1 Name",
+		"due": "Sat Dec 17 2022 03:24:00 GMT+1100 (Australian Eastern Daylight Time)",
+		"id": Date.now(),
+		"selected": false,
+		"tasks": [
+			{
+				"id": Date.now(),
+				"name": "taskNameInput.value", // this is equal to "project 1 task 1"
+				"due": "dueDateInput.value",
+				"priority": "prioritySelected.value",
+				"estimate": "timeEstimated.value",
+				"completed": false,
+			},
+			...
+		]
+	},
+	...
+]
+*/
+
+let projects = []; // Array containing each project name created
+
+let projectSubmitBtn = document.querySelector("#saveprojectname"); // gets project submit btn
+let projectInput = document.querySelector("#newprojsave"); // gets project name input
+
+/*
+
+Style Additions 
+
+projBtnImg ~ Allows code to remove submit btn (its an img) when the number of projects are equal to 8
+projectLabel ~ Allows code to style project input label when there is an error or alert
+
+*/
+
+let projBtnImg = document.querySelector("#new-proj-icon"); 
 let projectLabel = document.querySelector('#new-project'); // gets project label
 
-// let taskForm = document.querySelector(".tasks-form")
+/* 
 
-// taskForm.addEventListener("submit", function (e) {
-//     e.preventDefault();
-// });
+Output Areas - for tasks and projects
 
-submitProjName.addEventListener('click', ()=> {  // add an eventListener on form, and listen for project name submit
+outputProjects ~ area where projects are displayed after being created
+
+*/
+
+let outputProjects = document.querySelector('.projects');
+
+/*---------------------------------------*/
+/*---------------------------------------*/
+/* STORING/DISPLAYING PROJECT NAME INPUT */
+/*---------------------------------------*/
+/*---------------------------------------*/
+
+// add an eventListener on btn click, and listen for project name submit
+projectSubmitBtn.addEventListener('click', ()=> { 
     checkInputName();
 });
 
 function addProjectName(item) {
     // if item is not empty
     if (item !== '') {
+
       // make a projectname object, which has id, name
-      const projectName = {
+      const project = {
+		name: item,
         id: Date.now(),
-        name: item,
-        selected: false
+        selected: false,
+		tasks: []
       };
 
       // then add it to project names array
-      projectnamesArr.push(projectName);
-      addProjNameLocalStorage(projectnamesArr); // then renders them between <output>
+      projects.push(project);
+      addProjectsToLocalStorage(projects); // then renders them between <output>
 
        // finally clear the input box value
-       projectnameInput.value = '';
+       projectInput.value = '';
     }
 }
 
-function renderProjects(projectnamesArr) {
+function renderProjects(projects) {
 
-    projects.innerHTML = '';
+    outputProjects.innerHTML = '';
 
     // run through each item inside project array
-    projectnamesArr.forEach(function(item) {
+    projects.forEach(function(item) {
 
         // checks if the item is selected or not
         const checked = item.selected ? 'checked': null;
 
-        // make a <output> element and set attributes
-        const pOutput = document.createElement('div'); // <output> </output>
-        pOutput.setAttribute('class', 'item'); // <output class="item"> </output>
-        pOutput.setAttribute('data-key', item.id); // <output class="item" data-key="20200708"> </output>
+        // make a <div> element and set attributes
+        const pOutput = document.createElement('div'); // <div> </div>
+        pOutput.setAttribute('class', 'item'); // <div class="item"> </div>
+        pOutput.setAttribute('data-key', item.id); // <div class="item" data-key="20200708"> </div>
 
+		// if project selected is true add a css class called checked
         if (item.selected === true) {
             pOutput.classList.add('checked');
+            // var selectedProject = item.name + ", " + item.id;
+            // console.log(selectedProject);
         }
 
+		// create html elements inside above div
         pOutput.innerHTML = `
         <input type="checkbox" class="projcheckbox" id="${item.id}" ${checked}>
         <label class="hiddenbox" for="${item.id}">${item.name}</label>
         `;
 
-        // finally add the <output> to <div>
-        projects.append(pOutput);
+        // finally add the <div> to <parentDiv>
+        outputProjects.append(pOutput);
     });
 }
 
-function addProjNameLocalStorage(projectnamesArr) {
+function addProjectsToLocalStorage(projects) {
     // convert the array to string then store it.
-    localStorage.setItem('projectnamesArr', JSON.stringify(projectnamesArr));
-    // render them to screen
-    renderProjects(projectnamesArr);
+    localStorage.setItem('projects', JSON.stringify(projects));
+    // render array to screen
+    renderProjects(projects);
 }
 
 // function helps to get everything from local storage
-function getProjNameFromLocalStorage() {
-    const pReference = localStorage.getItem('projectnamesArr');
+function getProjectsFromLocalStorage() {
+    const pReference = localStorage.getItem('projects');
     // if reference exists
     if (pReference) {
-      // converts back to array and store it in projectnames array
-      projectnamesArr = JSON.parse(pReference);
-      renderProjects(projectnamesArr);
+      // converts back to array and store it in project array
+      projects = JSON.parse(pReference);
+      renderProjects(projects);
     }
 }
 
 function toggle(id) {
-    projectnamesArr.forEach(function(item) {
+    projects.forEach(function(item) {
         // used == not ===, because types are different. One is number and other is string
         if (item.id == id) {
             // toggle the value
@@ -229,19 +293,19 @@ function toggle(id) {
         }
     });
 
-    addProjNameLocalStorage(projectnamesArr);
+    addProjectsToLocalStorage(projects);
 }
 
-// initially get everything from localStorage
-getProjNameFromLocalStorage();
+// get everything initially from local storage
+getProjectsFromLocalStorage();
 
 // checks if array has reached 8 items and makes changes accordingly
 function stopArray() {
-    if (projectnamesArr.length === 8) {
+    if (projects.length === 8) {
         // console.log('project array has reached max capacity ');
         projBtnImg.style.display = 'none';
     } else {
-        console.log(projectnamesArr.length);
+        console.log(projects.length);
         projBtnImg.style.display = 'block';
     }
 }
@@ -249,47 +313,50 @@ function stopArray() {
 // removes project name submit btn when no. of projects equal 8
 stopArray();
 
-projects.addEventListener('click', (event)=> {
+outputProjects.addEventListener('click', (event)=> {
+	
     // check if the event is on the checkbox
     if (event.target.type === 'checkbox') {
       // toggle the state
       toggle(event.target.parentElement.getAttribute('data-key'));
-      console.log(event.target.parentElement.getAttribute('data-key'));
     }
 });
 
-// check condition of new project input
+// check condition of new project entry
 function checkInputName() {
-    if (projectnamesArr.length > 0 ) { // array has 1 or more entries
+
+	// if array 1 or more entries check various conditions
+    if (projects.length > 0 ) { 
         let hasMatch = false;
 
-        projectnamesArr.forEach(function(item) {
-            if (item.name == projectnameInput.value) { // checks if user input already exists in array
+		// iterate through array and check if user input is already in array
+        projects.forEach(function(item) {
+            if (item.name == projectInput.value) {
                 hasMatch = true;
-                console.log('the project name ' + item.name + ' already exists');
+				console.log(projectInput.value, 'already exists in database as ', item.name)
             }
         });
 
-        if(hasMatch) {
-            // don't add/duplicate
-            projectnameInput.value = ''; // clears input box
-            projectLabel.style.color = 'red';
-        } else {
-          // safe to add
-          console.log('project name does not exist');
-          addProjectName(projectnameInput.value);
+		// project name already exists == alert user
+        if(hasMatch) { 
+            projectInput.value = '';
+            projectLabel.style.color = 'red'; // change label colour to red == alert
+        } 
+
+		// project name doesn't exist == safe to add
+		else {
+			console.log(projectInput.value, 'can be added to database');
+		  	projectLabel.style.color = '#dbdbdb'; // change label back to normal = safe
+          	addProjectName(projectInput.value); 
         }
-    } else {
-        console.log(projectnameInput.value + ' is your first project');
-        addProjectName(projectnameInput.value);
+    } 
+	
+	// project array has no entries so name can be added 
+	else {
+        console.log(projectInput.value + ' is your first project');
+        addProjectName(projectInput.value);
     }
 }
-
-// console log project names array
-console.log(projectnamesArr);
-console.log('project name arr local storage ' + localStorage.getItem('projectnamesArr'));
-
-//localStorage.clear();
 
 /*--------------------------*/
 /*--------------------------*/
@@ -297,153 +364,144 @@ console.log('project name arr local storage ' + localStorage.getItem('projectnam
 /*--------------------------*/
 /*--------------------------*/
 
-let taskListArray = []; // Array containing each project name created
+let taskForm = document.querySelector('.tasks-form');  // gets form input
 
-let taskForm = document.querySelector('.tasks-form'); // gets form input
-
-let taskName = document.querySelector("#taskNameInput"); // gets taskName input
+let taskName = document.querySelector("#taskNameInput"); // gets task name input
 let taskDueDate = document.querySelector("#duedate"); // gets due date input
 let taskCompTime = document.querySelector("#completetime"); // gets completion time input
 let taskPriority = document.querySelector("#p-measure"); // gets priority input
-//let selectedProjects = document.querySelectorAll('.projcheckbox:checked'); // checks which projects have been selected
 
-let taskListOutput = document.querySelector('.taskListOutput'); // gets output div
+let taskItemOutput = document.querySelector(".taskListOutput"); // gets task output div
 
-taskForm.addEventListener('submit', function(event) {
-    // prevent the page from reloading when submitting the form
-    event.preventDefault();
-    addTask(taskName.value, taskDueDate.value, taskCompTime.value, taskPriority.value);
+
+
+taskForm.addEventListener('submit', function(e) {  // add an eventListener on button click
+    e.preventDefault();
+    addNewTask(taskName.value, taskDueDate.value, taskPriority.value, taskCompTime.value);
 });
 
-// function to add task
-function addTask(taskitem) {
-    // if item is not empty
-    if (taskitem !== '') {
-        // make a task object, which has id, name, and completed properties
-        const task = {
-            key: Date.now(),
-            title: taskitem,
-            completed: false
-        };
+function addNewTask(taskItem) {
+	// sets formValid parameter
+    let formValid = false;
 
-        // then add it to Task List Array 
-        taskListArray.push(task);
-        addTaskToLocalStorage(taskListArray);
+	// finds selected project
+	let selectedProject = projects.find((project) => project.selected);
+    
+    // if form is not empty
+    if (taskItem !== '' && selectedProject !== '') {
+      	formValid =  true;
+      	console.log('valid');
+    }
+  
+    if (formValid) {
+      	console.log ('can submit task');
 
-        // clear the input box values
-        taskName.value = '';
-        taskDueDate.value = '';
-        taskCompTime.value = '';
-        taskPriority.value = '';
+		// checks
+		console.log(taskName.value);
+		console.log(taskDueDate.value);
+		console.log(taskPriority.value);
+		console.log(taskCompTime.value);
+		console.log('project selected ', selectedProject);
+
+		// make a projectname object, which has id, name
+		const task = {
+			id: Date.now(),
+			name: taskName.value, // same as name: name
+			date: taskDueDate.value,
+			priority: taskPriority.value,
+			estimate: taskCompTime.value,
+			project: selectedProject.name,
+			completed: false
+		};
+	
+		// gets selected project from array, finds the task array and adds new task to it
+		let taskArr = selectedProject['tasks'];
+		taskArr.push(task);
+	
+		//renders projects to div
+		renderTasks(taskArr);
+
+		// finally clear the input box value
+
+		projects.forEach(function(item) {
+			if (item.selected === true) {
+			item.selected = false;
+			addProjectsToLocalStorage(projects);
+			}
+		});
+
+		taskName.value = '';
+		taskDueDate.value = '';
+		taskPriority.value = '';
+		taskCompTime.value = '';
+
+    } 
+	
+	else {
+      	console.log ('cannot submit task');
     }
 }
 
-// function to render given todos to screen
-function renderTaskList(taskListArray) {
-    // clear everything inside <div> with class=taskListOutput
-    taskListOutput.innerHTML = '';
+function renderTasks(projects) {
 
-    // run through each item inside tasklistarray
-    taskListArray.forEach(function(taskitem) {
+    taskItemOutput.innerHTML = '';
 
-        // check if the item is completed
-        const complete = taskitem.completed ? 'checked': null;
-    
-        // make a <div> element and fill it
-        // <div> </div>
-        const taskDiv = document.createElement('div');
+    // run through each item inside project array
+    projects['tasks'].forEach(function(taskItem) {
 
-        // <div class="taskitem"> </div>
-        taskDiv.setAttribute('class', 'taskitem');
+        // checks if the item is selected or not
+        const complete = taskItem.completed ? 'checked': null;
 
-        // <div class="taskitem" data-key="20200708"> </div>
-        taskDiv.setAttribute('unique-key', taskitem.key);
+        // make a <output> element and set attributes
+        const taskOutput = document.createElement('div'); // <output> </output>
+        taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
+        taskOutput.setAttribute('data-key', taskItem.id); // <output class="item" data-key="20200708"> </output>
 
-        // if item is completed, then add a class to <li> called 'checked', which will add line-through style
-        if (taskitem.completed === true) {
-            taskDiv.classList.add('checked');
+        if (taskItem.id === true) {
+            taskOutput.classList.add('checked');
         }
 
-        taskDiv.innerHTML = `
-        <div class="nameFromTask">${taskName.value}</div>
-        <div class="timeFromTask">${taskCompTime.value}</div>
-        <div class="priorityFromTask">${taskPriority.value}</div>
-		<div class="dueDateFromTask">${taskDueDate.value}</div>
-		<input type="checkbox" class="finishedTask" id="${taskitem.key}" ${complete}>
-		<label class="hiddenTaskFinish" for="${taskitem.key}">${taskitem.title}</label>
-		<button class="delete-button">X</button>
+        taskOutput.innerHTML = `
+		<div class="nameFromTask">${taskItem.name}</div>
+		<div class="projectsFromTask">${taskItem.project}</div>
+		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.estimate}</div>
+		<div class="priorityFromTask">${taskItem.priority}</div>
+		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.date}</div>
+		<input type="checkbox" class="completeTask" id="${taskItem.id}" ${complete}>
+		<label class="hiddenTaskComplete" for="${taskItem.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
+		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
         `;
-        
-        // finally add the task to the <div>
-        taskListOutput.append(taskDiv);
+
+        // finally add the <output> to <div>
+        taskItemOutput.append(taskOutput);
     });
-} 
-
-// function to add task to local storage
-function addTaskToLocalStorage(taskListArray) {
-    // conver the array to string then store it.
-    localStorage.setItem('taskListArray', JSON.stringify(taskListArray));
-    // render them to screen
-    renderTaskList(taskListArray);
 }
 
-// function helps to get everything from local storage
-function getTaskFromLocalStorage() {
-	const taskReference = localStorage.getItem('taskListArray');
-	// if reference exists
-	if (taskReference) {
-	  // converts back to array and store it in todos array
-	  taskListArray = JSON.parse(taskReference);
-	  renderTaskList(taskListArray);
-	}
-}
+// function addTasksToLocalStorageArray(projects) {
+//     // convert the array to string then store it.
+//     localStorage.setItem('projects', JSON.stringify(projects));
+//     // render array to screen
+//     renderTasks(projects);
+// }
 
-// toggle the value to completed and not completed
-function toggleTaskStatus(key) {
-	taskListArray.forEach(function(taskitem) {
-	  // use == not ===, because here types are different. One is number and other is string
-	  if (taskitem.key == key) {
-		// toggle the value
-		taskitem.completed = !taskitem.completed;
-	  }
-	});
-	addTaskToLocalStorage(taskListArray);
-}
+// // function helps to get everything from local storage
+// function getTasksFromLocalStorageArray() {
+//     const pReference = localStorage.getItem('projects');
+//     // if reference exists
+//     if (pReference) {
+//       // converts back to array and store it in project array
+//       projects = JSON.parse(pReference);
+//       renderTasks(projects);
+//     }
+// }
 
-// deletes a todo from todos array, then updates localstorage and renders updated list to screen
-function deleteTask(key) {
-	// filters out the <div> with the key and updates the todos array
-	taskListArray = taskListArray.filter(function(taskitem) {
-	  // use != not !==, because here types are different. One is number and other is string
-	  return taskitem.key != key;
-	});
-  	// update the localStorage
-	addTaskToLocalStorage(taskListArray);
-}
+// getTasksFromLocalStorageArray();
 
-// initially get everything from localStorage
-getTaskFromLocalStorage();
+// checking project array (local storage)
+console.log('Project Array Local Storage ', localStorage.getItem('projects'));
+console.log('Project Array', projects);
 
-//listen for click event in all delete-button and checkbox
-taskListOutput.addEventListener('click', function(event) {
-	// check if the event is on checkbox
-	if (event.target.type === 'checkbox') {
-	  // toggle the state
-	  toggleTaskStatus(event.target.parentElement.getAttribute('unique-key'));
-	}
-  	// check if that is a delete-button
-	if (event.target.classList.contains('delete-button')) {
-	  // get id from data-key attribute's value of parent <li> where the delete-button is present
-	  deleteTask(event.target.parentElement.getAttribute('unique-key'));
-	  console.log(event.target.parentElement.getAttribute('unique-key'));
-	}
-});
-
-// console log project names array
-console.log(taskListArray);
-console.log(localStorage.getItem('taskListArray'));
-
-//localStorage.removeItem('taskListArray');
+//localStorage.removeItem('projects');
 
 /*---------------------*/
 /*---------------------*/
@@ -456,18 +514,39 @@ let newTaskBtn = document.querySelector("#crNewTaskBtn"); // gets new task butto
 let taskListInfo = document.querySelector(".before-list"); // gets before task list div
 
 function toggleTaskListDisplay() {
-	if (taskListArray.length > 0 ) { // array has 1 or more entries
-		// console.log('taskarray is valid');
 
-		taskListOutput.style.display = 'block'; 
-		taskListInfo.style.display = 'none'; 
-		headWrapperDiv.style.opacity = '1';
-		newTaskBtn.style.pointerEvents = "all";
-		
+	// check if project array has any entries
+	if (projects.length > 0) {
+
+		let tasksExist = false;
+
+		// check if the task array inside the project array exists and has any entries
+		let isEveryProjectEmpty = projects.every((project) => {
+            if (typeof project.tasks !== 'undefined' && project.tasks.length > 0) {
+				console.log(project.name);
+				console.log(`${project.tasks.length} tasks`);
+				tasksExist = true;
+            }
+        });
+
+		// the array is defined and has at least one element
+		if (tasksExist) {
+			taskItemOutput.style.display = 'block'; 
+			taskListInfo.style.display = 'none'; 
+			headWrapperDiv.style.opacity = '1';
+			newTaskBtn.style.pointerEvents = "all";
+
+		} else {
+			// the task array is underfined and has no entries
+			taskOutput.style.display = 'none'; 
+			taskListInfo.style.display = 'block'; 
+			headWrapperDiv.style.opacity = '0.3';
+			newTaskBtn.style.pointerEvents = 'none';
+		}
+
 	} else {
-		// console.log('taskarray has no entries');
-
-		taskListOutput.style.display = 'none'; 
+		// project array has no entries
+		taskItemOutput.style.display = 'none'; 
 		taskListInfo.style.display = 'block'; 
 		headWrapperDiv.style.opacity = '0.3';
 		newTaskBtn.style.pointerEvents = 'none';

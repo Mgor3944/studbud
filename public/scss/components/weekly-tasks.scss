@@ -9,7 +9,7 @@
         .weekly-tasks { // weekly tasks box outer
             position: relative;
             display: flex;
-            width: 46%;
+            width: 47%;
             // flex-direction: row-reverse;
             padding-top: 20px;
             padding-left: 25px;
@@ -99,16 +99,129 @@
                     }
 
                     .taskListOutput {
-                        background: grey;
+                        // background: grey;
                         width: 100%;
                         height: 100%;
                         padding-top: 10px;
 
-                        .taskitem {
-                            background: white;
+                        .taskItem {
+                            background: #3C4253;
                             width: 100%;
-                            padding: 15px 5px 15px 5px;
+                            padding: 15px 2px 15px 2px;
+                            border-radius: 14px;
                             display: flex;
+                            margin-bottom: 10px;
+
+                            .nameFromTask {
+                                width: 19%;
+                                padding: 7px 0px 7px 12px;
+                                font-weight: 600;
+                                font-size: 15px;
+                                color: #E6E6E6;
+                            }
+
+                            .projectsFromTask {
+                                padding: 9px 25px 9px 25px;
+                                background: rgb(154, 101, 255, 0.5);
+                                font-weight: 600;
+                                font-size: 12px;
+                                color: #E6E6E6;
+                                border-radius: 20px;
+                            }
+
+                            .timeFromTask {
+                                width: 25%;
+                                padding: 6px 10px 6px 25px;
+                                font-weight: 400;
+                                font-size: 15px;
+                                color: #E6E6E6;
+                                display: flex;
+
+                                #timeIcon {
+                                    margin-top: 1px;
+                                    margin-right: 13px;
+                                    width: 17px;
+                                    height: 17px;
+                                }
+                            }
+
+                            .priorityFromTask {
+                                padding: 9px 15px 9px 15px;
+                                background: #FFEDEF;
+                                font-weight: 600;
+                                font-size: 12px;
+                                color: #E95060;
+                                border-radius: 8px;
+                            }
+
+                            .dueDateFromTask {
+                                width: 23%;
+                                padding: 6px 10px 6px 20px;
+                                font-weight: 400;
+                                font-size: 15px;
+                                color: #E6E6E6;
+                                display: flex;
+
+                                #timeIcon {
+                                    margin-top: 1px;
+                                    margin-right: 13px;
+                                    width: 17px;
+                                    height: 17px;
+                                }
+                            }
+
+                            .hiddenTaskComplete {
+                                padding: 0px 7px 0px 7px;
+                                border-radius: 5px;
+                                display: inline-block;
+                                cursor: pointer;
+                                margin-right: 6px;
+
+                                #timeIcon {
+                                    margin-top: 4.5px;
+                                    width: 23px;
+                                    height: 23px;
+                                    opacity: 0.3;
+                                }
+                            }
+
+                            .completeTask {
+                                display: none;
+                            }
+
+                            .completeTask:checked + .hiddenTaskComplete {
+                                #timeIcon {
+                                    content: url("../../assets/taskCompleteActive.svg");
+                                    opacity: 1;
+                                }
+                            }
+
+                            .deleteIndTaskBtn {
+                                padding: 0px 7px 0px 7px;
+                                background-color: Transparent;
+                                background-repeat: no-repeat;
+                                border: none;
+                                display: inline-block;
+                                cursor: pointer;
+
+                                #timeIcon {
+                                    margin-top: 2px;
+                                    width: 23px;
+                                    height: 23px;
+                                }
+                            }
+                        }
+
+                        .taskItem:nth-child(2) {
+                            background: #495165;
+                        }
+
+                        .taskItem:nth-child(4) {
+                            background: #495165;
+                        }
+
+                        .taskItem:nth-child(6) {
+                            background: #495165;
                         }
                     }
                 }
@@ -384,6 +497,7 @@
                                         margin-bottom: 12px;
                                         float: left;
                                         overflow: hidden;
+                                        user-select: none;
                                     }
 
                                     .hiddenbox {
@@ -403,11 +517,11 @@
                                         border: 1.5px solid #4ab5c5;
                                     }
 
-                                    .item:nth-child(1) .hiddenbox:hover {
-                                        background: #4ab5c5;
-                                        color: white;
-                                        transition: all 0.5s ease;
-                                    }
+                                    // .item:nth-child(1) .hiddenbox:hover {
+                                    //     background: #4ab5c5;
+                                    //     color: white;
+                                    //     transition: all 0.5s ease;
+                                    // }
 
                                     .item:nth-child(1) .projcheckbox:checked + .hiddenbox{
                                         background: #4ab5c5;
@@ -419,12 +533,6 @@
                                     .item:nth-child(2) .hiddenbox {
                                         color: #C59F4A;
                                         border: 1.5px solid #C59F4A;
-                                    }
-
-                                    .item:nth-child(2) .hiddenbox:hover {
-                                        background: #C59F4A;
-                                        color: white;
-                                        transition: all 0.5s ease;
                                     }
 
                                     .item:nth-child(2) .projcheckbox:checked + .hiddenbox {
@@ -439,12 +547,6 @@
                                         border: 1.5px solid #C54AB2;
                                     }
 
-                                    .item:nth-child(3) .hiddenbox:hover {
-                                        background: #C54AB2;
-                                        color: white;
-                                        transition: all 0.5s ease;
-                                    }
-
                                     .item:nth-child(3) .projcheckbox:checked + .hiddenbox {
                                         background: #C54AB2;
                                         color: white;
@@ -455,12 +557,6 @@
                                     .item:nth-child(4) .hiddenbox {
                                         color: #C5534A;
                                         border: 1.5px solid #C5534A;
-                                    }
-
-                                    .item:nth-child(4) .hiddenbox:hover {
-                                        background: #C5534A;
-                                        color: white;
-                                        transition: all 0.5s ease;
                                     }
 
                                     .item:nth-child(4) .projcheckbox:checked + .hiddenbox {
@@ -475,12 +571,6 @@
                                         border: 1.5px solid #BCC54A;
                                     }
 
-                                    .item:nth-child(5) .hiddenbox:hover {
-                                        background: #BCC54A;
-                                        color: white;
-                                        transition: all 0.5s ease;
-                                    }
-
                                     .item:nth-child(5) .projcheckbox:checked + .hiddenbox {
                                         background: #BCC54A;
                                         color: white;
@@ -491,12 +581,6 @@
                                     .item:nth-child(6) .hiddenbox {
                                         color: #4AC57E;
                                         border: 1.5px solid #4AC57E;
-                                    }
-
-                                    .item:nth-child(6) .hiddenbox:hover {
-                                        background: #4AC57E;
-                                        color: white;
-                                        transition: all 0.5s ease;
                                     }
 
                                     .item:nth-child(6) .projcheckbox:checked + .hiddenbox {
@@ -511,12 +595,6 @@
                                         border: 1.5px solid #f0edf4;
                                     }
 
-                                    .item:nth-child(7) .hiddenbox:hover {
-                                        background: #f0edf4;
-                                        color: rgb(39, 39, 39);
-                                        transition: all 0.5s ease;
-                                    }
-
                                     .item:nth-child(7) .projcheckbox:checked + .hiddenbox {
                                         background: #f0edf4;
                                         color: rgb(39, 39, 39);
@@ -527,12 +605,6 @@
                                     .item:nth-child(8) .hiddenbox {
                                         color: #7369e2;
                                         border: 1.5px solid #544ac5;
-                                    }
-
-                                    .item:nth-child(8) .hiddenbox:hover {
-                                        background: #544ac5;
-                                        color: white;
-                                        transition: all 0.5s ease;
                                     }
 
                                     .item:nth-child(8) .projcheckbox:checked + .hiddenbox {
