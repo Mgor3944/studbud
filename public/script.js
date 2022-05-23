@@ -56,6 +56,7 @@ fswitchBtn.addEventListener("click", ()=> { // Sidebar open when you click on th
 /* TOGGLE NEW TASK CREATION */
 /*--------------------------*/
 /*--------------------------*/
+
 let crNewTaskBtn = document.querySelector("#crNewTaskBtn");
 let crTaskBtn = document.querySelector("#createTaskBtn");
 let remTaskBtn = document.querySelector("#deleteTaskBtn");
@@ -64,17 +65,14 @@ let CrTask = document.querySelector(".task-wrapper");
 let RemTask = document.querySelector(".create-wrapper");
 
 crNewTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
-    console.log('create a task');
     switchVisible();
 }); 
 
 crTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
-    console.log('create new task');
     switchVisible();
 }); 
 
-remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you click delete button
-    console.log('deleted task');
+remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you click del button
     switchVisible();
 });
 
@@ -251,13 +249,11 @@ function renderProjects(projects) {
 		// if project selected is true add a css class called checked
         if (item.selected === true) {
             pOutput.classList.add('checked');
-            // var selectedProject = item.name + ", " + item.id;
-            // console.log(selectedProject);
         }
 
 		// create html elements inside above div
         pOutput.innerHTML = `
-        <input type="checkbox" class="projcheckbox" id="${item.id}" ${checked}>
+        <input type="radio" class="projcheckbox" id="${item.id}"  name="project-radio" ${checked}>
         <label class="hiddenbox" for="${item.id}">${item.name}</label>
         `;
 
@@ -316,7 +312,7 @@ stopArray();
 outputProjects.addEventListener('click', (event)=> {
 	
     // check if the event is on the checkbox
-    if (event.target.type === 'checkbox') {
+    if (event.target.type === 'radio') {
       // toggle the state
       toggle(event.target.parentElement.getAttribute('data-key'));
     }
@@ -364,33 +360,62 @@ function checkInputName() {
 /*--------------------------*/
 /*--------------------------*/
 
-let taskForm = document.querySelector('.tasks-form');  // gets form input
+let taskForm = document.querySelector('.tasks-form');  // form 
 
-let taskName = document.querySelector("#taskNameInput"); // gets task name input
-let taskDueDate = document.querySelector("#duedate"); // gets due date input
-let taskCompTime = document.querySelector("#completetime"); // gets completion time input
-let taskPriority = document.querySelector("#p-measure"); // gets priority input
+let taskName = document.getElementById('taskNameInput');  // task name input
+let taskDueDate = document.getElementById('duedate');  // task due date input
+let taskPriority = document.getElementById('p-measure');  // task priority value
+let taskEstimate = document.getElementById('completetime');  // task priority input
+//let selectedProject = projects.find((project) => project.selected); // finds selected project
 
-let taskItemOutput = document.querySelector(".taskListOutput"); // gets task output div
+let userInputs = taskName + taskDueDate + taskPriority + taskEstimate;
 
-
+let taskItemOutput = document.querySelector(".taskListOutput"); // task list output div
 
 taskForm.addEventListener('submit', function(e) {  // add an eventListener on button click
     e.preventDefault();
-    addNewTask(taskName.value, taskDueDate.value, taskPriority.value, taskCompTime.value);
+    checkFormData();
+    // addNewTask(userInputs, selectedProject);
 });
 
-function addNewTask(taskItem) {
+function checkFormData() {
+    // sets formValid parameter
+    let formValid = false;
+    console.log(formValid);
+
+    if (taskName.value === '' || taskName.value.trim().length == 0) {
+        console.log('No task name inputed'); 
+        return false;
+    } else if (taskDueDate.value === '' || taskDueDate.value.trim().length == 0) {
+        console.log('No due date selected'); 
+        return false;
+    } else if (taskPriority.value === '' || taskPriority.value.trim().length == 0) {
+        console.log('No priority selected'); 
+        return false;
+    } else if (taskEstimate.value === '' || taskEstimate.value.trim().length == 0) {
+        console.log('No completion time inputed'); 
+        return false;
+    // } else if (selectedProject === '') {
+    //     console.log('no project selected'); 
+    //     return false;
+    // } 
+    } else {
+        formValid = true;
+        console.log(formValid);
+        console.log('Task Name: ' + taskName.value);
+        console.log('Due Date: ' + taskDueDate.value);
+        console.log('Priority: ' + taskPriority.value);
+        console.log('Completion Time: ' + taskEstimate.value);
+    }
+}
+
+function addNewTask(taskItem, projectID) {
 	// sets formValid parameter
     let formValid = false;
-
-	// finds selected project
-	let selectedProject = projects.find((project) => project.selected);
     
     // if form is not empty
-    if (taskItem !== '' && selectedProject !== '') {
+    if (taskItem !== '' && projectID !== '') {
       	formValid =  true;
-      	console.log('valid');
     }
   
     if (formValid) {
@@ -409,7 +434,7 @@ function addNewTask(taskItem) {
 			name: taskName.value, // same as name: name
 			date: taskDueDate.value,
 			priority: taskPriority.value,
-			estimate: taskCompTime.value,
+			estimate: taskEstimate.value,
 			project: selectedProject.name,
 			completed: false
 		};
@@ -422,7 +447,6 @@ function addNewTask(taskItem) {
 		renderTasks(taskArr);
 
 		// finally clear the input box value
-
 		projects.forEach(function(item) {
 			if (item.selected === true) {
 			item.selected = false;
@@ -433,49 +457,52 @@ function addNewTask(taskItem) {
 		taskName.value = '';
 		taskDueDate.value = '';
 		taskPriority.value = '';
-		taskCompTime.value = '';
-
+		taskEstimate.value = '';
     } 
 	
 	else {
       	console.log ('cannot submit task');
+          // check individual form inputs 
+        if (taskName.value == '') {
+            console.log('task name not inputed');
+        }
     }
 }
 
-function renderTasks(projects) {
+// function renderTasks(projects) {
 
-    taskItemOutput.innerHTML = '';
+//     taskItemOutput.innerHTML = '';
 
-    // run through each item inside project array
-    projects['tasks'].forEach(function(taskItem) {
+//     // run through each item inside project array
+//     projects['tasks'].forEach(function(taskItem) {
 
-        // checks if the item is selected or not
-        const complete = taskItem.completed ? 'checked': null;
+//         // checks if the item is selected or not
+//         const complete = taskItem.completed ? 'checked': null;
 
-        // make a <output> element and set attributes
-        const taskOutput = document.createElement('div'); // <output> </output>
-        taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
-        taskOutput.setAttribute('data-key', taskItem.id); // <output class="item" data-key="20200708"> </output>
+//         // make a <output> element and set attributes
+//         const taskOutput = document.createElement('div'); // <output> </output>
+//         taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
+//         taskOutput.setAttribute('data-key', taskItem.id); // <output class="item" data-key="20200708"> </output>
 
-        if (taskItem.id === true) {
-            taskOutput.classList.add('checked');
-        }
+//         if (taskItem.id === true) {
+//             taskOutput.classList.add('checked');
+//         }
 
-        taskOutput.innerHTML = `
-		<div class="nameFromTask">${taskItem.name}</div>
-		<div class="projectsFromTask">${taskItem.project}</div>
-		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.estimate}</div>
-		<div class="priorityFromTask">${taskItem.priority}</div>
-		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.date}</div>
-		<input type="checkbox" class="completeTask" id="${taskItem.id}" ${complete}>
-		<label class="hiddenTaskComplete" for="${taskItem.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
-		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
-        `;
+//         taskOutput.innerHTML = `
+// 		<div class="nameFromTask">${taskItem.name}</div>
+// 		<div class="projectsFromTask">${taskItem.project}</div>
+// 		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.estimate}</div>
+// 		<div class="priorityFromTask">${taskItem.priority}</div>
+// 		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.date}</div>
+// 		<input type="checkbox" class="completeTask" id="${taskItem.id}" ${complete}>
+// 		<label class="hiddenTaskComplete" for="${taskItem.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
+// 		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
+//         `;
 
-        // finally add the <output> to <div>
-        taskItemOutput.append(taskOutput);
-    });
-}
+//         // finally add the <output> to <div>
+//         taskItemOutput.append(taskOutput);
+//     });
+// }
 
 // function addTasksToLocalStorageArray(projects) {
 //     // convert the array to string then store it.
@@ -503,6 +530,8 @@ console.log('Project Array', projects);
 
 //localStorage.removeItem('projects');
 
+// localStorage.clear();
+
 /*---------------------*/
 /*---------------------*/
 /* TASK DISPLAY TOGGLE */
@@ -520,8 +549,10 @@ function toggleTaskListDisplay() {
 
 		let tasksExist = false;
 
+		let isEveryProjectEmpty;
+
 		// check if the task array inside the project array exists and has any entries
-		let isEveryProjectEmpty = projects.every((project) => {
+		isEveryProjectEmpty = projects.every((project) => {
             if (typeof project.tasks !== 'undefined' && project.tasks.length > 0) {
 				console.log(project.name);
 				console.log(`${project.tasks.length} tasks`);
@@ -538,7 +569,7 @@ function toggleTaskListDisplay() {
 
 		} else {
 			// the task array is underfined and has no entries
-			taskOutput.style.display = 'none'; 
+			taskItemOutput.style.display = 'none'; 
 			taskListInfo.style.display = 'block'; 
 			headWrapperDiv.style.opacity = '0.3';
 			newTaskBtn.style.pointerEvents = 'none';
