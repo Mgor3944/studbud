@@ -161,24 +161,24 @@
                             <div class="crtask-wrapper">
                                 <div class="createTasks">
                                     <div class="taskName">
-                                        <label for="task-name">Task Name *</label>
+                                        <label for="task-name" id="task-name">Task Name *</label>
                                         <input type="text" id="taskNameInput" name="tasknme" placeholder="E.g. Coding Project">
                                     </div>
 
                                     <div class="newProject">
                                         <label for="new-project" id="new-project">New Project</label>
-                                        <input type="text" id="newprojsave" name="newproj" placeholder="Give it a 2 word name">
+                                        <input type="text" id="newprojsave" name="newproj" placeholder="Give it a 1 word name">
                                         <a href="#" id="saveprojectname"><img class="new-proj-icon" id="new-proj-icon" src="../assets/newprojbutton.svg"></a>
                                     </div>
 
                                     <div class="tasks-combo">
                                         <div class="dueDate">
-                                            <label for="due-date">Due Date *</label>
+                                            <label for="due-date" id="dueLabel">Due Date *</label>
                                             <input type="date" id="duedate" name="dueDateInput" placeholder="DD MM YYYY" style="background-color: #495165;">
                                         </div>
 
                                         <div class="priority">
-                                            <label for="priority">Priority *</label>
+                                            <label for="priority" id="priorityLabel">Priority *</label>
                                             <select id="p-measure" name="priorityInput" style="background-color: #495165;">
                                                 <option value="">Choose</option>
                                                 <option value="low" class="lowP">Low</option>
@@ -188,7 +188,7 @@
                                         </div>
 
                                         <div class="comtime">
-                                            <label for="complete-time">Completion Time *</label>
+                                            <label for="complete-time" id="estimateLabel">Completion Time *</label>
                                             <input type="text" id="completetime" name="timeInput" placeholder="E.g. 2hr 30min" style="background-color: #333948;">
                                         </div>
                                     </div>

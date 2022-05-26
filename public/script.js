@@ -68,10 +68,6 @@ crNewTaskBtn.addEventListener('click', ()=> {  // new task form opens up when yo
     switchVisible();
 }); 
 
-crTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
-    switchVisible();
-}); 
-
 remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you click del button
     switchVisible();
 });
@@ -218,7 +214,7 @@ function addProjectName(item) {
       const project = {
 		name: item,
         id: Date.now(),
-        selected: false,
+        // selected: false,
 		tasks: []
       };
 
@@ -232,6 +228,8 @@ function addProjectName(item) {
 }
 
 function renderProjects(projects) {
+    console.log(typeof(projects));
+    console.log(projects);
 
     outputProjects.innerHTML = '';
 
@@ -239,21 +237,22 @@ function renderProjects(projects) {
     projects.forEach(function(item) {
 
         // checks if the item is selected or not
-        const checked = item.selected ? 'checked': null;
+        // const checked = item.selected ? 'checked': null;
 
         // make a <div> element and set attributes
         const pOutput = document.createElement('div'); // <div> </div>
         pOutput.setAttribute('class', 'item'); // <div class="item"> </div>
+        pOutput.setAttribute('title', item.name); // <div class="item" title="name"> </div>
         pOutput.setAttribute('data-key', item.id); // <div class="item" data-key="20200708"> </div>
 
 		// if project selected is true add a css class called checked
-        if (item.selected === true) {
-            pOutput.classList.add('checked');
-        }
+        // if (item.selected === true) {
+        //     pOutput.classList.add('checked');
+        // }
 
 		// create html elements inside above div
         pOutput.innerHTML = `
-        <input type="radio" class="projcheckbox" id="${item.id}"  name="project-radio" ${checked}>
+        <input type="radio" class="projcheckbox" id="${item.id}"  name="project-radio" parentname="${item.name}">
         <label class="hiddenbox" for="${item.id}">${item.name}</label>
         `;
 
@@ -280,17 +279,17 @@ function getProjectsFromLocalStorage() {
     }
 }
 
-function toggle(id) {
-    projects.forEach(function(item) {
-        // used == not ===, because types are different. One is number and other is string
-        if (item.id == id) {
-            // toggle the value
-            item.selected = !item.selected;
-        }
-    });
+// function toggle(id) {
+//     projects.forEach(function(item) {
+//         // used == not ===, because types are different. One is number and other is string
+//         if (item.id == id) {
+//             // toggle the value
+//             item.selected = !item.selected;
+//         }
+//     });
 
-    addProjectsToLocalStorage(projects);
-}
+//     addProjectsToLocalStorage(projects);
+// }
 
 // get everything initially from local storage
 getProjectsFromLocalStorage();
@@ -314,7 +313,9 @@ outputProjects.addEventListener('click', (event)=> {
     // check if the event is on the checkbox
     if (event.target.type === 'radio') {
       // toggle the state
-      toggle(event.target.parentElement.getAttribute('data-key'));
+    //   toggle(event.target.parentElement.getAttribute('data-key'));
+        let projectName = event.target.parentElement.getAttribute('title');
+        console.log(projectName);
     }
 });
 
@@ -336,7 +337,7 @@ function checkInputName() {
 		// project name already exists == alert user
         if(hasMatch) { 
             projectInput.value = '';
-            projectLabel.style.color = 'red'; // change label colour to red == alert
+            projectLabel.style.color = 'tomato'; // change label colour to red == alert
         } 
 
 		// project name doesn't exist == safe to add
@@ -366,16 +367,14 @@ let taskName = document.getElementById('taskNameInput');  // task name input
 let taskDueDate = document.getElementById('duedate');  // task due date input
 let taskPriority = document.getElementById('p-measure');  // task priority value
 let taskEstimate = document.getElementById('completetime');  // task priority input
-//let selectedProject = projects.find((project) => project.selected); // finds selected project
 
-let userInputs = taskName + taskDueDate + taskPriority + taskEstimate;
+// let userInputs = taskName + taskDueDate + taskPriority + taskEstimate;
 
 let taskItemOutput = document.querySelector(".taskListOutput"); // task list output div
 
 taskForm.addEventListener('submit', function(e) {  // add an eventListener on button click
     e.preventDefault();
     checkFormData();
-    // addNewTask(userInputs, selectedProject);
 });
 
 function checkFormData() {
@@ -383,126 +382,158 @@ function checkFormData() {
     let formValid = false;
     console.log(formValid);
 
-    if (taskName.value === '' || taskName.value.trim().length == 0) {
-        console.log('No task name inputed'); 
-        return false;
-    } else if (taskDueDate.value === '' || taskDueDate.value.trim().length == 0) {
-        console.log('No due date selected'); 
-        return false;
-    } else if (taskPriority.value === '' || taskPriority.value.trim().length == 0) {
-        console.log('No priority selected'); 
-        return false;
-    } else if (taskEstimate.value === '' || taskEstimate.value.trim().length == 0) {
-        console.log('No completion time inputed'); 
-        return false;
-    // } else if (selectedProject === '') {
-    //     console.log('no project selected'); 
-    //     return false;
-    // } 
+    let selectedProject = document.querySelector('.projcheckbox:checked'); // get projectcheckbox class
+
+    if (
+        taskName.value === '' || taskName.value.trim().length == 0 ||
+        taskDueDate.value === '' || taskDueDate.value.trim().length == 0 ||
+        taskPriority.value === '' || taskPriority.value.trim().length == 0 ||
+        taskEstimate.value === '' || taskEstimate.value.trim().length == 0 ||
+        selectedProject == null
+        ) {
+            alert('please fill out required fields!'); 
+            // check individual inputs for errors
+            if (taskName.value === '' || taskName.value.trim().length == 0) {
+                console.log('No task name inputed'); 
+                document.querySelector('#task-name').style.color = 'tomato';
+            } else {
+                document.querySelector('#task-name').style.color = '#dbdbdb';
+            }
+            
+            if (taskDueDate.value === '' || taskDueDate.value.trim().length == 0) {
+                console.log('No due date selected'); 
+                document.querySelector('#dueLabel').style.color = 'tomato';
+            } else {
+                document.querySelector('#dueLabel').style.color = '#dbdbdb';
+            }
+            
+            if (taskPriority.value === '' || taskPriority.value.trim().length == 0) {
+                console.log('No priority selected'); 
+                document.querySelector('#priorityLabel').style.color = 'tomato';
+            } else {
+                document.querySelector('#priorityLabel').style.color = '#dbdbdb';
+            }
+            
+            if (taskEstimate.value === '' || taskEstimate.value.trim().length == 0) {
+                console.log('No completion time inputed'); 
+                document.querySelector('#estimateLabel').style.color = 'tomato';
+            } else {
+                document.querySelector('#estimateLabel').style.color = '#dbdbdb';
+            }
+
+            if (projects.length < 1) {
+                console.log('no projects exist');
+                projectLabel.style.color = 'tomato';
+
+            } else {
+                console.log('project database exists');
+                projectLabel.style.color = '#dbdbdb';
+
+                if (selectedProject == null) {
+                    console.log('no project selected'); 
+                    document.querySelector('#projectLabel').style.color = 'tomato';
+                } else {
+                    document.querySelector('#projectLabel').style.color = '#dbdbdb';
+                }
+            }
+
+            return false;
+
     } else {
+        // form cleared all checks == proceed
         formValid = true;
         console.log(formValid);
+
+        let projectID = selectedProject.id; // gets project name id
+        let projectName = selectedProject.getAttribute('parentname');
+
+        // console logs
         console.log('Task Name: ' + taskName.value);
         console.log('Due Date: ' + taskDueDate.value);
         console.log('Priority: ' + taskPriority.value);
         console.log('Completion Time: ' + taskEstimate.value);
+        console.log('Project ID: ' + projectID);
+        console.log('Project Name: ' + projectName);
+
+        switchVisible();
+        addNewTask(projectID, projectName);
     }
 }
 
-function addNewTask(taskItem, projectID) {
-	// sets formValid parameter
-    let formValid = false;
-    
-    // if form is not empty
-    if (taskItem !== '' && projectID !== '') {
-      	formValid =  true;
+function addNewTask(projectID, projectName) {
+
+    // make a task name object, which has various properties
+    const task = {
+        id: Date.now(),
+        name: taskName.value, // same as name: name
+        date: taskDueDate.value,
+        priority: taskPriority.value,
+        estimate: taskEstimate.value,
+        project: projectName,
+        completed: false
+    };
+
+    // gets selected project from array, finds the task array and adds new task to it
+    let matchedProject = projects.find(project=> project.id == projectID);
+    console.log(matchedProject);
+    matchedProject.tasks.push(task);
+
+    //renders projects to div
+    renderTasks(matchedProject);
+
+    // finally clear the input box value
+    // projects.forEach(function(item) {
+    //     if (item.selected === true) {
+    //     item.selected = false;
+    //     addProjectsToLocalStorage(projects);
+    //     }
+    // });
+
+    // finally clear the input box value
+    if (document.querySelector('.projcheckbox:checked') == true) {
+        document.querySelector('.projcheckbox:checked') = false;
     }
-  
-    if (formValid) {
-      	console.log ('can submit task');
 
-		// checks
-		console.log(taskName.value);
-		console.log(taskDueDate.value);
-		console.log(taskPriority.value);
-		console.log(taskCompTime.value);
-		console.log('project selected ', selectedProject);
+    taskName.value = '';
+    taskDueDate.value = '';
+    taskPriority.value = '';
+    taskEstimate.value = '';
+}
 
-		// make a projectname object, which has id, name
-		const task = {
-			id: Date.now(),
-			name: taskName.value, // same as name: name
-			date: taskDueDate.value,
-			priority: taskPriority.value,
-			estimate: taskEstimate.value,
-			project: selectedProject.name,
-			completed: false
-		};
-	
-		// gets selected project from array, finds the task array and adds new task to it
-		let taskArr = selectedProject['tasks'];
-		taskArr.push(task);
-	
-		//renders projects to div
-		renderTasks(taskArr);
+function renderTasks(matchedProject) {
 
-		// finally clear the input box value
-		projects.forEach(function(item) {
-			if (item.selected === true) {
-			item.selected = false;
-			addProjectsToLocalStorage(projects);
-			}
-		});
+    taskItemOutput.innerHTML = '';
 
-		taskName.value = '';
-		taskDueDate.value = '';
-		taskPriority.value = '';
-		taskEstimate.value = '';
-    } 
-	
-	else {
-      	console.log ('cannot submit task');
-          // check individual form inputs 
-        if (taskName.value == '') {
-            console.log('task name not inputed');
+    // run through each item inside project array
+    matchedProject.tasks.forEach(function(task) {
+
+        // checks if the item is selected or not
+        const complete = task.completed ? 'checked': null;
+
+        // make a <output> element and set attributes
+        const taskOutput = document.createElement('div'); // <output> </output>
+        taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
+        taskOutput.setAttribute('data-key', task.id); // <output class="item" data-key="20200708"> </output>
+
+        if (task.id === true) {
+            taskOutput.classList.add('checked');
         }
-    }
+
+        taskOutput.innerHTML = `
+		<div class="nameFromTask">${task.name}</div>
+		<div class="projectsFromTask">${task.project}</div>
+		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.estimate}</div>
+		<div class="priorityFromTask">${task.priority}</div>
+		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.date}</div>
+		<input type="checkbox" class="completeTask" id="${task.id}" ${complete}>
+		<label class="hiddenTaskComplete" for="${task.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
+		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
+        `;
+
+        // finally add the <output> to <div>
+        taskItemOutput.append(taskOutput);
+    });
 }
-
-// function renderTasks(projects) {
-
-//     taskItemOutput.innerHTML = '';
-
-//     // run through each item inside project array
-//     projects['tasks'].forEach(function(taskItem) {
-
-//         // checks if the item is selected or not
-//         const complete = taskItem.completed ? 'checked': null;
-
-//         // make a <output> element and set attributes
-//         const taskOutput = document.createElement('div'); // <output> </output>
-//         taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
-//         taskOutput.setAttribute('data-key', taskItem.id); // <output class="item" data-key="20200708"> </output>
-
-//         if (taskItem.id === true) {
-//             taskOutput.classList.add('checked');
-//         }
-
-//         taskOutput.innerHTML = `
-// 		<div class="nameFromTask">${taskItem.name}</div>
-// 		<div class="projectsFromTask">${taskItem.project}</div>
-// 		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.estimate}</div>
-// 		<div class="priorityFromTask">${taskItem.priority}</div>
-// 		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${taskItem.date}</div>
-// 		<input type="checkbox" class="completeTask" id="${taskItem.id}" ${complete}>
-// 		<label class="hiddenTaskComplete" for="${taskItem.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
-// 		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
-//         `;
-
-//         // finally add the <output> to <div>
-//         taskItemOutput.append(taskOutput);
-//     });
-// }
 
 // function addTasksToLocalStorageArray(projects) {
 //     // convert the array to string then store it.
@@ -530,7 +561,7 @@ console.log('Project Array', projects);
 
 //localStorage.removeItem('projects');
 
-// localStorage.clear();
+//localStorage.clear();
 
 /*---------------------*/
 /*---------------------*/
