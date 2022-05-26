@@ -195,6 +195,28 @@ outputProjects ~ area where projects are displayed after being created
 
 let outputProjects = document.querySelector('.projects');
 
+
+// mapping colours to project box and task list (project box)
+// function projectColMatch() {
+//     if (projects.length > 0) {
+//         console.log('project colmatch ' + projects.length);
+//         if (projects[0]) {
+//             console.log('first project exists ' + projects[0]);
+//             document.querySelector('.hiddenbox').style.color = '#4ab5c5';
+//             document.querySelector('.hiddenbox').style.border = '1.5px solid #4ab5c5';
+
+//             let onProjClick = document.querySelector('.projcheckbox:checked') + document.querySelector('.hiddenbox');
+//             onProjClick.style.color = 'tomato';
+//         } else {
+//             console.log('no projects to match colours');
+//             return false;
+//         }
+//     } else {
+//         console.log('no projects to match colours');
+//         return false;
+//     } 
+// }
+
 /*---------------------------------------*/
 /*---------------------------------------*/
 /* STORING/DISPLAYING PROJECT NAME INPUT */
@@ -227,10 +249,24 @@ function addProjectName(item) {
     }
 }
 
-function renderProjects(projects) {
-    console.log(typeof(projects));
-    console.log(projects);
+function projectColMatch() {
+    if (projects.length > 0) {
+        console.log('project colmatch ' + projects.length);
+        if (projects[0]) {
+            console.log('first project exists ' + projects[0]);
+            document.querySelector('.hiddenbox').style.color = '#4ab5c5';
+            document.querySelector('.hiddenbox').style.border = '1.5px solid #4ab5c5';
 
+            let onProjClick = document.querySelector('.projcheckbox:checked') + document.querySelector('.hiddenbox');
+            onProjClick.style.color = 'tomato';
+        }
+    } else {
+        console.log('no projects to match colours');
+        return false;
+    } 
+}
+
+function renderProjects(projects) {
     outputProjects.innerHTML = '';
 
     // run through each item inside project array
@@ -278,18 +314,6 @@ function getProjectsFromLocalStorage() {
       renderProjects(projects);
     }
 }
-
-// function toggle(id) {
-//     projects.forEach(function(item) {
-//         // used == not ===, because types are different. One is number and other is string
-//         if (item.id == id) {
-//             // toggle the value
-//             item.selected = !item.selected;
-//         }
-//     });
-
-//     addProjectsToLocalStorage(projects);
-// }
 
 // get everything initially from local storage
 getProjectsFromLocalStorage();
@@ -455,39 +479,30 @@ function checkFormData() {
         console.log('Project ID: ' + projectID);
         console.log('Project Name: ' + projectName);
 
+        // make a task name object, which has various properties
+        const newTask = {
+            id: Date.now(),
+            name: taskName.value, // same as name: name
+            date: taskDueDate.value,
+            priority: taskPriority.value,
+            estimate: taskEstimate.value,
+            project: projectName,
+            completed: false
+        };
+
         switchVisible();
-        addNewTask(projectID, projectName);
+        addNewTask(projectID, newTask);
     }
 }
 
-function addNewTask(projectID, projectName) {
-
-    // make a task name object, which has various properties
-    const task = {
-        id: Date.now(),
-        name: taskName.value, // same as name: name
-        date: taskDueDate.value,
-        priority: taskPriority.value,
-        estimate: taskEstimate.value,
-        project: projectName,
-        completed: false
-    };
-
+function addNewTask(projectID, task) {
     // gets selected project from array, finds the task array and adds new task to it
     let matchedProject = projects.find(project=> project.id == projectID);
     console.log(matchedProject);
     matchedProject.tasks.push(task);
 
     //renders projects to div
-    renderTasks(matchedProject);
-
-    // finally clear the input box value
-    // projects.forEach(function(item) {
-    //     if (item.selected === true) {
-    //     item.selected = false;
-    //     addProjectsToLocalStorage(projects);
-    //     }
-    // });
+    addTasksToLocalStorageArray(matchedProject);
 
     // finally clear the input box value
     if (document.querySelector('.projcheckbox:checked') == true) {
@@ -500,67 +515,67 @@ function addNewTask(projectID, projectName) {
     taskEstimate.value = '';
 }
 
-function renderTasks(matchedProject) {
+function renderTasks(projects) {
 
     taskItemOutput.innerHTML = '';
 
-    // run through each item inside project array
-    matchedProject.tasks.forEach(function(task) {
+    // run through each item inside project's tasklist array
+    let renderTaskItem;
 
-        // checks if the item is selected or not
-        const complete = task.completed ? 'checked': null;
+    renderTaskItem = projects.forEach((project) => {
+        project.tasks.forEach(function(task) {
 
-        // make a <output> element and set attributes
-        const taskOutput = document.createElement('div'); // <output> </output>
-        taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
-        taskOutput.setAttribute('data-key', task.id); // <output class="item" data-key="20200708"> </output>
-
-        if (task.id === true) {
-            taskOutput.classList.add('checked');
-        }
-
-        taskOutput.innerHTML = `
-		<div class="nameFromTask">${task.name}</div>
-		<div class="projectsFromTask">${task.project}</div>
-		<div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.estimate}</div>
-		<div class="priorityFromTask">${task.priority}</div>
-		<div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.date}</div>
-		<input type="checkbox" class="completeTask" id="${task.id}" ${complete}>
-		<label class="hiddenTaskComplete" for="${task.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
-		<button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
-        `;
-
-        // finally add the <output> to <div>
-        taskItemOutput.append(taskOutput);
+            // checks if the item is selected or not
+            const complete = task.completed ? 'checked': null;
+    
+            // make a <output> element and set attributes
+            const taskOutput = document.createElement('div'); // <output> </output>
+            taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
+            taskOutput.setAttribute('data-key', task.id); // <output class="item" data-key="20200708"> </output>
+    
+            if (task.id === true) {
+                taskOutput.classList.add('checked');
+            }
+    
+            taskOutput.innerHTML = `
+            <div class="nameFromTask">${task.name}</div>
+            <div class="projectsFromTask">${task.project}</div>
+            <div class="timeFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.estimate}</div>
+            <div class="priorityFromTask ${task.priority}">${task.priority}</div>
+            <div class="dueDateFromTask"><img id="timeIcon" src="../assets/phclock-clockwise.svg" alt="">${task.date}</div>
+            <input type="checkbox" class="completeTask" id="${task.id}" ${complete}>
+            <label class="hiddenTaskComplete" for="${task.id}"><img id="timeIcon" src="../assets/taskComplete.svg" alt=""></label>
+            <button class="deleteIndTaskBtn"><img id="timeIcon" src="../assets/delTaskIcon.svg" alt=""></button>
+            `;
+    
+            // finally add the <output> to <div>
+            taskItemOutput.append(taskOutput);
+            
+        });
     });
 }
 
-// function addTasksToLocalStorageArray(projects) {
-//     // convert the array to string then store it.
-//     localStorage.setItem('projects', JSON.stringify(projects));
-//     // render array to screen
-//     renderTasks(projects);
-// }
+function addTasksToLocalStorageArray(matchedProject) {
+    // convert the array to string then store it.
+    localStorage.setItem('projects', JSON.stringify(projects));
+    // render array to screen
+    renderTasks(matchedProject);
+}
 
-// // function helps to get everything from local storage
-// function getTasksFromLocalStorageArray() {
-//     const pReference = localStorage.getItem('projects');
-//     // if reference exists
-//     if (pReference) {
-//       // converts back to array and store it in project array
-//       projects = JSON.parse(pReference);
-//       renderTasks(projects);
-//     }
-// }
+//function helps to get everything from local storage
+function getTasksFromLocalStorageArray() {
+    let storageItems = JSON.parse(localStorage.getItem('projects'));
+    storageItems;
+    renderTasks(projects);
+}
 
-// getTasksFromLocalStorageArray();
+getTasksFromLocalStorageArray();
 
 // checking project array (local storage)
-console.log('Project Array Local Storage ', localStorage.getItem('projects'));
+//console.log('Project Array Local Storage ', localStorage.getItem('projects'));
 console.log('Project Array', projects);
 
 //localStorage.removeItem('projects');
-
 //localStorage.clear();
 
 /*---------------------*/

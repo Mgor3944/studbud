@@ -103,9 +103,10 @@
                         width: 100%;
                         height: 100%;
                         padding-top: 10px;
+                        overflow-y: auto; // will add scroll bars if neccessary
 
                         .taskItem {
-                            background: #3C4253;
+                            background: #3C4253; 
                             width: 100%;
                             padding: 15px 2px 15px 2px;
                             border-radius: 14px;
@@ -113,33 +114,35 @@
                             margin-bottom: 10px;
 
                             .nameFromTask {
-                                width: 19%;
+                                width: 125px;
                                 padding: 7px 0px 7px 12px;
                                 font-weight: 600;
-                                font-size: 15px;
+                                font-size: 14px;
                                 color: #E6E6E6;
                             }
 
                             .projectsFromTask {
-                                padding: 9px 25px 9px 25px;
+                                width: 85px;
+                                padding-top: 9px;
                                 background: rgb(154, 101, 255, 0.5);
                                 font-weight: 600;
-                                font-size: 12px;
+                                font-size: 10px;
                                 color: #E6E6E6;
                                 border-radius: 20px;
+                                text-align: center;
                             }
 
                             .timeFromTask {
-                                width: 25%;
-                                padding: 6px 10px 6px 25px;
+                                width: 160px;
+                                padding-top: 8px;
+                                margin-left: 15px;
                                 font-weight: 400;
-                                font-size: 15px;
+                                font-size: 14px;
                                 color: #E6E6E6;
                                 display: flex;
-                                padding: 10px;
 
                                 #timeIcon {
-                                    margin-top: 1px;
+                                    content: url("../../assets/phclock-clockwise.svg");
                                     margin-right: 13px;
                                     width: 17px;
                                     height: 17px;
@@ -147,38 +150,60 @@
                             }
 
                             .priorityFromTask {
-                                padding: 9px 15px 9px 15px;
+                                width: 83px;
+                                padding-top: 10px;
                                 background: #FFEDEF;
                                 font-weight: 600;
-                                font-size: 12px;
+                                font-size: 10px;
                                 color: #E95060;
-                                border-radius: 8px;
+                                border-radius: 5px;
+                                text-align: center;
+                            }
+
+                            .Low {
+                                background: #E2F4EC;
+                                color: #4A9D77;
+                            }
+
+                            .Medium {
+                                background: #E1E1EF;
+                                color: #363565;
+                            }
+
+                            .High {
+                                background: #FFEDEF;
+                                color: #E95060;
                             }
 
                             .dueDateFromTask {
                                 width: 23%;
-                                padding: 6px 10px 6px 20px;
+                                padding-top: 8px;
+                                margin-left: 15px;
+                                // margin-right: 15px;
                                 font-weight: 400;
-                                font-size: 15px;
+                                font-size: 14px;
                                 color: #E6E6E6;
                                 display: flex;
+                                overflow: hidden;
 
                                 #timeIcon {
-                                    margin-top: 1px;
+                                    content: url("../../assets/phclock-clockwise.svg");
                                     margin-right: 13px;
+                                    margin-left: 5px;
                                     width: 17px;
                                     height: 17px;
                                 }
                             }
 
                             .hiddenTaskComplete {
-                                padding: 0px 7px 0px 7px;
-                                border-radius: 5px;
+                                // padding: 3px 7px 0px 7px;
+                                border-radius: 0px;
                                 display: inline-block;
                                 cursor: pointer;
                                 margin-right: 6px;
 
                                 #timeIcon {
+                                    content: url("../../assets/uncheckedCompleteBtn.svg");
                                     margin-top: 4.5px;
                                     width: 23px;
                                     height: 23px;
@@ -198,7 +223,7 @@
                             }
 
                             .deleteIndTaskBtn {
-                                padding: 0px 7px 0px 7px;
+                                padding: 1px 7px 0px 7px;
                                 background-color: Transparent;
                                 background-repeat: no-repeat;
                                 border: none;
@@ -209,19 +234,12 @@
                                     margin-top: 2px;
                                     width: 23px;
                                     height: 23px;
+                                    content: url("../../assets/delTaskIcon.svg");
                                 }
                             }
                         }
 
-                        .taskItem:nth-child(2) {
-                            background: #495165;
-                        }
-
-                        .taskItem:nth-child(4) {
-                            background: #495165;
-                        }
-
-                        .taskItem:nth-child(6) {
+                        .taskItem:nth-child(even) { // add a background box to every second child element
                             background: #495165;
                         }
                     }
