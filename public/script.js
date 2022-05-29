@@ -76,7 +76,7 @@ remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you cl
 /* DASHBOARD ELEMENTS */
 /*--------------------*/
 
-let pomTimer = document.querySelector(".pom-timer");
+let pomstopTimer = document.querySelector(".timers");
 let calBox = document.querySelector(".cal-container");
 let achievements = document.querySelector(".achievements");
 let musicPlayer = document.querySelector(".music-player");
@@ -109,7 +109,7 @@ function switchVisible() {
         RemTask.style.display = 'block';
 
         // reduce other dashboard elements opacity when task creator is open
-        pomTimer.style.opacity = '0.3', calBox.style.opacity = '0.3',
+        pomstopTimer.style.opacity = '0.3', calBox.style.opacity = '0.3',
         achievements.style.opacity = '0.3', musicPlayer.style.opacity = '0.3',
         acronyms.style.opacity = '0.3', projOverviewBox.style.opacity = '0.3';
         
@@ -118,7 +118,7 @@ function switchVisible() {
         RemTask.style.display = 'none';
 
         // retun other dashboard elements opacity to normal when task creator is closed 
-        pomTimer.style.opacity = '1', calBox.style.opacity = '1', 
+        pomstopTimer.style.opacity = '1', calBox.style.opacity = '1', 
         achievements.style.opacity = '1', musicPlayer.style.opacity = '1',
         acronyms.style.opacity = '1', projOverviewBox.style.opacity = '1';
     }
@@ -129,16 +129,6 @@ function switchVisible() {
 /* STORING/DISPLAYING PROJECT NAME INPUT */
 /*---------------------------------------*/
 /*---------------------------------------*/
-
-/* 
-
-Questions to ask Sam:
-
-1. How do I make the seleted project de-select itself on page reload
-2. Is it worth having an alert box show up when the user clicks on a project? that way they can decide whether to select or delete it?
-3. How is each new task being added to local storage if I dont have somethn adding it?
-
-*/
 
 /*
 
@@ -580,8 +570,6 @@ taskItemOutput.addEventListener('click', function(event) {
     }
      // check if that is a delete-button
     if (event.target.classList.contains('delSingleTaskBtn')) {
-        console.log('delete btn clicked');
-
         // get id from data-key attribute's value of parent <div> where the delete-button is present
         deleteTask(event.target.parentElement.getAttribute('data-key'));
     }
@@ -591,11 +579,11 @@ taskItemOutput.addEventListener('click', function(event) {
 console.log('Project Array', projects);
 //localStorage.removeItem('projects');
 
-/*---------------------*/
-/*---------------------*/
-/* TASK DISPLAY TOGGLE */
-/*---------------------*/
-/*---------------------*/
+/*----------------------------*/
+/*----------------------------*/
+/* TASK SCREEN DISPLAY TOGGLE */
+/*----------------------------*/
+/*----------------------------*/
 
 let headWrapperDiv = document.querySelector(".head-wrapper"); // gets header wrapper div
 let newTaskBtn = document.querySelector("#crNewTaskBtn"); // gets new task button
@@ -611,10 +599,10 @@ function toggleTaskListDisplay() {
 		let isEveryProjectEmpty;
 
 		// check project's task array exists and has any entries
-		isEveryProjectEmpty = projects.every(function(project) {
+		isEveryProjectEmpty = projects.forEach(function(project) {
             if (typeof project.tasks !== 'undefined' && project.tasks.length > 0) {
-                // console.log(project.name);
-			    // console.log(`${project.tasks.length} tasks`);
+                console.log(project.name);
+			    console.log(`${project.tasks.length} tasks`);
                 tasksExist = true;
             }
         });
@@ -648,6 +636,336 @@ function toggleTaskListDisplay() {
 }
 
 toggleTaskListDisplay(); // check how task list over displays
+
+/*-------------------------------------*/
+/*-------------------------------------*/
+/* SWITCH POMODORO & STOPWATCH DISPLAY */
+/*-------------------------------------*/
+/*-------------------------------------*/
+
+let togglePomodoro = document.querySelector('#toggle-pomodoro');
+let toggleStopwatch = document.querySelector('#toggle-stopwatch');
+let pomodoroWrapper = document.querySelector('.pom-wrapper');
+let stopwatchWrapper = document.querySelector('.stopwatch-wrapper');
+
+togglePomodoro.addEventListener("click", ()=> {
+    togglePomStop(); // calling the function
+});
+
+toggleStopwatch.addEventListener("click", ()=> {
+    togglePomStop(); // calling the function
+});
+
+//  Toggles focus mode on/off - changing icon design
+function togglePomStop() {
+    if(!CrTask) return;
+    if (getComputedStyle(pomodoroWrapper).display == 'block') {
+        pomodoroWrapper.style.display = 'none';
+        stopwatchWrapper.style.display = 'block';
+    } else {
+        pomodoroWrapper.style.display = 'block';
+        stopwatchWrapper.style.display = 'none';
+    }
+}
+
+/*----------------*/
+/*----------------*/
+/* POMODORO TIMER */
+/*----------------*/
+/*----------------*/
+
+/*----------------*/
+/* INTIATING HTML */
+/*----------------*/
+
+let pomSettingBtnToggle = document.querySelector('#pSettingsToggle');
+
+// containers
+let pomClockWrapper = document.querySelector('.pClockWrapper');
+let pomSetting = document.querySelector('#pClockSettings');
+
+// buttons
+let startPomBtn = document.querySelector('.pom-play');
+let resetPomBtn = document.querySelector('.pom-reset');
+
+// icons
+let playPomIcon = document.querySelector('.playHidden');
+let pausePomIcon = document.querySelector('.pauseHidden');
+let pomSettingsIconCog = document.querySelector('.pomSettingCog');
+let pomSettingsIconSubmit = document.querySelector('.pomSettingSubmit');
+
+// inputs
+let workDurationInput = document.querySelector('#input-work-duration');
+let breakDurationInput = document.querySelector('#input-break-duration');
+
+// outputs
+let pomodoroTimer = document.querySelector('#pTimer');
+let pomFocusOutput = document.querySelector('.l-text');
+let pomBreakOutput = document.querySelector('.r-text');
+
+/*---------------------*/
+/* DECLARING VARIABLES */
+/*---------------------*/
+
+let updatedWorkSessionDuration;
+let updatedBreakSessionDuration;
+
+workDurationInput.value = '45';
+breakDurationInput.value = '15';
+
+pomFocusOutput.innerText = workDurationInput.value + ' Min Focus'; // set inital focus text to equal initial work duration value
+pomBreakOutput.innerText = breakDurationInput.value + ' Min Break'; // set inital break text to equal initial break duration value
+
+let isClockRunning = false;
+let isClockStopped = true;
+
+let type = 'Work';
+
+// in seconds = 45 mins (60*45)
+let workSessionDuration = 2700; 
+let currentTimeLeftInSession = 2700; 
+
+// in seconds = 15 mins (60%15)
+let breakSessionDuration = 900;
+
+let timeSpentInCurrentSession = 0; // gets current time spent in focus
+
+/*-------------------------*/
+/* CALLING EVENT LISTENERS */
+/*-------------------------*/
+
+// START
+startPomBtn.addEventListener('click', () => {
+  togglePom();
+});
+
+// RESET
+resetPomBtn.addEventListener('click', () => {
+    togglePom(true);
+});
+
+// TOGGLE SETTINGS COG/DISPLAY
+pomSettingBtnToggle.addEventListener('click', () => {
+    if(!pomClockWrapper) return;
+    if (getComputedStyle(pomClockWrapper).display == 'block') {
+        // toggle display
+        pomClockWrapper.style.display = 'none';
+        pomSetting.style.display = 'block';
+        // toggle icon display
+        pomSettingsIconCog.style.display = 'none';
+        pomSettingsIconSubmit.style.display = 'block';
+        // disable play btn & pause timer
+        startPomBtn.style.pointerEvents = 'none';
+        startPomBtn.style.opacity = '0.5';
+        if (playPomIcon.style.display == 'none') { // reset pause timer when settings btn is clicked
+            togglePom();
+        }
+    } else {
+        checkFocusBreakInput();
+    }
+});
+
+/*-------------------------------------------*/
+/* CHECK USER INPUT BEFORE RE-DISPLAYING POM */
+/*-------------------------------------------*/
+
+function checkFocusBreakInput() {
+    if ((workDurationInput.value > 1 && workDurationInput.value < 60) && (breakDurationInput.value > 1 && breakDurationInput.value < 60)) {
+        // toggle pom screen display
+        pomClockWrapper.style.display = 'block';
+        pomSetting.style.display = 'none';
+        // toggle icon display
+        pomSettingsIconCog.style.display = 'block';
+        pomSettingsIconSubmit.style.display = 'none';
+        // re-activate play btn
+        startPomBtn.style.pointerEvents = 'all';
+        startPomBtn.style.opacity = '1';
+        // update work/break time
+        updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value);
+        updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value);
+        // update work/break session text
+        pomFocusOutput.innerText = workDurationInput.value + ' Min Focus';
+        pomBreakOutput.innerText = breakDurationInput.value + ' Min Break';
+    } else {
+        if ((workDurationInput.value < 1 || workDurationInput.value > 60) || (breakDurationInput.value < 1 || breakDurationInput.value > 60)) {
+            alert('Please enter a value between 1 & 60');
+            workDurationInput.value = '';
+            breakDurationInput.value = '';
+        }
+    }
+}
+
+/*------------------------*/
+/* RENDERING USER INPUTS  */
+/*------------------------*/
+
+function minuteToSeconds(mins) {
+    return mins * 60;
+}
+
+function setUpdatedTimers() {
+    if (type === 'Work') {
+      currentTimeLeftInSession = updatedWorkSessionDuration ? updatedWorkSessionDuration : workSessionDuration;
+      workSessionDuration = currentTimeLeftInSession;
+    } else {
+      currentTimeLeftInSession = updatedBreakSessionDuration ? updatedBreakSessionDuration : breakSessionDuration;
+      breakSessionDuration = currentTimeLeftInSession;
+    }
+}
+
+/*-----------------------------------------*/
+/* UPDATING CLOCK BASED ON EVENT LISTENERS */
+/*-----------------------------------------*/
+
+// POM TIMER FUNCTIONALITY
+function togglePom(reset) {
+    togglePlayPauseIcon(reset); // reset pause/play icon if reset btn is clicked
+    // STOP THE TIMER
+    if (reset) {
+      stopClock();
+    } else {
+        // INITIAL
+        if (isClockStopped) {
+            setUpdatedTimers();
+            isClockStopped = false;
+        }
+        // PAUSE THE TIMER
+        if (isClockRunning === true) {
+            clearInterval(clockTimer);
+
+            isClockRunning = false; // set the vale of the button to start or pause
+
+            if (pausePomIcon.style.display = 'block') { // switch play/pause icon
+                pausePomIcon.style.display = 'none';
+                playPomIcon.style.display = 'block';
+            }
+        // START THE TIMER
+        } else {
+            clockTimer = setInterval(() => {
+                stepDown(); // toggle between work and break sessions
+                displayCurrentTimeLeftInSession();
+            }, 1000);
+
+            if (playPomIcon.style.display = 'block') { // switch play/pause icon
+                playPomIcon.style.display = 'none';
+                pausePomIcon.style.display = 'block';
+            }
+            isClockRunning = true;
+        }
+        enableResetIcon(); // activate reset icon when play btn is clicked
+    }
+}
+
+/*------------------*/
+/* DISPLAYING CLOCK */
+/*------------------*/
+
+function displayCurrentTimeLeftInSession() {
+    const secondsLeft = currentTimeLeftInSession; // check time left in session
+    let result = ''; // clear result
+
+    const seconds = secondsLeft % 60; // seconds left in the timer
+    const minutes = parseInt(secondsLeft / 60) % 60; // minutes left in the timer
+    let hours = parseInt(secondsLeft / 3600); // hours left in the timer
+
+    function addLeadingZeroes(time) {
+      return time < 10 ? `0${time}` : time; // add leading zeroes when minutes/seconds are less than 10
+    }
+
+    if (hours > 0) {result += `${hours}:`}; // interpolates hours (if any), minutes & seconds together
+
+    result += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
+
+    pomodoroTimer.innerText = result.toString(); // render timer left to screen
+}
+
+/*----------------------------*/
+/* UPDATING CLOCK ON STOP BTN */
+/*----------------------------*/
+
+function stopClock() {
+    setUpdatedTimers(); // update timers
+    displaySessionLog(type);
+
+    clearInterval(clockTimer); // Reset the timer
+
+    isClockStopped = true; // Update variable to know that timer is stopped
+    isClockRunning = false; // Update variable to know that timer is running
+
+    currentTimeLeftInSession = workSessionDuration; // Reset time left in the session to its original state
+
+    displayCurrentTimeLeftInSession(); // Update the timer displayed
+
+    type = 'Work'; 
+
+}
+
+/*---------------------*/
+/* COUNTING CLOCK DOWN */
+/*---------------------*/
+
+function stepDown() {
+    if (currentTimeLeftInSession > 0) { // decrease time left
+      currentTimeLeftInSession--;
+      timeSpentInCurrentSession++; // might want to del later
+
+    } else if (currentTimeLeftInSession === 0) { // Timer is over -> if work switch to break, viceversa
+
+        timeSpentInCurrentSession = 0;
+
+      if (type === 'Work') { // work session
+        currentTimeLeftInSession = breakSessionDuration;
+        displaySessionLog('Work');
+        type = 'Break';
+        setUpdatedTimers();
+
+      } else { // break session
+        currentTimeLeftInSession = workSessionDuration;
+        type = 'Work';
+        setUpdatedTimers();
+        displaySessionLog('Break');
+      }
+    }
+    displayCurrentTimeLeftInSession(); // update current time left in session
+}
+
+/*------------------------*/
+/* DISPLAYING SESSION LOG */
+/*------------------------*/
+
+function displaySessionLog (type) {
+    const sessionsList = document.querySelector('.pSessions');
+
+    // append li to it
+    const li = document.createElement('li');
+    let sessionLabel = type;
+    let elapsedTime = parseInt(timeSpentInCurrentSession / 60);
+    elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
+    
+    const text = document.createTextNode(`${sessionLabel} : ${elapsedTime} min`);
+    li.appendChild(text);
+    sessionsList.appendChild(li);
+}
+
+/*---------------------------------------*/ 
+/* DISPLAY PLAY BTN WHEN TIMER IS RESET  */
+/*---------------------------------------*/
+
+function togglePlayPauseIcon(reset) {
+    if (reset) {
+        // when resetting -> always revert to play icon
+        if(!pausePomIcon) return;
+        if (getComputedStyle(pausePomIcon).display == 'block') {
+            pausePomIcon.style.display = 'none';
+            playPomIcon.style.display = 'block';
+        }
+    }
+}
+
+function enableResetIcon() {
+    console.log('here');
+    resetPomBtn.style.pointerEvents = 'all';
+}
 
 /*-----------------*/
 /*-----------------*/

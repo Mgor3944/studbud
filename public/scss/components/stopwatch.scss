@@ -1,0 +1,147 @@
+.dashboard {
+    .elements-tr {
+        .timers {
+            display: flex; /* allows divs to display next to eachother */ 
+            width: 28%;
+            height: 350px;
+            padding-top: 20px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+
+            .stopwatch-wrapper {
+                display: inline-block; /* allows divs to display next to eachother */ 
+                position: relative;
+                width: 100%;
+                height: 97%;
+                background: #3C4253;
+                border-radius: 20px;
+                display: none;
+
+                .head-wrapper {
+                    display: flex;
+                    width: 100%;
+                    height: 20%;
+
+                    .text-box {
+                        padding: 20px;
+                        margin-top: 5px;
+                        width: 50%;
+
+                        .title {
+                            color: #E6E6E6;
+                            font-weight: 600;
+                            font-size: 16px;
+                            margin-bottom: 5px;
+                        }
+
+                        .tagline {
+                            color: #8E72D6;
+                            font-weight: 400;
+                            font-size: 12px;
+                        }
+                    }
+
+                    .icon-box {
+                        margin-top: 8px;
+                        width: 50%;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-left: 20px;
+
+                        .pom-stop {
+                            margin-right: 12px;
+                        }
+
+                        .pom-pause {
+                            margin-left: 12px;
+                        }
+                    }
+                }
+
+                .timerContainer {
+                    width: 100%;
+                    height: 80.1%;
+                    border-radius: 0px 0px 19px 19px;
+
+                    .stopwatch {
+                        width: 100%;
+                        height: 50%;
+                        text-align: center;
+                        position: relative;
+
+                        .timeTitle {
+                            width: 100%;
+                            font-family: "Michelangelo", sans-serif;
+                            font-weight: 500;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            padding-bottom: 20px;
+
+                            font-size: 70px;
+                            color: #BDA3F0;
+                            letter-spacing: 1px;
+                        }
+                    }
+
+                    .timeElapsed {
+                        width: 100%;
+                        height: 50%;
+                        background: #333948;
+                        border-radius: 0px 0px 19px 19px;
+                    }
+                }
+
+                .head-footer {
+                    position: absolute;
+                    bottom: 0px;
+                    background: #333948;
+                    width: 100%;
+                    border-radius: 0px 0px 20px 20px;
+
+                    .wrapper {
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+
+                        .toggle {
+                            width: 26%;
+                            height: 48px;
+                            position: absolute;
+                            left: 50%;
+                            bottom: -20px;
+                            transform: translate(-50%, -50%);
+
+                            .padding {
+                                position: absolute;
+                                left: 50%;
+                                bottom: -24px;
+                                transform: translate(-50%, -50%);
+                                margin: 0 auto;
+                            
+                                width: 80%;
+                                height: 80%;
+                                background-color: #2B303E;
+                                border-radius: 20px 20px 0px 0px;
+
+                                #toggle-stopwatch {
+                                    cursor: pointer;
+                                    margin: 0;
+                                    position: absolute;
+                                    top: 53%;
+                                    left: 50%;
+                                    -ms-transform: translate(-50%, -50%);
+                                    transform: translate(-50%, -50%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

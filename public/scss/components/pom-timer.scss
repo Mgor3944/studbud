@@ -6,7 +6,7 @@
 
 .dashboard {
     .elements-tr {
-        .pom-timer {
+        .timers {
             display: flex; /* allows divs to display next to eachother */ 
             width: 28%;
             height: 350px;
@@ -22,6 +22,7 @@
                 height: 97%;
                 background: #3C4253;
                 border-radius: 20px;
+                display: block;
 
                 .head-wrapper {
                     display: flex;
@@ -40,16 +41,173 @@
                         }
 
                         .tagline {
-                            color: #B9B6B6;
-                            font-weight: 300;
+                            color: #8E72D6;
+                            font-weight: 400;
                             font-size: 12px;
                         }
                     }
 
                     .icon-box {
-                        margin-top: 14px;
+                        margin-top: 8px;
                         width: 50%;
                         text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-left: 18px;
+
+                        .pom-settings {
+                            margin-right: 14px;
+                            margin-top: 3px;
+                            cursor: pointer;
+
+                            .pomSettingCog {
+                                display: block;
+                            }
+                            .pomSettingSubmit {
+                                display: none;
+                            }
+                        }
+
+                        .pom-play {
+                            pointer-events: all;
+                            .playHidden {
+                                display: block;
+                            }
+                            .pauseHidden {
+                                display: none;
+                            }
+                        }
+
+                        .pom-reset {
+                            margin-top: 3px;
+                            margin-left: 12px;
+                            pointer-events: none;
+                        }
+                    }
+                }
+
+                .pTimer-container {
+                    background: #3C4253;
+                    // border: 1px solid red;
+                    position: relative;
+                    width: 100%;
+                    height: 68%;
+                    text-align: center;
+
+                    // pomodoro timer clock
+                    .pClockWrapper {
+                        display: block;
+
+                        .pClockBG {
+                            place-items: center;
+                            position: absolute;
+                            top: 46%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 240px;
+                            height: 240px;
+                            border-radius: 50%;
+                            // box-shadow: -5px 14px 44px #000000, 5px -16px 50px rgba(255, 255, 255, 0.15);
+                            border: 8px solid #F4F5F4;
+                        }
+    
+                        #pClock { // when clock is running
+                            place-items: center;
+                            position: absolute;
+                            top: 46%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 240px;
+                            height: 240px;
+                            border-radius: 50%;
+                            // border: 8px solid rgb(80, 233, 192);
+    
+                            .pContent {
+                                // background: grey;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 70%;
+                                padding-top: 22px;
+    
+                                #pTimer {
+                                    font-family: "michelangelo", sans-serif;
+                                    font-size: 60px;
+                                    color: rgb(80, 233, 192, 0.7);
+                                    margin-bottom: 10px;
+                                    letter-spacing: 3px;
+                                }
+    
+                                .pSessions {
+                                    font-family: "Montserrat", sans-serif;
+                                    font-weight: 400;
+                                    font-size: 10px;
+                                    color: #DDDDDD;
+                                    letter-spacing: 0.8px;
+                                    margin-bottom: 26px;
+                                }
+                            }
+                        }
+                    }
+
+                    // settings for pomodoro timer
+                    #pClockSettings {
+                        display: none;
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        padding: 13px;
+
+                        #pInputContent {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+
+                            .pomInput {
+                                width: 100%;
+                                height: 20%;
+    
+                                .pomLabel {
+                                    display: inline-block;
+                                    margin-bottom: 10px;
+                                    color: white;
+                                }
+
+                                .inputduration {
+                                    padding: 17px 20px 17px 15px;
+                                    width: 100%;
+                                    height: 40px;
+                                    border-radius: 10px;
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -ms-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    outline: none;
+                                    background: #2B303E;
+                                    text-align: center;
+                                    color: #b9b6b6;
+
+                                }
+
+                                .inputduration:focus {
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                }
+
+                                .inputduration:active {
+                                    color: #b9b6b6;
+                                    font-weight: 500;
+                                }
+
+                                #input-work-duration {
+                                    margin-bottom: 30px;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -73,6 +231,7 @@
                                 font-size: 13px;
                                 text-align: center;
                                 color: rgb(80, 233, 192, 0.7);
+                                transition: all 1s ease;
                             }
                         }
 
@@ -94,7 +253,8 @@
                                 background-color: #2B303E;
                                 border-radius: 20px 20px 0px 0px;
 
-                                #toggle-right {
+                                #toggle-pomodoro {
+                                    cursor: pointer;
                                     margin: 0;
                                     position: absolute;
                                     top: 53%;
@@ -114,6 +274,7 @@
                                 font-size: 13px;
                                 text-align: center;
                                 color: #E6E6E6;
+                                transition: all 1s ease;
                             }
                         }
                     }

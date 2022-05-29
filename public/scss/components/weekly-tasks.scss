@@ -206,7 +206,7 @@
                                     margin-top: 4.5px;
                                     width: 23px;
                                     height: 23px;
-                                    opacity: 0.3;
+                                    opacity: 1;
                                 }
                             }
 
@@ -232,8 +232,7 @@
                         }
 
                         .taskCompleted {
-                            opacity: 0.5;
-                            transform: rotate(-180deg);
+                            opacity: 0.3;
                         }
 
                         .taskItem:nth-child(even) { // add a background box to every second child element
