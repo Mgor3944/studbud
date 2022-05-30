@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <g id="Icon" transform="translate(0.272 -0.166)">
+    <g id="Oval" transform="translate(-0.272 0.166)" fill="#8e72d6" stroke="#333948" stroke-miterlimit="10" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+    <text id="LAP" transform="translate(17.728 21.166)" fill="#fff" font-size="8" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.071em"><tspan x="-9.003" y="0">LAP</tspan></text>
+  </g>
+</svg>

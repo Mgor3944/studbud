@@ -10,6 +10,7 @@
 
         <link href="style.css" rel="stylesheet" type="text/css" /> <!-- css file link-->
         <link href="scss/main.scss" rel="stylesheet" type="text/css" /> <!-- scss file link-->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'> <!-- sweetAlert2 link-->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -100,7 +101,7 @@
                 </div>
                 <div class="top-account">
                     <div class="account-wrapper">
-                        <img id="user_img" src="../assets/placeholder.jpeg" alt="">
+                        <img id="user_img" src="../assets/account_icon.svg" alt="">
                         <div class="account-details">
                             <h2 class="name">Matt Gordon</h2>
                             <p class="occupation">UI/UX Designed</p>
@@ -197,7 +198,10 @@
                                     <div class="existing-projects">
                                         <label for="existproj" id="projectLabel" required>Select An Existing Project *</label>
                                         <div class="projects">
-                                            <!-- <div class="item" data-key=""><input type="radio" class="projcheckbox" name="project-radio"></div> -->
+                                            <!-- <div class="item" data-key="" title="">
+                                                <input type="radio" class="projcheckbox" id="${item.id}" name="project-radio" parentname="${item.name}" color="${item.color}">
+                                                <label class="hiddenbox" for="${item.id}">${item.name}</label>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +217,10 @@
                         <div class="head-wrapper">
                             <div class="text-box">
                                 <h3 class="title">Pomodoro</h3>
-                                <p class="tagline">Default Focus/Break</p>
+                                <p class="tagline"> <!-- study/break timer-->
+                                    <img class="defaultSettings" src="../assets/pom_settings_default.svg" alt="">
+                                    <img class="customSettings" src="../assets/pom_settings_custom.svg" alt="">
+                                </p>
                             </div>
                             <div class="icon-box"> 
                                 <a href="#" class="pom-settings" id="pSettingsToggle">
@@ -226,15 +233,16 @@
                                 </a>
                                 <a href="#" class="pom-reset">
                                     <img class="stopDisabled" src="../assets/pom_reset.svg" alt="">
+                                    <img class="stopActive" src="../assets/pom_reset_active.svg" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="pTimer-container">
                             <div class="pClockWrapper">
-                                <div class="pClockBG"></div>
+                                <!-- <div class="pClockBG"></div> -->
                                 <div id="pClock">
                                     <div class="pContent">
-                                        <div id="pTimer">00:00</div>
+                                        <div id="pTimer"></div>
                                         <p class="pSessions">1 of 4 Sessions</p>
                                     </div>
                                 </div>
@@ -243,13 +251,17 @@
                                 <div id="pInputContent">
                                     <div class="pomInput">
                                         <label class="pomLabel">Work Duration</label>
-                                        <input name="input-work-duration" class="inputduration" id="input-work-duration" type="number" placeholder="Enter Minutes (1-60)" min="1" max="60"/>
+                                        <input name="input-work-duration" class="inputduration" id="input-work-duration" type="number" placeholder="Max 60 min" min="1" max="60"/>
                                     </div>
                                     <div class="pomInput">
                                         <label class="pomLabel">Break Duration</label>
-                                        <input name="input-break-duration" class="inputduration" id="input-break-duration" type="number" placeholder="Enter Minutes (1-60)" min="1" max="60"/>
+                                        <input name="input-break-duration" class="inputduration" id="input-break-duration" type="number" placeholder="Max 60 min" min="1" max="60"/>
                                     </div>
-                                    <p class="pSettingsInfo">Changes made here will only be reflected next time clock is reset!</p>
+                                    <div class="pomInput">
+                                        <label class="pomLabel">Number of Sessions</label>
+                                        <input name="input-session-count" class="inputduration" id="input-session-count" type="number" placeholder="Enter value between  1 - 10" min="1" max="10"/>
+                                    </div>
+                                    <p class="pSettingsInfo">Changes made here will only be reflected next time the clock is reset.</p>
                                 </div>
                             </div>
                         </div>
@@ -273,17 +285,33 @@
                                 <h3 class="title">Stopwatch</h3>
                             </div>
                             <div class="icon-box">
-                                <a href="#" class="pom-stop"><img id="button" src="../assets/pom_reset.svg" alt=""></a>
-                                <a href="#" class="pom-play"><img id="button" src="../assets/stopwatch_play.svg" alt=""></a>
-                                <a href="#" class="pom-pause"><img id="button" src="../assets/pom_stop.svg" alt=""></a>
+                                <a href="#" class="stopwatch-lap">
+                                    <img id="lapDisabled" src="../assets/lap_time.svg" alt="">
+                                    <img id="lapActive" src="../assets/lap_time_active.svg" alt="">
+                                </a>
+                                <a href="#" class="stopwatch-play">
+                                    <img id="sPlay" src="../assets/stopwatch_play.svg" alt="">
+                                    <img id="sPause" src="../assets/stopwatch_pause.svg" alt="">
+                                </a>
+                                <a href="#" class="stopwatch-reset">
+                                    <img id="sResetDis" src="../assets/stopwatch_reset.svg" alt="">
+                                    <img id="sResetAct" src="../assets/stopwatch_reset_active.svg" alt="">
+                                </a>
                             </div>
                         </div>
                         <div class="timerContainer">
                             <div class="stopwatch"><h1 class="timeTitle">00 : 00 : 00</h1></div>
-                            <div class="timeElapsed"></div>
+                            <ul class="timeElapsed">
+                                <!-- Dummy Item ~ add class="fastest" to fastest lap-->
+                                <!-- <li class="lapBox"> 
+                                    <div class="lapTitle"><p id="lapTitle">Lap 1</p></div>
+                                    <div class="contentFill"></div>
+                                    <div class="lappedTime"><p id="lappedTime">00 : 00 : 00</p></div>
+                                </li> -->
+                            </ul>
                         </div>
                         <div class="head-footer">
-                            <div class="wrapper">
+                            <div class="wrapper lappedTimeGradient">
                                 <div class="toggle">
                                     <div class="padding">
                                         <img id="toggle-stopwatch" src="../assets/toggle_left.svg" alt="">
@@ -317,24 +345,30 @@
                                     <div>F</div>
                                     <div>S</div>
                                 </div>
-                                <div class="cal-days">
-                                    <div class="days" id="days">
-                                        <div id="prev-month-days"></div>
-                                        <div></div>
-                                        <div id="next-month-days"></div>
+                                <div class="calDaysBox">
+                                    <div class="cal-days">
+                                        <div class="days" id="days">
+                                            <div id="prev-month-days"></div>
+                                            <div></div>
+                                            <div id="next-month-days"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="cal-legend">
-                            <p class="title">Legend</p>
-                            <div class="currDateKey">
-                                <i class='bx bxs-square-rounded key' style='color: #BDA3F0'></i>
-                                <p class="subtitle">Current Date</p>
-                            </div>
-                            <div class="upcomDateKey">
-                                <i class='bx bxs-square-rounded key' style='color: rgb(80, 233, 192, 0.7)'></i>
-                                <p class="subtitle">Due Dates</p>
+                            <div class="legendPosBox">
+                                <div class="legendTitle">
+                                    <p class="title">Legend</p>
+                                </div>
+                                <div class="currDateKey">
+                                    <i class='bx bxs-square-rounded key' style='color: #BDA3F0'></i>
+                                    <p class="subtitle">Current Date</p>
+                                </div>
+                                <div class="upcomDateKey">
+                                    <i class='bx bxs-square-rounded key' style='color: rgb(80, 233, 192, 0.7)'></i>
+                                    <p class="subtitle">Due Dates</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -429,6 +463,7 @@
 
         </section>
     
-        <script src="script.js"></script> <!-- script file link-->
+        <script src="script.js" type="module"></script> <!-- script file link-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script> <!-- SweetAlert2 Link -->
     </body>
 </html>

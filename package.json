@@ -20,7 +20,9 @@
   "homepage": "https://github.com/Mgor3944/studbud#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "sass": "^1.50.0"
+    "progressbar.js": "^1.1.0",
+    "sass": "^1.50.0",
+    "sweetalert2": "^11.4.17"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.1",

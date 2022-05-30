@@ -22,7 +22,7 @@
                 padding: 20px;
                 width: 95.5%;
                 height: 93.5%;
-                background: #3C4253;
+                background: var(--greyBlue);
                 border-radius: 20px;
                 display: block;
 
@@ -33,7 +33,7 @@
 
                     .title { // heading title
                         width: 75%;
-                        color: #E6E6E6;
+                        color: var(--ghost);
                         font-weight: 600;
                         font-size: 17px;
                         margin-top: 5px;
@@ -74,7 +74,7 @@
     
                             .title {
                                 font-family: 'Michelangelo', sans-serif;
-                                color: #E6E6E6;
+                                color: var(--ghost);
                                 text-align: center;
                                 font-size: 38px;
                                 font-weight: 500;
@@ -85,7 +85,7 @@
                             strong {
                                 font-family: 'Michelangelo', sans-serif;
                                 font-weight: 500;
-                                color: #8E72D6;
+                                color: var(--purple);
                             }
 
                             .info {
@@ -104,7 +104,7 @@
                         overflow-y: auto; // will add scroll bars if neccessary
 
                         .taskItem {
-                            background: #3C4253; 
+                            background: var(--greyBlue); 
                             width: 100%;
                             padding: 15px 2px 15px 2px;
                             border-radius: 14px;
@@ -116,20 +116,45 @@
                                 padding: 7px 0px 7px 12px;
                                 font-weight: 600;
                                 font-size: 14px;
-                                color: #E6E6E6;
+                                color: var(--ghost);
                             }
 
                             .projectsFromTask {
                                 width: 85px;
                                 padding-top: 9px;
-                                //background: rgb(154, 101, 255, 0.5);
-                                background: rgb(101, 249, 255, 0.5);
                                 font-weight: 600;
                                 font-size: 10px;
                                 color: rgb(255, 255, 255, 0.9);
                                 border-radius: 20px;
                                 text-align: center;
+
                             }
+
+                            // mapping chosen progrect colour to tasklist project display box
+                            .col_blue {
+                                background: rgb(101, 249, 255, 0.5); 
+                            }
+
+                            .col_purple { // update to second colour
+                                background: rgb(154, 101, 255, 0.5);
+                            }
+
+                            .col_green { // update to third colour
+                                background: rgb(74, 197, 126, 0.8);
+                            }
+
+                            .col_red { // update to fourth colour
+                                background: rgba(255, 101, 101, 0.5);
+                            }
+
+                            .col_orange { // update to fifth colour
+                                background: rgba(255, 178, 101, 0.5);
+                            }
+
+                            .col_pink { // update to sixth colour
+                                background: rgb(255, 101, 196, 0.5);
+                            }
+                            
 
                             .timeFromTask {
                                 width: 160px;
@@ -137,7 +162,7 @@
                                 margin-left: 15px;
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: #E6E6E6;
+                                color: var(--ghost);
                                 display: flex;
 
                                 #timeIcon {
@@ -155,7 +180,7 @@
                                 font-weight: 600;
                                 font-size: 10px;
                                 color: #E95060;
-                                border-radius: 5px;
+                                border-radius: 10px;
                                 text-align: center;
                             }
 
@@ -181,7 +206,7 @@
                                 // margin-right: 15px;
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: #E6E6E6;
+                                color: var(--ghost);
                                 display: flex;
                                 overflow: hidden;
 
@@ -207,11 +232,13 @@
                                     width: 23px;
                                     height: 23px;
                                     opacity: 1;
+                                    transition: all 0.8s ease;
                                 }
                             }
 
                             .completeTask {
                                 display: none;
+                                pointer-events: all;
                             }
 
                             .completeTask:checked + .hiddenTaskComplete {
@@ -229,10 +256,24 @@
                                 height: 30px;
                                 content: url("../../assets/delTaskIcon.svg");
                             }
+
+                            #delTaskImg:hover {
+                                animation-name: delTaskEffect;
+                                animation-duration: 2s;
+                                animation-timing-function: ease;
+                                content: url("../../assets/delTaskIcon_confirm.svg");
+                            }
+
+                            @keyframes delTaskEffect {
+                                0% {transform: rotate(0);}
+                                35% {transform: rotate(-15deg);}
+                                70% {transform: rotate(15deg);}
+                                100% {transform: rotate(0);}
+                            }
                         }
 
                         .taskCompleted {
-                            opacity: 0.3;
+                            opacity: 1;
                         }
 
                         .taskItem:nth-child(even) { // add a background box to every second child element
@@ -246,7 +287,7 @@
                         width: 100%;
                         height: 20%;
                         bottom: 20%;
-                        background-image: linear-gradient(rgba(0, 0, 0, 0), #3C4253);
+                        background-image: linear-gradient(rgba(0, 0, 0, 0), #3C4253); // scrollable effect look
                     }
                 }
             }
@@ -257,7 +298,7 @@
                 padding: 20px;
                 width: 95.4%;
                 height: 93.4%;
-                background: #3C4253;
+                background: var(--greyBlue);
                 border-radius: 20px;
                 display: none; //change back to none after!!!
 
@@ -270,7 +311,7 @@
 
                         .title { // heading title
                             width: 73%;
-                            color: #E6E6E6;
+                            color: var(--ghost);
                             font-weight: 600;
                             font-size: 17px;
                             margin-top: 5px;
@@ -318,13 +359,13 @@
                                     appearance: none;
                                     outline: none;
                                     border-radius: 8px;
-                                    color: #b9b6b6;
+                                    color: var(--lightGrey);
                                     font-weight: 500;
                                     background: #333948;
                                 }
 
                                 input:focus {
-                                    color: #b9b6b6;
+                                    color: var(--lightGrey);
                                     font-weight: 500;
                                 }
 
@@ -339,7 +380,7 @@
                                 }
 
                                 input:active {
-                                    color: #b9b6b6;
+                                    color: var(--lightGrey);
                                     font-weight: 500;
                                 }
                             }
@@ -363,13 +404,13 @@
                                     appearance: none;
                                     outline: none;
                                     border-radius: 5px;
-                                    color: #b9b6b6;
+                                    color: var(--lightGrey);
                                     font-weight: 500;
                                     background: #333948;
                                 }
 
                                 input:focus {
-                                    color: #b9b6b6;
+                                    color: var(--lightGrey);
                                     font-weight: 500;
                                 }
 
@@ -477,13 +518,13 @@
                                         appearance: none;
                                         outline: none;
                                         border-radius: 5px;
-                                        color: #b9b6b6;
+                                        color: var(--lightGrey);
                                         font-weight: 500;
                                         background: url(../../assets/timeicon.svg) 95% / 7% no-repeat;
                                     }
     
                                     input:focus {
-                                        color: #b9b6b6;
+                                        color: var(--lightGrey);
                                         font-weight: 500;
                                     }
     
@@ -555,24 +596,24 @@
                                     // project box number two
 
                                     .item:nth-child(2) .hiddenbox {
-                                        color: #C59F4A;
-                                        border: 1.5px solid #C59F4A;
+                                        color: #7369e2;
+                                        border: 1.5px solid #544ac5;
                                     }
 
                                     .item:nth-child(2) .projcheckbox:checked + .hiddenbox {
-                                        background: #C59F4A;
+                                        background: #544ac5;
                                         color: white;
                                     }
 
                                     // project box number three
 
                                     .item:nth-child(3) .hiddenbox {
-                                        color: #C54AB2;
-                                        border: 1.5px solid #C54AB2;
+                                        color: #4AC57E; 
+                                        border: 1.5px solid #4AC57E;
                                     }
 
                                     .item:nth-child(3) .projcheckbox:checked + .hiddenbox {
-                                        background: #C54AB2;
+                                        background: #4AC57E;
                                         color: white;
                                     }
 
@@ -588,51 +629,27 @@
                                         color: white;
                                     }
 
-                                    // project box number five
+                                    // project box number fifth
 
                                     .item:nth-child(5) .hiddenbox {
-                                        color: #BCC54A;
-                                        border: 1.5px solid #BCC54A;
+                                        color: #C59F4A;
+                                        border: 1.5px solid #C59F4A;
                                     }
 
                                     .item:nth-child(5) .projcheckbox:checked + .hiddenbox {
-                                        background: #BCC54A;
+                                        background: #C59F4A;
                                         color: white;
                                     }
 
                                     // project box number six
 
                                     .item:nth-child(6) .hiddenbox {
-                                        color: #4AC57E;
-                                        border: 1.5px solid #4AC57E;
+                                        color: #C54AB2;
+                                        border: 1.5px solid #C54AB2;
                                     }
 
                                     .item:nth-child(6) .projcheckbox:checked + .hiddenbox {
-                                        background: #4AC57E;
-                                        color: white;
-                                    }
-
-                                    // project box number seven
-
-                                    .item:nth-child(7) .hiddenbox {
-                                        color: #f0edf4;
-                                        border: 1.5px solid #f0edf4;
-                                    }
-
-                                    .item:nth-child(7) .projcheckbox:checked + .hiddenbox {
-                                        background: #f0edf4;
-                                        color: rgb(39, 39, 39);
-                                    }
-
-                                    // project box number eight
-
-                                    .item:nth-child(8) .hiddenbox {
-                                        color: #7369e2;
-                                        border: 1.5px solid #544ac5;
-                                    }
-
-                                    .item:nth-child(8) .projcheckbox:checked + .hiddenbox {
-                                        background: #544ac5;
+                                        background: #C54AB2;
                                         color: white;
                                     }
                                 }

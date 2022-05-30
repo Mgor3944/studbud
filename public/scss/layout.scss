@@ -1,3 +1,22 @@
+:root {
+    // background colours
+    --darkBlue: #1F222C;  // background
+    --greyBlue: #3C4253; // dashboard elem
+
+    // highlight colour
+    --hotPink: hotpink; // hotpink
+
+    // text colours
+    --ghost: #E6E6E6; // title text
+    --grey: #B5BCCE; // paragraph text
+    --lightGrey: #b9b6b6; // placeholder
+
+    // primary/secondary colours
+    --purple: #8e72d6; // primary
+    --green: #00BA9E; // secondary
+    --pink: #BDA3F0; // secondary
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +56,7 @@ screen and (min-height: 800px) {
     }
 
     .dashboard .elements-tr .cal-container  {
-        height: 370px !important;
+        height: 430px !important;
     }
 
     .dashboard .elements-br .achievements  {

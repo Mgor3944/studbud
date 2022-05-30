@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="23" viewBox="0 0 72 23">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5764fc"/>
+      <stop offset="0" stop-color="#ff69f9"/>
+      <stop offset="1" stop-color="#e941ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Custom_Settings" data-name="Custom Settings" transform="translate(-1107 -210)">
+    <rect id="Rectangle_64" data-name="Rectangle 64" width="72" height="23" rx="11.5" transform="translate(1107 210)" fill="#2b303e"/>
+    <text id="Latest_customers" data-name="Latest customers" transform="translate(1131 225)" fill="#bda3f0" font-size="10" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="0" y="0">Custom</tspan></text>
+    <circle id="Ellipse_40" data-name="Ellipse 40" cx="6.5" cy="6.5" r="6.5" transform="translate(1112 215)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
