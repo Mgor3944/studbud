@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="51" height="51" viewBox="0 0 51 51">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#9cc5db" stop-opacity="0.263"/>
+      <stop offset="1" stop-color="#4e636e" stop-opacity="0.871"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_9177" data-name="Group 9177" transform="translate(-365.5 -721.5)">
+    <g id="image">
+      <rect id="Your_image_here" data-name="Your image here" width="50" height="50" rx="5" transform="translate(366 722)" fill="#db9c9c"/>
+    </g>
+    <g id="image-2" data-name="image" transform="translate(-18)">
+      <rect id="Your_image_here-2" data-name="Your image here" width="50" height="50" rx="5" transform="translate(384 722)" stroke="rgba(0,0,0,0)" stroke-width="1" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

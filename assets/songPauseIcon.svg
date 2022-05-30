@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40.696" height="40.696" viewBox="0 0 40.696 40.696">
+  <defs>
+    <filter id="Ellipse_23" x="0" y="0" width="40.696" height="40.696" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip">
+      <use xlink:href="#fill"/>
+    </clipPath>
+    <clipPath id="clip-2">
+      <use xlink:href="#fill-2"/>
+    </clipPath>
+  </defs>
+  <g id="Play_Icon" data-name="Play Icon" transform="translate(4.746 1.921)">
+    <g transform="matrix(1, 0, 0, 1, -4.75, -1.92)" filter="url(#Ellipse_23)">
+      <g id="Ellipse_23-2" data-name="Ellipse 23" transform="translate(9 6)" fill="none" stroke="rgba(209,231,242,0.4)" stroke-width="2" stroke-dasharray="0 0">
+        <circle cx="11.348" cy="11.348" r="11.348" stroke="none"/>
+        <circle cx="11.348" cy="11.348" r="10.348" fill="none"/>
+      </g>
+    </g>
+    <g id="Ellipse_24" data-name="Ellipse 24" transform="matrix(0.485, -0.875, 0.875, 0.485, 0.175, 19.85)" fill="none" stroke="#f4f6fa" stroke-width="2">
+      <circle cx="11.348" cy="11.348" r="11.348" stroke="none"/>
+      <circle cx="11.348" cy="11.348" r="10.348" fill="none"/>
+    </g>
+    <g id="Group_9182" data-name="Group 9182" transform="translate(-0.566 -0.566)">
+      <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(13.734 12.747)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-width="2">
+        <rect id="fill" width="1.623" height="6.491" rx="0.811" stroke="none"/>
+        <path d="M0,1h1.6226862668991089M1,0v6.4907450675964355M1.6226862668991089,5.4907450675964355h-1.6226862668991089M0.6226862668991089,6.4907450675964355v-6.4907450675964355" fill="none" clip-path="url(#clip)"/>
+      </g>
+      <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(16.979 12.747)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-width="2">
+        <rect id="fill-2" width="1.623" height="6.491" rx="0.811" stroke="none"/>
+        <path d="M0,1h1.6226862668991089M1,0v6.4907450675964355M1.6226862668991089,5.4907450675964355h-1.6226862668991089M0.6226862668991089,6.4907450675964355v-6.4907450675964355" fill="none" clip-path="url(#clip-2)"/>
+      </g>
+    </g>
+  </g>
+</svg>

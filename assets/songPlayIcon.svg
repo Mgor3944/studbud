@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40.696" height="40.696" viewBox="0 0 40.696 40.696">
+  <defs>
+    <filter id="Ellipse_23" x="0" y="0" width="40.696" height="40.696" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Play_Icon" data-name="Play Icon" transform="translate(4.746 1.921)">
+    <g transform="matrix(1, 0, 0, 1, -4.75, -1.92)" filter="url(#Ellipse_23)">
+      <g id="Ellipse_23-2" data-name="Ellipse 23" transform="translate(9 6)" fill="none" stroke="rgba(209,231,242,0.4)" stroke-width="2" stroke-dasharray="0 0">
+        <circle cx="11.348" cy="11.348" r="11.348" stroke="none"/>
+        <circle cx="11.348" cy="11.348" r="10.348" fill="none"/>
+      </g>
+    </g>
+    <g id="Ellipse_24" data-name="Ellipse 24" transform="matrix(0.485, -0.875, 0.875, 0.485, 0.175, 19.85)" fill="none" stroke="#f4f6fa" stroke-width="2">
+      <circle cx="11.348" cy="11.348" r="11.348" stroke="none"/>
+      <circle cx="11.348" cy="11.348" r="10.348" fill="none"/>
+    </g>
+    <path id="Polygon_4" data-name="Polygon 4" d="M2.523,1.064a.7.7,0,0,1,1.216,0L5.662,4.431a.7.7,0,0,1-.608,1.047H1.206A.7.7,0,0,1,.6,4.431Z" transform="translate(19.124 12.296) rotate(90)" fill="#fff"/>
+  </g>
+</svg>

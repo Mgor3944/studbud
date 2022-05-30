@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#9cc5db" stop-opacity="0.263"/>
+      <stop offset="1" stop-color="#4e636e" stop-opacity="0.871"/>
+    </linearGradient>
+  </defs>
+  <g id="SongBGIMG1" transform="translate(-366 -722)">
+    <g id="image">
+      <rect id="Your_image_here" data-name="Your image here" width="50" height="50" rx="5" transform="translate(366 722)" fill="#9cc5db"/>
+    </g>
+    <g id="image-2" data-name="image" transform="translate(-15)">
+      <rect id="Your_image_here-2" data-name="Your image here" width="50" height="50" rx="5" transform="translate(381 722)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

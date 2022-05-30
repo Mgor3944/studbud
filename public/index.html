@@ -320,7 +320,6 @@
                             </div>
                         </div>
                     </div>
-
                 </section>
 
                 <!-- Calender -->
@@ -421,11 +420,102 @@
                 <!-- Music Player  -->
                 <section class="music-player">
                     <div class="mus-wrapper">
-                        <div class="headline">
-                            <h3 class="title">Top Songs</h3>
-                            <div class="button">
-                                <a href="#"><img id="button" src="../assets/plus_button_music.svg" alt=""></a>
+                        <div class="topBox">
+                            <div class="headline">
+                                <h3 class="title">Song List</h3>
+                                <div class="songButtons">
+                                    <a href="#" class="LikedSongs">
+                                        <img id="likedSongsIcon" src="../assets/likedSongs.svg" alt="">
+                                        <img id="likedSongsAct" src="../assets/likedSongsAct.svg" alt="">
+                                    </a>
+                                    <a href="#" class="addNewSong">
+                                        <img id="newSongBtn" src="../assets/plus_button_music.svg" alt="">
+                                    </a>
+                                </div>
                             </div>
+                        </div>
+                        <div class="musicContainer">
+                            <!-- <div class="userSetSongs"></div> -->
+                            <div class="preSetSongs">
+                                <!-- Preset Song 1 -->
+                                <div class="music" id="song1">
+                                    <a href="#" class="musicBG" id="playSong1">
+                                        <img class="songPlayIcon_1" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_1" id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG1.svg" alt="">
+                                    </a>
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Levitating</h4>
+                                        <p class="song_Author_Time">
+                                            Dua Lipa
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            04 : 21
+                                        </p>
+                                    </div>
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon1">
+                                            <img class="loveDisabled_1" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_1" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                        <img class="songDel" id="songDel1" src="../assets/songDel.svg" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- Preset Song 2 -->
+                                <div class="music" id="song2">
+                                    <a href="#" class="musicBG" id="playSong2">
+                                        <img class="songPlayIcon_2" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_2" id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG2.svg" alt="">
+                                    </a>
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">You & Me</h4>
+                                        <p class="song_Author_Time">
+                                            Lifehouse
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            03 : 56
+                                        </p>
+                                    </div>
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon2">
+                                            <img class="loveDisabled_2" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_2" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                        <img class="songDel" id="songDel2" src="../assets/songDel.svg" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- Preset Song 3 -->
+                                <div class="music" id="song3">
+                                    <a href="#" class="musicBG" id="playSong3">
+                                        <img class="songPlayIcon_3" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_3"id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG3.svg" alt="">
+                                    </a>
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Free Falling</h4>
+                                        <p class="song_Author_Time">
+                                            John Mayor
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            04 : 22
+                                        </p>
+                                    </div>
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon3">
+                                            <img class="loveDisabled_3" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_3" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                        <img class="songDel" id="songDel3" src="../assets/songDel.svg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="userSongNotification">
+                                    <div class="lineSpacer"></div>
+                                    <p class="songNotificationText"> New Songs will appear above the default ones once you start adding them!</p>
+                                </div>
+                            </div>
+
+                            <div class="bottomOfSongListGradient"></div>
                         </div>
                     </div>
                 </section>

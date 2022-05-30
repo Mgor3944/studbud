@@ -541,49 +541,6 @@ body {
 /*----------*/
 /*----------*/
 
-/*--------------*/
-/*--------------*/
-/* MUSIC PLAYER */
-/*--------------*/
-/*--------------*/ 
-
-.dashboard .elements-br .music-player {
-    display: flex; /* allows divs to display next to eachother */ 
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-bottom: 20px;
-    padding-right: 10px;
-    width: 20%;
-    height: 350px;
-}
-
-.dashboard .elements-br .music-player .mus-wrapper {
-    display: flex; /* allows divs to display next to eachother */ 
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    background: #333948;
-    border-radius: 20px;
-}
-
-.dashboard .elements-br .music-player .mus-wrapper .headline {
-    display: flex;
-    height: 20%;
-    width: 100%;
-}
-
-.dashboard .elements-br .music-player .mus-wrapper .headline .title {
-    width: 85%;
-    color: #E6E6E6;
-    font-weight: 600;
-    font-size: 16px;
-    margin-top: 5px;
-}
-
-.dashboard .elements-br .music-player .mus-wrapper .headline .button {
-    width: 15%;
-}
-
 /*---------------*/
 /*---------------*/
 /* ACRONYM MAKER */

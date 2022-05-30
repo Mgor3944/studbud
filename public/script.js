@@ -1270,6 +1270,157 @@ function addElapsedTime() {
     elaspedTimeOutput.append(elapsedTime);
 }
 
+/*--------------*/
+/*--------------*/
+/* MUSIC PLAYER */
+/*--------------*/
+/*--------------*/
+
+/*----------------*/
+/* INTIATING HTML */
+/*----------------*/
+
+// buttons 
+let LikedSongs = document.querySelector('.LikedSongs');
+let playSong1 = document.querySelector('#playSong1');
+let playSong2 = document.querySelector('#playSong2');
+let playSong3 = document.querySelector('#playSong3');
+let loveIcon1 = document.querySelector('#loveIcon1');
+let loveIcon2 = document.querySelector('#loveIcon2');
+let loveIcon3 = document.querySelector('#loveIcon3');
+
+// icons
+let likedSongsIcon = document.querySelector('#likedSongsIcon');
+let likedSongsAct = document.querySelector('#likedSongsAct');
+let songPlayIcon_1 = document.querySelector('.songPlayIcon_1');
+let songPauseIcon_1 = document.querySelector('.songPauseIcon_1');
+let songPlayIcon_2 = document.querySelector('.songPlayIcon_2');
+let songPauseIcon_2 = document.querySelector('.songPauseIcon_2');
+let songPlayIcon_3 = document.querySelector('.songPlayIcon_3');
+let songPauseIcon_3 = document.querySelector('.songPauseIcon_3');
+let loveDisabled_1 = document.querySelector('.loveDisabled_1');
+let loveActive_1 = document.querySelector('.loveActive_1');
+let loveDisabled_2 = document.querySelector('.loveDisabled_2');
+let loveActive_2 = document.querySelector('.loveActive_2');
+let loveDisabled_3 = document.querySelector('.loveDisabled_3');
+let loveActive_3 = document.querySelector('.loveActive_3');
+
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
+
+// liked songs
+LikedSongs.addEventListener('click', () => {
+    toggleLikedSongs();
+});
+
+// default study songs 
+playSong1.addEventListener('click', () => {
+    togglePlayBtn1();
+});
+
+playSong2.addEventListener('click', () => {
+    togglePlayBtn2();
+});
+
+playSong3.addEventListener('click', () => {
+    togglePlayBtn3();
+});
+
+loveIcon1.addEventListener('click', () => {
+    toggleLikedSong1();
+});
+
+loveIcon2.addEventListener('click', () => {
+    toggleLikedSong2();
+});
+
+loveIcon3.addEventListener('click', () => {
+    toggleLikedSong3();
+});
+
+
+/*---------*/
+/* TOGGLES */
+/*---------*/
+
+function toggleLikedSongs() {
+    if(!likedSongsIcon) return;
+    if (getComputedStyle(likedSongsIcon).display == 'block') {
+        likedSongsIcon.style.display = 'none';
+        likedSongsAct.style.display = 'block';
+    } else {
+        likedSongsIcon.style.display = 'block';
+        likedSongsAct.style.display = 'none';
+    }
+}
+
+function togglePlayBtn1() {
+    if(!songPlayIcon_1) return;
+    if (getComputedStyle(songPlayIcon_1).display == 'block') {
+        songPlayIcon_1.style.display = 'none';
+        songPauseIcon_1.style.display = 'block';
+    } else {
+        songPlayIcon_1.style.display = 'block';
+        songPauseIcon_1.style.display = 'none';
+    }
+}
+
+function togglePlayBtn2() {
+    if(!songPlayIcon_2) return;
+    if (getComputedStyle(songPlayIcon_2).display == 'block') {
+        songPlayIcon_2.style.display = 'none';
+        songPauseIcon_2.style.display = 'block';
+    } else {
+        songPlayIcon_2.style.display = 'block';
+        songPauseIcon_2.style.display = 'none';
+    }
+}
+
+function togglePlayBtn3() {
+    if(!songPlayIcon_3) return;
+    if (getComputedStyle(songPlayIcon_3).display == 'block') {
+        songPlayIcon_3.style.display = 'none';
+        songPauseIcon_3.style.display = 'block';
+    } else {
+        songPlayIcon_3.style.display = 'block';
+        songPauseIcon_3.style.display = 'none';
+    }
+}
+
+function toggleLikedSong1() {
+    if(!loveDisabled_1) return;
+    if (getComputedStyle(loveDisabled_1).display == 'block') {
+        loveDisabled_1.style.display = 'none';
+        loveActive_1.style.display = 'block';
+    } else {
+        loveDisabled_1.style.display = 'block';
+        loveActive_1.style.display = 'none';
+    }
+}
+
+function toggleLikedSong2() {
+    if(!loveDisabled_2) return;
+    if (getComputedStyle(loveDisabled_2).display == 'block') {
+        loveDisabled_2.style.display = 'none';
+        loveActive_2.style.display = 'block';
+    } else {
+        loveDisabled_2.style.display = 'block';
+        loveActive_2.style.display = 'none';
+    }
+}
+
+function toggleLikedSong3() {
+    if(!loveDisabled_3) return;
+    if (getComputedStyle(loveDisabled_3).display == 'block') {
+        loveDisabled_3.style.display = 'none';
+        loveActive_3.style.display = 'block';
+    } else {
+        loveDisabled_3.style.display = 'block';
+        loveActive_3.style.display = 'none';
+    }
+}
+
 /*-----------------*/
 /*-----------------*/
 /* TOP NAVBAR DATE */
