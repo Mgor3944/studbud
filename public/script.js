@@ -4,14 +4,26 @@
 /*--------------------------*/
 /*--------------------------*/
 
+/*-----------------*/
+/* INITIATING HTML */
+/*-----------------*/
+
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 // let searchBtn = document.querySelector(".bx-search");
+
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
 
 closeBtn.addEventListener("click", ()=> {
     sidebar.classList.toggle("open");
     menuBtnChange(); // calling the function
 });
+
+/*--------------------------*/
+/* CHANGE MENU ~ OPEN/CLOSE */
+/*--------------------------*/
 
 //  Changes sidebar hamburger button on click
 function menuBtnChange() {
@@ -22,60 +34,68 @@ function menuBtnChange() {
     }
 }
 
-/*----------------------*/
-/*----------------------*/
-/* FOCUS BUTTON EFFECTS */
-/*----------------------*/
-/*----------------------*/
+/*--------------------------*/
+/*--------------------------*/
+/* FOCUS MODE INFO + EFFECT */
+/*--------------------------*/
+/*--------------------------*/
+
+/*-----------------*/
+/* INITIATING HTML */
+/*-----------------*/
 
 let fswitchBtn = document.querySelector(".f_switch");
 let focusBtn = document.querySelector("#bolt_switch");
 
-focusBtn.addEventListener("click", ()=> {
-    focusBtnChange(); // calling the function
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
+
+// focus switch button == lightning icon in the sidebar
+fswitchBtn.addEventListener("click", ()=> { 
+    sidebar.classList.toggle("open"); 
+    menuBtnChange(); // open sidebar onClick
 });
+
+// focus button == lightning icon in top navbar
+focusBtn.addEventListener("click", ()=> {
+    focusBtnChange(); 
+});
+
+/*-------------------*/
+/* TOGGLE FOCUS MODE */
+/*-------------------*/
 
 //  Toggles focus mode on/off - changing icon design
 function focusBtnChange() {
     if(focusBtn.classList.contains("bx-bolt-circle")) {
         focusBtn.classList.replace("bx-bolt-circle", "bxs-bolt-circle"); // replaces the icons class
         focusBtn.style.color = "#E95050";
+        document.documentElement.setAttribute('data-theme', 'dark');
     } else {
         focusBtn.classList.replace("bxs-bolt-circle","bx-bolt-circle"); // replaces the icons class
         focusBtn.style.color = "#E950D1";
+        document.documentElement.setAttribute('data-theme', 'light');
     }
 }
 
-fswitchBtn.addEventListener("click", ()=> { // Sidebar open when you click on the focus icon
-    sidebar.classList.toggle("open");
-    menuBtnChange(); 
-});
+/*-----------------------------*/
+/* COLOUR PALLETE (LIGHT/DARK) */
+/*-----------------------------*/
 
-/*--------------------------*/
-/*--------------------------*/
-/* TOGGLE NEW TASK CREATION */
-/*--------------------------*/
-/*--------------------------*/
+focusBtn.addEventListener('change', focusBtnChange, false);
 
-let crNewTaskBtn = document.querySelector("#crNewTaskBtn");
-let crTaskBtn = document.querySelector("#createTaskBtn");
-let remTaskBtn = document.querySelector("#deleteTaskBtn");
+/*------------------------------------------*/
+/*------------------------------------------*/
+/* TOGGLE TASKLIST DISPLAYS, BUTTONS, ICONS */
+/*------------------------------------------*/
+/*------------------------------------------*/
 
-let CrTask = document.querySelector(".task-wrapper");
-let RemTask = document.querySelector(".create-wrapper");
+/*----------------*/
+/* INTIATING HTML */
+/*----------------*/
 
-crNewTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
-    switchVisible();
-}); 
-
-remTaskBtn.addEventListener('click', ()=> {  // new task form closes when you click del button
-    switchVisible();
-});
-
-/*--------------------*/
-/* DASHBOARD ELEMENTS */
-/*--------------------*/
-
+// getting dashboard elements
 let pomstopTimer = document.querySelector(".timers");
 let calBox = document.querySelector(".cal-container");
 let achievements = document.querySelector(".achievements");
@@ -83,13 +103,22 @@ let musicPlayer = document.querySelector(".music-player");
 let acronyms = document.querySelector(".acronyms");
 let projOverviewBox = document.querySelector(".project-overview");
 
-/*---------------------*/
-/* NEW TASK ICON HOVER */
-/*---------------------*/
-
+// getting initial create new task icon (big plus icon)
 let firstTaskBtn = document.querySelector(".first-task");
 let changeCol = document.querySelector("#change-col");
 
+// getting active tasklist + taskform buttons
+let crNewTaskBtn = document.querySelector("#crNewTaskBtn"); // taskList (state = active) 'create new task' button
+let remTaskBtn = document.querySelector("#deleteTaskBtn"); // taskList (modee = create) 'del task' button
+
+let CrTask = document.querySelector(".task-wrapper"); // taskList wrapper
+let RemTask = document.querySelector(".create-wrapper"); // taskForm wrapper
+
+/*--------------------------------*/
+/* EVENT LISTENERS - PRE TASKLIST */
+/*--------------------------------*/
+
+// hover effect on icon
 firstTaskBtn.addEventListener('mouseover', function handleMouseOver() {
     changeCol.style.color = '#8E72D6';
 });
@@ -98,17 +127,36 @@ firstTaskBtn.addEventListener('mouseout', function handleMouseOut() {
     changeCol.style.color = '#E6E6E6';
 });
 
-firstTaskBtn.addEventListener('click', ()=> {  // new task form opens up when you click on the new task button
+// display task form onClick & hide initial tasklist display
+firstTaskBtn.addEventListener('click', ()=> { 
     switchVisible();
 });
 
+/*---------------------------------*/
+/* EVENT LISTENERS - POST TASKLIST */
+/*---------------------------------*/
+
+// display task form onClick & hide tasklist display
+crNewTaskBtn.addEventListener('click', ()=> { // open tasklist (mode = create)
+    switchVisible();
+}); 
+
+remTaskBtn.addEventListener('click', ()=> {  // close tasklist (mode = create)
+    switchVisible();
+});
+
+/*---------------------------*/
+/* TOGGLE TASK LIST DISPLAYS */
+/*---------------------------*/
+
+// toggle taskList displays depending on form entry condition
 function switchVisible() {
     if(!CrTask) return;
     if (getComputedStyle(CrTask).display == 'block') {
         CrTask.style.display = 'none';
         RemTask.style.display = 'block';
 
-        // reduce other dashboard elements opacity when task creator is open
+        // reduce other dashboard elements opacity when taskList (mode = create) is open
         pomstopTimer.style.opacity = '0.3', calBox.style.opacity = '0.3',
         achievements.style.opacity = '0.3', musicPlayer.style.opacity = '0.3',
         acronyms.style.opacity = '0.3', projOverviewBox.style.opacity = '0.3';
@@ -117,22 +165,22 @@ function switchVisible() {
         CrTask.style.display = 'block';
         RemTask.style.display = 'none';
 
-        // retun other dashboard elements opacity to normal when task creator is closed 
+        // retun other dashboard elements opacity to normal when taskList (mode = create) is closed 
         pomstopTimer.style.opacity = '1', calBox.style.opacity = '1', 
         achievements.style.opacity = '1', musicPlayer.style.opacity = '1',
         acronyms.style.opacity = '1', projOverviewBox.style.opacity = '1';
     }
 }
 
-/*---------------------------------------*/
-/*---------------------------------------*/
-/* STORING/DISPLAYING PROJECT NAME INPUT */
-/*---------------------------------------*/
-/*---------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/* PROJECT ARRAY & PROJECT NAME INPUT ~ STORING/RENDERING */
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
 
 /*
 
-Project Data model:
+Projects Data model:
 - All projects are stored in an array called projects, which is stored in localStorage as localStorage.getItem('projects').
 - This is synched with the variable allProjects on pageload/change
 - data is in the following format:
@@ -140,15 +188,15 @@ Project Data model:
 	{
 		"name": "Project 1 Name",
 		"due": "Sat Dec 17 2022 03:24:00 GMT+1100 (Australian Eastern Daylight Time)",
-		"id": Date.now(),
+		"id": "274298357235",
 		"tasks": [
 			{
-				"id": Date.now(),
-				"name": "taskNameInput.value", // this is equal to "project 1 task 1"
-				"due": "dueDateInput.value",
-				"priority": "prioritySelected.value",
-				"estimate": "timeEstimated.value",
-                "project": "projectName",
+				"id": "3583289523",
+				"name": "Task 1 Name", // this is equal to "project 1 task 1"
+				"due": "Task 1 Due Date",
+				"priority": "Task 1 Priority",
+				"estimate": "Task 1 Completion Time",
+                "project": "Parent Project Name",
 				"completed": false,
 			},
 			...
@@ -156,78 +204,44 @@ Project Data model:
 	},
 	...
 ]
+
 */
 
-let projects = []; // Project Array ~ Contains tasks associated with each project
+let projects = []; // Project Array ~ READ DATA MODEL ABOVE
 let colArray = ['skips', 'blue', 'purple', 'green', 'red', 'orange', 'pink'];
+
+/*---------------------*/
+/* DECLARING VARIABLES */
+/*---------------------*/
+
 let selectedValue;
+
+/*-----------------*/
+/* INITIATING HTML */
+/*-----------------*/
 
 let projectSubmitBtn = document.querySelector("#saveprojectname"); // gets project submit btn
 let projectInput = document.querySelector("#newprojsave"); // gets project name input
 
-/*
-
-Style Additions 
-
-projBtnImg ~ Allows code to remove submit btn (its an img) when the number of projects are equal to 8
-projectLabel ~ Allows code to style project input label when there is an error or alert
-
-*/
-
-let projBtnImg = document.querySelector("#new-proj-icon"); 
+let projBtnImg = document.querySelector("#new-proj-icon"); // gets project input btn icon
 let projectLabel = document.querySelector('#new-project'); // gets project label
 
-/* 
+let outputProjects = document.querySelector('.projects'); // gets project output div
 
-Output Areas - for tasks and projects
-
-outputProjects ~ area where projects are displayed after being created
-
-*/
-
-let outputProjects = document.querySelector('.projects');
-
-
-//mapping colours to project box and task list (project box)
-// function projectColMatch() {
-//     if (projects.length > 0) {
-//         console.log('project colmatch ' + projects.length);
-//         if (projects[0]) {
-//             console.log('first project exists ' + projects[0]);
-//             document.querySelector('.hiddenbox').style.color = '#4ab5c5';
-//             document.querySelector('.hiddenbox').style.border = '1.5px solid #4ab5c5';
-
-//             let projSelected = document.querySelector('.projcheckbox:checked');
-            
-//             if (projSelected == null) {
-//                 console.log('nothing selected');
-//             } else {
-//                 console.log('item selected');
-//                 document.querySelectorAll('.projcheckbox:checked, .hiddenbox').style.background = 'white';
-//             }
-
-//         } else {
-//             console.log('no projects to match colours');
-//             return false;
-//         }
-//     } else {
-//         console.log('no projects to match colours');
-//         return false;
-//     } 
-// }
-
-/*---------------------------------------*/
-/*---------------------------------------*/
-/* STORING/DISPLAYING PROJECT NAME INPUT */
-/*---------------------------------------*/
-/*---------------------------------------*/
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
 
 // add an eventListener on btn click, and listen for project name submit
 projectSubmitBtn.addEventListener('click', ()=> { 
     checkInputName();
 });
 
-// mapped colour counter
+/*-------------------------*/
+/* MAP COLOURS TO PROJECTS */
+/*-------------------------*/
+
+// colour counter using colour array
 function increaseProjectVal() {
     let colValue = localStorage.getItem('projectValue');
     if (colValue === null) {
@@ -239,6 +253,10 @@ function increaseProjectVal() {
     console.log(colValue);
     localStorage.setItem('projectValue', colValue);
 }
+
+/*---------------------------*/
+/* ADD PROJECT NAME TO ARRAY */
+/*---------------------------*/
 
 function addProjectName(item) {
     increaseProjectVal();
@@ -261,6 +279,10 @@ function addProjectName(item) {
         projectInput.value = '';
     }
 }
+
+/*--------------------------------*/
+/* RENDER PROJECT NAMES TO SCREEN */
+/*--------------------------------*/
 
 function renderProjects(projects) {
     outputProjects.innerHTML = '';
@@ -285,6 +307,10 @@ function renderProjects(projects) {
     });
 }
 
+/*-----------------------------------*/
+/* ADD PROJECT ARRAY TO LOCALSTORAGE */
+/*-----------------------------------*/
+
 function addProjectsToLocalStorage(projects) {
     // convert the array to string then store it.
     localStorage.setItem('projects', JSON.stringify(projects));
@@ -292,7 +318,10 @@ function addProjectsToLocalStorage(projects) {
     renderProjects(projects);
 }
 
-// function helps to get everything from local storage
+/*-------------------------------------*/
+/* GET PROJECT ARRAY FROM LOCALSTORAGE */
+/*-------------------------------------*/
+
 function getProjectsFromLocalStorage() {
     const pReference = localStorage.getItem('projects');
     // if reference exists
@@ -306,10 +335,13 @@ function getProjectsFromLocalStorage() {
 // get everything initially from local storage
 getProjectsFromLocalStorage();
 
-// checks if array has reached 6 items and if it does disable project name submit btn
+/*-----------------------------------------*/
+/* STOP RECIEVING PROJECT INPUTS AFTER SIX */
+/*-----------------------------------------*/
+
+// disable project name submit btn until project array has 6 or less items
 function stopArray() {
     if (projects.length === 6) {
-        // console.log('project array has reached max capacity ');
         projBtnImg.style.display = 'none';
     } else {
         console.log(projects.length);
@@ -317,10 +349,12 @@ function stopArray() {
     }
 }
 
-// removes project name submit btn when no. of projects equal 8
 stopArray();
 
-// check condition of new project entry
+/*--------------------------------*/
+/* CHECK PROJECT INPUT CONDITIONS */
+/*--------------------------------*/
+
 function checkInputName() {
 
 	// if array 1 or more entries check various conditions
@@ -338,7 +372,7 @@ function checkInputName() {
 		// project name already exists == alert user
         if(hasMatch) { 
             projectInput.value = '';
-            projectLabel.style.color = 'tomato'; // change label colour to red == alert
+            projectLabel.style.color = 'tomato'; // change label colour to red = alert
         } 
 
 		// project name doesn't exist == safe to add
@@ -349,18 +383,22 @@ function checkInputName() {
         }
     } 
 	
-	// project array has no entries so name can be added 
+	// project array has no entries so any name can be entered
 	else {
-        console.log(projectInput.value + ' is your first project');
+        console.log(projectInput.value + ' is the first project');
         addProjectName(projectInput.value);
     }
 }
 
-/*--------------------------*/
-/*--------------------------*/
-/* STORING/DISPLAYING TASKS */
-/*--------------------------*/
-/*--------------------------*/
+/*--------------------------------------*/
+/*--------------------------------------*/
+/* TASKLIST DISPLAY ~ STORING/RENDERING */
+/*--------------------------------------*/
+/*--------------------------------------*/
+
+/*-----------------*/
+/* INITIATING HTML */
+/*-----------------*/
 
 let taskForm = document.querySelector('.tasks-form');  // form 
 
@@ -371,96 +409,137 @@ let taskEstimate = document.getElementById('completetime');  // task priority in
 
 let taskItemOutput = document.querySelector(".taskListOutput"); // task list output div
 
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
+
 taskForm.addEventListener('submit', function(e) {  // add an eventListener on button click
     e.preventDefault();
     checkFormData();
 });
 
+/*----------------------*/
+/* CHECKING FORM INPUTS */
+/*----------------------*/
+
 function checkFormData() {
-    // sets formValid parameter
+    // sets formValid flag to false
     let formValid = false;
     console.log(formValid);
 
     let selectedProject = document.querySelector('.projcheckbox:checked'); // get selected project
 
     // check form is properly filled out
-    if (
-        taskName.value === '' || taskName.value.trim().length == 0 ||
-        taskDueDate.value === '' || taskDueDate.value.trim().length == 0 ||
-        taskPriority.value === '' || taskPriority.value.trim().length == 0 ||
-        taskEstimate.value === '' || taskEstimate.value.trim().length == 0 ||
-        selectedProject == null
-        ) {
-            alert('please fill out required fields!'); 
-            // check individual inputs for errors
-            if (taskName.value === '' || taskName.value.trim().length == 0) {
-                console.log('No task name inputed'); 
-                document.querySelector('#task-name').style.color = 'tomato';
-            } else {
-                document.querySelector('#task-name').style.color = '#dbdbdb';
-            }
-            
-            if (taskDueDate.value === '' || taskDueDate.value.trim().length == 0) {
-                console.log('No due date selected'); 
-                document.querySelector('#dueLabel').style.color = 'tomato';
-            } else {
-                document.querySelector('#dueLabel').style.color = '#dbdbdb';
-            }
-            
-            if (taskPriority.value === '' || taskPriority.value.trim().length == 0) {
-                console.log('No priority selected'); 
-                document.querySelector('#priorityLabel').style.color = 'tomato';
-            } else {
-                document.querySelector('#priorityLabel').style.color = '#dbdbdb';
-            }
-            
-            if (taskEstimate.value === '' || taskEstimate.value.trim().length == 0) {
-                console.log('No completion time inputed'); 
-                document.querySelector('#estimateLabel').style.color = 'tomato';
-            } else {
-                document.querySelector('#estimateLabel').style.color = '#dbdbdb';
-            }
+    if ( (taskName.value === '') || (taskName.value.trim().length == 0) || 
+    (taskDueDate.value === '') || (taskDueDate.value.trim().length == 0) ||
+    (taskPriority.value === '') || (taskPriority.value.trim().length == 0) ||
+    (taskEstimate.value === '') || (taskEstimate.value.trim().length == 0) ||
+    (selectedProject == null)) {
 
-            if (projects.length < 1) {
-                console.log('no projects exist');
-                projectLabel.style.color = 'tomato';
+        alert('please fill out required fields!'); 
 
+        // checking task name input
+        if (taskName.value === '' || taskName.value.trim().length == 0) {
+            console.log('No task name inputed'); 
+            document.querySelector('#task-name').style.color = 'tomato';
+        } else {
+            document.querySelector('#task-name').style.color = '#dbdbdb';
+        }
+
+        // checking task due date input
+        if (taskDueDate.value === '' || taskDueDate.value.trim().length == 0) {
+            console.log('No due date selected'); 
+            document.querySelector('#dueLabel').style.color = 'tomato';
+        } else {
+            document.querySelector('#dueLabel').style.color = '#dbdbdb';
+        }
+
+        // checking task priority input
+        if (taskPriority.value === '' || taskPriority.value.trim().length == 0) {
+            console.log('No priority selected'); 
+            document.querySelector('#priorityLabel').style.color = 'tomato';
+        } else {
+            document.querySelector('#priorityLabel').style.color = '#dbdbdb';
+        }
+        
+        // checking task completion time input
+        if (taskEstimate.value === '' || taskEstimate.value.trim().length == 0) {
+            console.log('No completion time inputed'); 
+            document.querySelector('#estimateLabel').style.color = 'tomato';
+        } else {
+            document.querySelector('#estimateLabel').style.color = '#dbdbdb';
+        }
+
+        // checking project selection input
+        if (projects.length < 1) {
+            console.log('no projects exist');
+            projectLabel.style.color = 'tomato';
+
+        } else {
+            console.log('project database exists');
+            projectLabel.style.color = '#dbdbdb';
+
+            if (selectedProject == null) {
+                console.log('no project selected'); 
+                document.querySelector('#projectLabel').style.color = 'tomato';
             } else {
-                console.log('project database exists');
-                projectLabel.style.color = '#dbdbdb';
-
-                if (selectedProject == null) {
-                    console.log('no project selected'); 
-                    document.querySelector('#projectLabel').style.color = 'tomato';
-                } else {
-                    document.querySelector('#projectLabel').style.color = '#dbdbdb';
-                }
+                document.querySelector('#projectLabel').style.color = '#dbdbdb';
             }
+        }
 
-            return false;
+        return false;
 
     } else { // form can be submitted
         formValid = true;
         console.log(formValid);
 
+        /*-----------------*/
+        /* CONVERT DUEDATE */
+        /*-----------------*/
+
+        // declare custom month values
+        let customMonthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
+        // slice duedate input into days, month, year 
+        let dateInputDays = taskDueDate.value.slice(8, 10);
+        let dateInputMonth = taskDueDate.value.slice(5, 7);
+        let dateInputYear = taskDueDate.value.slice(0, 4);
+        // if month value is less than 10 cut the front zero off
+        if (dateInputMonth < 10) { dateInputMonth = taskDueDate.value.slice(6, 7); }
+        // find custom month val equal to duedateinput month val
+        let convertedMonth = customMonthsArr[dateInputMonth-1];
+        // concantinate new due date
+        let newDueDate = dateInputDays + ' ' + convertedMonth + ' ' + dateInputYear; 
+
+        /*-----------------------------------*/
+        /* DEFINE SELECTED PROJECT VARIABLES */
+        /*-----------------------------------*/
+
         let projectID = selectedProject.id; // gets project name id
         let projectName = selectedProject.getAttribute('parentname');
         let projectCol = selectedProject.getAttribute('color');
 
+        /*--------------*/
+        /* LOG NEW TASK */
+        /*--------------*/
+
         // console logs
         console.log('Task Name: ' + taskName.value);
-        console.log('Due Date: ' + taskDueDate.value);
+        console.log('Due Date: ' + newDueDate);
         console.log('Priority: ' + taskPriority.value);
         console.log('Completion Time: ' + taskEstimate.value);
         console.log('Project ID: ' + projectID);
         console.log('Project Name: ' + projectName);
         console.log('Project Colour: ' + projectCol);
 
+        /*---------------------*/
+        /* DECLARE TASK OBJECT */
+        /*---------------------*/
+
         // make a task object
         const newTask = {
             id: Date.now(),
             name: taskName.value,
-            date: taskDueDate.value,
+            date: newDueDate,
             priority: taskPriority.value,
             estimate: taskEstimate.value,
             project: projectName,
@@ -468,10 +547,18 @@ function checkFormData() {
             completed: false
         };
 
+        /*----------------------------*/
+        /* SWITCH DISPLAYS & ADD TASK */
+        /*----------------------------*/
+
         switchVisible();
         addNewTask(projectID, newTask);
     }
 }
+
+/*-------------------------------*/
+/* ADD NEW TASK TO PROJECT ARRAY */
+/*-------------------------------*/
 
 function addNewTask(projectID, task) {
     // gets selected project from array, finds the task array and adds new task to it
@@ -482,16 +569,17 @@ function addNewTask(projectID, task) {
     //renders projects to div
     addTasksToLocalStorageArray(matchedProject);
 
-    // finally clear the input box value
-    if (document.querySelector('.projcheckbox:checked') == true) {
-        document.querySelector('.projcheckbox:checked') = false;
-    }
-
+    // finally clear the form values
     taskName.value = '';
     taskDueDate.value = '';
     taskPriority.value = '';
     taskEstimate.value = '';
+    document.querySelector('.projcheckbox:checked').checked = false;
 }
+
+/*-----------------------*/
+/* RENDER TASK TO SCREEN */
+/*-----------------------*/
 
 function renderTasks() {
 
@@ -507,7 +595,7 @@ function renderTasks() {
             // checks if the item is selected or not
             const complete = task.completed ? 'checked': null;
     
-            // make a <output> element and set attributes
+            // make a <div> element and set attributes
             const taskOutput = document.createElement('div'); // <output> </output>
             taskOutput.setAttribute('class', 'taskItem'); // <output class="item"> </output>
             taskOutput.setAttribute('data-key', task.id); // <output class="item" data-key="20200708"> </output>
@@ -527,11 +615,15 @@ function renderTasks() {
             <img id="delTaskImg" class="delSingleTaskBtn" src="../assets/delTaskIcon.svg" alt="">
             `;
     
-            // finally add the <output> to <div>
+            // add the task to the taskList
             taskItemOutput.append(taskOutput);
         });
     });
 }
+
+/*--------------------------------------------*/
+/* ADD TASK TO PROJECT ARRAY IN LOCAL STORAGE */
+/*--------------------------------------------*/
 
 function addTasksToLocalStorageArray(matchedProject) {
     // convert the array to string then store it.
@@ -541,12 +633,20 @@ function addTasksToLocalStorageArray(matchedProject) {
     toggleTaskListDisplay();
 }
 
-//function helps to get everything from local storage
+/*-----------------------------------------------*/
+/* GET TASKS FROM PROJECT ARRAY IN LOCAL STORAGE */
+/*-----------------------------------------------*/
+
+// get everything from local storage
 function getTasksFromLocalStorageArray() {
     let storageItems = JSON.parse(localStorage.getItem('projects'));
     storageItems;
     renderTasks(projects);
 }
+
+/*-----------------------------*/
+/* TOGGLE TASK COMPLETED STATE */
+/*-----------------------------*/
 
 // toggle the task's status between complete and not complete
 function toggleTask(id) {
@@ -560,6 +660,10 @@ function toggleTask(id) {
         addTasksToLocalStorageArray(projects);
     });
 }
+
+/*-------------------------------*/
+/* DELETE SPECIFIED TASK ONCLICK */
+/*-------------------------------*/
 
 // delete selected task and update localstorage
 function deleteTask(id) {
@@ -577,21 +681,33 @@ function deleteTask(id) {
     });
 }
 
+/*-----------------------------------*/
+/* GET EVERYTHING FROM LOCAL STORAGE */
+/*-----------------------------------*/
+
 getTasksFromLocalStorageArray(); // gets tasks from project array
+
+/*------------------------*/
+/* LISTEN FOR CLICKEVENTS */
+/*------------------------*/
 
 // listen for click events on checkbox and delete
 taskItemOutput.addEventListener('click', function(event) {
     // check if the event is on checkbox
     if (event.target.type === 'checkbox') {
-        // toggle the task 'complete' state
+        // toggle the tasks 'complete' state
         toggleTask(event.target.parentElement.getAttribute('data-key'));
     }
-     // check if that is a delete-button
+     // check if it is a delete-button
     if (event.target.classList.contains('delSingleTaskBtn')) {
         // get id from data-key attribute's value of parent <div> where the delete-button is present
         deleteTask(event.target.parentElement.getAttribute('data-key'));
     }
 });
+
+/*---------------------------*/
+/* CONSOLE LOG PROJECT ARRAY */
+/*---------------------------*/
 
 //console.log('Project Array Local Storage ', localStorage.getItem('projects'));
 console.log('Project Array', projects);
@@ -602,10 +718,18 @@ console.log('Project Array', projects);
 /*----------------------------*/
 /*----------------------------*/
 
+/*----------------*/
+/* INITATING HTML */
+/*----------------*/
+
 let headWrapperDiv = document.querySelector(".head-wrapper"); // gets header wrapper div
 let newTaskBtn = document.querySelector("#crNewTaskBtn"); // gets new task button
 let taskListInfo = document.querySelector(".before-list"); // gets before task list div
 let bottomGradient = document.querySelector(".bottomTaskGradient"); // gets before task list div
+
+/*---------------------------*/
+/* TOGGLE TASK LIST DISPLAYS */
+/*---------------------------*/
 
 function toggleTaskListDisplay() {
 
@@ -661,10 +785,18 @@ toggleTaskListDisplay(); // check how task list over displays
 /*-------------------------------------*/
 /*-------------------------------------*/
 
+/*----------------*/
+/* INTIATING HTML */
+/*----------------*/
+
 let togglePomodoro = document.querySelector('#toggle-pomodoro');
 let toggleStopwatch = document.querySelector('#toggle-stopwatch');
 let pomodoroWrapper = document.querySelector('.pom-wrapper');
 let stopwatchWrapper = document.querySelector('.stopwatch-wrapper');
+
+/*-------------------------*/
+/* CALLING EVENT LISTENERS */
+/*-------------------------*/
 
 togglePomodoro.addEventListener("click", ()=> {
     togglePomStop(); // calling the function
@@ -674,9 +806,13 @@ toggleStopwatch.addEventListener("click", ()=> {
     togglePomStop(); // calling the function
 });
 
-//  Toggles focus mode on/off - changing icon design
+/*-------------------------------------*/
+/* TOGGLE POMODORO/STOPWATCH DISPLAYS */
+/*-------------------------------------*/
+
+// Toggles pom & stopwatch display
 function togglePomStop() {
-    if(!CrTask) return;
+    if(!pomodoroWrapper) return;
     if (getComputedStyle(pomodoroWrapper).display == 'block') {
         pomodoroWrapper.style.display = 'none';
         stopwatchWrapper.style.display = 'block';
@@ -748,18 +884,19 @@ pomSessions.innerText = completedSessions + ' of ' + sessionCountInput.value + '
 let updatedWorkSessionDuration;
 let updatedBreakSessionDuration;
 
+// initial screen value pom settings
 workDurationInput.value = '45';
 breakDurationInput.value = '15';
 
 pomFocusOutput.innerText = workDurationInput.value + ' Min Focus'; // inital focus text = initial work duration value
 pomBreakOutput.innerText = breakDurationInput.value + ' Min Break'; // inital break text = initial break duration value
 
+// initial secondConversion clock settings
 let workSessionDuration = 2700; // in seconds = 45 mins (60*45)
 let currentTimeLeftInSession = 2700; 
-
 let breakSessionDuration = 900; // in seconds = 15 mins (60%15)
 
-// achievements (pom focus)
+// for achievements (pom focus only)
 let timeSpentInCurrentSession = 0;
 
 // progress bar (styling + initalising) ~ using progressbar.js plugin
@@ -771,7 +908,6 @@ const progressBar = new ProgressBar.Circle('#pClock', {
     text: { value: '45:00', },
     trailColor: '#f4f5f4', // faded white
 });
-
 
 progressBar.text.style.fontFamily = '"Michelangelo", sans-serif';
 progressBar.text.style.fontSize = '60px';
@@ -822,7 +958,6 @@ pomSettingBtnToggle.addEventListener('click', () => {
             pomResetIconDis.style.display = 'block';
             pomResetIconAct.style.display = 'none';
         }
-
     } else {
         checkFocusBreakInput(); // check user inputs and toggle back states set above
     }
@@ -855,7 +990,6 @@ function checkFocusBreakInput() {
             workDurationInput.value = '';
             breakDurationInput.value = '';
         }
-        
         if (sessionCountInput.value < 1 || sessionCountInput.value > 10) {
             alert('Please enter a value between 1 & 10');
             sessionCountInput.value = '';
@@ -1038,7 +1172,7 @@ function resetPomClock(reset) {
         (breakDurationInput.value !== defaultBreakDuration) || 
         (sessionCountInput.value !== defaultSessionDuration)) {
 
-            //  if they have replace default tag with custom tag
+            //  if they have, replace default tag with custom tag
             if(!pomTaglineTagDef) return;
             if (getComputedStyle(pomTaglineTagDef).display == 'block') {
                 pomTaglineTagDef.style.display = 'none';
@@ -1081,9 +1215,9 @@ function resetVariableCall() {
     pomResetIconAct.style.display = 'none';
 }
 
-/*---------------------------------------------------*/ 
-/* WHEN PLAY BTN IS FIRST CLICKED ACTIVATE REST BTN  */
-/*---------------------------------------------------*/ 
+/*----------------------------------------------------*/ 
+/* WHEN PLAY BTN IS FIRST CLICKED ACTIVATE RESET BTN  */
+/*----------------------------------------------------*/ 
 
 function enableResetIcon() {
     resetPomBtn.style.pointerEvents = 'all';
@@ -1276,42 +1410,108 @@ function addElapsedTime() {
 /*--------------*/
 /*--------------*/
 
+let likedSongsArr = [];
+
 /*----------------*/
 /* INTIATING HTML */
 /*----------------*/
 
+// display divs
+let preSetSongs = document.querySelector('.preSetSongs'); // song list
+let noLikedSongs = document.querySelector('.noLikedSongsDisplay'); // no liked song display
+
+//songs divs
+let song1 = document.querySelector('#song1'); // song 1 from playlist
+let song2 = document.querySelector('#song2'); // song 2 from playlist
+let song3 = document.querySelector('#song3'); // song 3 from playlist
+let song4 = document.querySelector('#song4'); // song 4 from playlist
+let song5 = document.querySelector('#song5'); // song 5 from playlist
+
 // buttons 
-let LikedSongs = document.querySelector('.LikedSongs');
+let likedSongsBtn = document.querySelector('.LikedSongs');
+
 let playSong1 = document.querySelector('#playSong1');
 let playSong2 = document.querySelector('#playSong2');
 let playSong3 = document.querySelector('#playSong3');
+let playSong4 = document.querySelector('#playSong4');
+let playSong5 = document.querySelector('#playSong5');
+
 let loveIcon1 = document.querySelector('#loveIcon1');
 let loveIcon2 = document.querySelector('#loveIcon2');
 let loveIcon3 = document.querySelector('#loveIcon3');
+let loveIcon4 = document.querySelector('#loveIcon4');
+let loveIcon5 = document.querySelector('#loveIcon5');
 
 // icons
 let likedSongsIcon = document.querySelector('#likedSongsIcon');
 let likedSongsAct = document.querySelector('#likedSongsAct');
+
+// song track 1
 let songPlayIcon_1 = document.querySelector('.songPlayIcon_1');
 let songPauseIcon_1 = document.querySelector('.songPauseIcon_1');
-let songPlayIcon_2 = document.querySelector('.songPlayIcon_2');
-let songPauseIcon_2 = document.querySelector('.songPauseIcon_2');
-let songPlayIcon_3 = document.querySelector('.songPlayIcon_3');
-let songPauseIcon_3 = document.querySelector('.songPauseIcon_3');
+
 let loveDisabled_1 = document.querySelector('.loveDisabled_1');
 let loveActive_1 = document.querySelector('.loveActive_1');
+
+// song track 2
+let songPlayIcon_2 = document.querySelector('.songPlayIcon_2');
+let songPauseIcon_2 = document.querySelector('.songPauseIcon_2');
+
 let loveDisabled_2 = document.querySelector('.loveDisabled_2');
 let loveActive_2 = document.querySelector('.loveActive_2');
+
+// song track 3
+let songPlayIcon_3 = document.querySelector('.songPlayIcon_3');
+let songPauseIcon_3 = document.querySelector('.songPauseIcon_3');
+
 let loveDisabled_3 = document.querySelector('.loveDisabled_3');
 let loveActive_3 = document.querySelector('.loveActive_3');
+
+// song track 4
+let songPlayIcon_4 = document.querySelector('.songPlayIcon_4');
+let songPauseIcon_4 = document.querySelector('.songPauseIcon_4');
+
+let loveDisabled_4 = document.querySelector('.loveDisabled_4');
+let loveActive_4 = document.querySelector('.loveActive_4');
+
+// song track 5
+let songPlayIcon_5 = document.querySelector('.songPlayIcon_5');
+let songPauseIcon_5 = document.querySelector('.songPauseIcon_5');
+
+let loveDisabled_5 = document.querySelector('.loveDisabled_5');
+let loveActive_5 = document.querySelector('.loveActive_5');
+
+// audio files
+let songTrack1 = document.querySelector('#songTrack1'); // free falling ~ John Mayor
+let songTrack2 = document.querySelector('#songTrack2'); // Study Music1 ~ Youtuber
+let songTrack3 = document.querySelector('#songTrack3'); // Study Music2 ~ Youtuber
+let songTrack4 = document.querySelector('#songTrack4'); // Finding Hope ~ 7clouds
+let songTrack5 = document.querySelector('#songTrack5'); // Need To Asdd New Song
+
+/*-------------------*/
+/* DECLARE VARIABLES */
+/*-------------------*/
+
+// check if any songs have been liked
+let likedSongsCheck = false;
+
+// Interval Clear
+let updateTime = null;
+
+//check if songs are playing
+let song1Playing = false;
+let song2Playing = false;
+let song3Playing = false;
+let song4Playing = false;
+let song5Playing = false;
 
 /*-----------------*/
 /* EVENT LISTENERS */
 /*-----------------*/
 
 // liked songs
-LikedSongs.addEventListener('click', () => {
-    toggleLikedSongs();
+likedSongsBtn.addEventListener('click', () => {
+    toggleAllLikedSongs();
 });
 
 // default study songs 
@@ -1327,7 +1527,16 @@ playSong3.addEventListener('click', () => {
     togglePlayBtn3();
 });
 
-loveIcon1.addEventListener('click', () => {
+playSong4.addEventListener('click', () => {
+    togglePlayBtn4();
+});
+
+playSong5.addEventListener('click', () => {
+    togglePlayBtn5();
+});
+
+// liked song icons
+loveIcon1.addEventListener('click', (e) => {
     toggleLikedSong1();
 });
 
@@ -1339,30 +1548,37 @@ loveIcon3.addEventListener('click', () => {
     toggleLikedSong3();
 });
 
+loveIcon4.addEventListener('click', () => {
+    toggleLikedSong4();
+});
 
-/*---------*/
-/* TOGGLES */
-/*---------*/
+loveIcon5.addEventListener('click', () => {
+    toggleLikedSong5();
+});
 
-function toggleLikedSongs() {
-    if(!likedSongsIcon) return;
-    if (getComputedStyle(likedSongsIcon).display == 'block') {
-        likedSongsIcon.style.display = 'none';
-        likedSongsAct.style.display = 'block';
-    } else {
-        likedSongsIcon.style.display = 'block';
-        likedSongsAct.style.display = 'none';
-    }
-}
+/*----------------------------*/
+/* TOGGLES PLAY/PAUSE BUTTONS */
+/*----------------------------*/
 
 function togglePlayBtn1() {
     if(!songPlayIcon_1) return;
     if (getComputedStyle(songPlayIcon_1).display == 'block') {
         songPlayIcon_1.style.display = 'none';
         songPauseIcon_1.style.display = 'block';
+        // PLAY SONG
+        songTrack1.play(); 
+        window.clearInterval(updateTime);
+        song1Playing = true;
+
+        // IF OTHER SONGS ARE PLAYING PAUSE THEM
+        checkSongTrack1Playing();
     } else {
         songPlayIcon_1.style.display = 'block';
         songPauseIcon_1.style.display = 'none';
+        // PAUSE SONG
+        songTrack1.pause();
+        window.clearInterval(updateTime);
+        song1Playing = false;
     }
 }
 
@@ -1371,9 +1587,21 @@ function togglePlayBtn2() {
     if (getComputedStyle(songPlayIcon_2).display == 'block') {
         songPlayIcon_2.style.display = 'none';
         songPauseIcon_2.style.display = 'block';
+        // PLAY SONG
+        songTrack2.play(); 
+        window.clearInterval(updateTime);
+        song2Playing = true;
+
+        // IF OTHER SONGS ARE PLAYING PAUSE THEM
+        checkSongTrack2Playing();
+
     } else {
         songPlayIcon_2.style.display = 'block';
         songPauseIcon_2.style.display = 'none';
+        // PAUSE SONG
+        songTrack2.pause();
+        window.clearInterval(updateTime);
+        song2Playing = false;
     }
 }
 
@@ -1382,9 +1610,84 @@ function togglePlayBtn3() {
     if (getComputedStyle(songPlayIcon_3).display == 'block') {
         songPlayIcon_3.style.display = 'none';
         songPauseIcon_3.style.display = 'block';
+        // PLAY SONG
+        songTrack3.play(); 
+        window.clearInterval(updateTime);
+        song3Playing = true;
+
+        // IF OTHER SONGS ARE PLAYING PAUSE THEM
+        checkSongTrack3Playing();
     } else {
         songPlayIcon_3.style.display = 'block';
         songPauseIcon_3.style.display = 'none';
+        // PAUSE SONG
+        songTrack3.pause();
+        window.clearInterval(updateTime);
+        song3Playing = false;
+    }
+}
+
+function togglePlayBtn4() {
+    if(!songPlayIcon_4) return;
+    if (getComputedStyle(songPlayIcon_4).display == 'block') {
+        songPlayIcon_4.style.display = 'none';
+        songPauseIcon_4.style.display = 'block';
+        // PLAY SONG
+        songTrack4.play(); 
+        window.clearInterval(updateTime);
+        song4Playing = true;
+
+        // IF OTHER SONGS ARE PLAYING PAUSE THEM
+        checkSongTrack4Playing();
+    } else {
+        songPlayIcon_4.style.display = 'block';
+        songPauseIcon_4.style.display = 'none';
+        // PAUSE SONG
+        songTrack4.pause();
+        window.clearInterval(updateTime);
+        song4Playing = false;
+    }
+}
+
+function togglePlayBtn5() {
+    if(!songPlayIcon_5) return;
+    if (getComputedStyle(songPlayIcon_5).display == 'block') {
+        songPlayIcon_5.style.display = 'none';
+        songPauseIcon_5.style.display = 'block';
+        // PLAY SONG
+        songTrack5.play(); 
+        window.clearInterval(updateTime);
+        song5Playing = true;
+
+        // IF OTHER SONGS ARE PLAYING PAUSE THEM
+        checkSongTrack5Playing();
+    } else {
+        songPlayIcon_5.style.display = 'block';
+        songPauseIcon_5.style.display = 'none';
+        // PAUSE SONG
+        songTrack5.pause();
+        window.clearInterval(updateTime);
+        song5Playing = false;
+    }
+}
+
+/*---------------------*/
+/* TOGGLES LIKED SONGS */
+/*---------------------*/
+
+function toggleAllLikedSongs() {
+    if(!likedSongsIcon) return;
+    if (getComputedStyle(likedSongsIcon).display == 'block') {
+        likedSongsIcon.style.display = 'none';
+        likedSongsAct.style.display = 'block';
+        displayLikedSongs();
+    } else {
+        likedSongsIcon.style.display = 'block';
+        likedSongsAct.style.display = 'none';
+        // toggle displays
+        preSetSongs.style.display = 'block';
+        noLikedSongs.style.display = 'none';
+        displayAllSongs();
     }
 }
 
@@ -1393,9 +1696,11 @@ function toggleLikedSong1() {
     if (getComputedStyle(loveDisabled_1).display == 'block') {
         loveDisabled_1.style.display = 'none';
         loveActive_1.style.display = 'block';
+        song1.classList.add('liked');
     } else {
         loveDisabled_1.style.display = 'block';
         loveActive_1.style.display = 'none';
+        song1.classList.remove('liked');
     }
 }
 
@@ -1404,9 +1709,11 @@ function toggleLikedSong2() {
     if (getComputedStyle(loveDisabled_2).display == 'block') {
         loveDisabled_2.style.display = 'none';
         loveActive_2.style.display = 'block';
+        song2.classList.add('liked');
     } else {
         loveDisabled_2.style.display = 'block';
         loveActive_2.style.display = 'none';
+        song1.classList.remove('liked');
     }
 }
 
@@ -1415,11 +1722,319 @@ function toggleLikedSong3() {
     if (getComputedStyle(loveDisabled_3).display == 'block') {
         loveDisabled_3.style.display = 'none';
         loveActive_3.style.display = 'block';
+        song3.classList.add('liked');
     } else {
         loveDisabled_3.style.display = 'block';
         loveActive_3.style.display = 'none';
+        song4.classList.add('liked');
     }
 }
+
+function toggleLikedSong4() {
+    if(!loveDisabled_4) return;
+    if (getComputedStyle(loveDisabled_4).display == 'block') {
+        loveDisabled_4.style.display = 'none';
+        loveActive_4.style.display = 'block';
+        song4.classList.add('liked');
+    } else {
+        loveDisabled_4.style.display = 'block';
+        loveActive_4.style.display = 'none';
+        song4.classList.add('liked');
+    }
+}
+
+function toggleLikedSong5() {
+    if(!loveDisabled_5) return;
+    if (getComputedStyle(loveDisabled_5).display == 'block') {
+        loveDisabled_5.style.display = 'none';
+        loveActive_5.style.display = 'block';
+        song5.classList.add('liked');
+    } else {
+        loveDisabled_5.style.display = 'block';
+        loveActive_5.style.display = 'none';
+        song5.classList.add('liked');
+    }
+}
+
+/*-----------------------*/
+/* LOOPED SONGS FUNCTION */
+/*-----------------------*/
+
+let songLooped = 0;
+
+songTrack4.addEventListener('timeupdate', function() {
+    let songBuffer = .44;
+    if(this.currentTime > this.duration - songBuffer){
+        this.currentTime = 0;
+        this.play();
+        checkLoopedSong();
+    }
+});
+
+// check looped song only repeats 4 times
+function checkLoopedSong() {
+    if (songLooped === 5) {
+        songTrack4.pause();
+        window.clearInterval(updateTime);
+    } else {
+        songLooped = songLooped + 1;
+        console.log(songLooped);
+    }
+}
+
+/*----------------------------------------*/
+/* TOGGLE OTHER SONGS WHEN ONE IS PLAYING */
+/*----------------------------------------*/
+
+function checkSongTrack1Playing() {
+    if (song1Playing) {
+        if (song2Playing == true) {
+            togglePlayBtn2();
+    
+        } else if (song3Playing == true) {
+            togglePlayBtn3();
+    
+        } else if (song4Playing == true) {
+            togglePlayBtn4();
+
+        } else if (song5Playing == true) {
+            togglePlayBtn5();
+        }
+    }
+}
+
+function checkSongTrack2Playing() {
+    if (song2Playing) {
+        if (song1Playing == true) {
+            togglePlayBtn1();
+    
+        } else if (song3Playing == true) {
+            togglePlayBtn3();
+    
+        } else if (song4Playing == true) {
+            togglePlayBtn4();
+
+        } else if (song5Playing == true) {
+            togglePlayBtn5();
+        }
+    }
+}
+
+function checkSongTrack3Playing() {
+    if (song3Playing) {
+        if (song1Playing == true) {
+            togglePlayBtn1();
+    
+        } else if (song2Playing == true) {
+            togglePlayBtn2();
+
+        } else if (song4Playing == true) {
+            togglePlayBtn4();
+
+        } else if (song5Playing == true) {
+            togglePlayBtn5();
+        }
+    }
+}
+
+function checkSongTrack4Playing() {
+    if (song4Playing) {
+        if (song1Playing == true) {
+            togglePlayBtn1();
+    
+        } else if (song2Playing == true) {
+            togglePlayBtn2();
+
+        } else if (song3Playing == true) {
+            togglePlayBtn3();
+
+        } else if (song5Playing == true) {
+            togglePlayBtn5();
+        }
+    }
+}
+
+function checkSongTrack5Playing() {
+    if (song5Playing) {
+        if (song1Playing == true) {
+            togglePlayBtn1();
+    
+        } else if (song2Playing == true) {
+            togglePlayBtn2();
+
+        } else if (song3Playing == true) {
+            togglePlayBtn3();
+
+        } else if (song4Playing == true) {
+            togglePlayBtn4();
+        }
+    }
+}
+
+/*---------------------*/
+/* DISPLAY LIKED SONGS */
+/*---------------------*/
+
+function displayLikedSongs() {
+    if ((song1.classList.contains('liked')) || (song2.classList.contains('liked')) || 
+    (song3.classList.contains('liked')) || (song4.classList.contains('liked')) ||
+    (song5.classList.contains('liked'))) {
+
+        likedSongsCheck = true;
+
+        // toggle displays
+        preSetSongs.style.display = 'block';
+        noLikedSongs.style.display = 'none';
+
+        // check which songs don't have a liked classlist added
+        if (!song1.classList.contains('liked')) {
+            song1.style.display = 'none';
+        }
+        
+        if (!song2.classList.contains('liked')) {
+            song2.style.display = 'none';
+        }
+        
+        if(!song3.classList.contains('liked')) {
+            song3.style.display = 'none';
+        }
+        
+        if(!song4.classList.contains('liked')) {
+            song4.style.display = 'none';
+        }
+
+        if(!song5.classList.contains('liked')) {
+            song5.style.display = 'none';
+        }
+
+    } else {
+        console.log('no liked songs');
+        // toggle displays
+        preSetSongs.style.display = 'none';
+        noLikedSongs.style.display = 'block';
+    }
+}
+
+function displayAllSongs() {
+    song1.style.display = 'flex';
+    song2.style.display = 'flex';
+    song3.style.display = 'flex';
+    song4.style.display = 'flex';
+    song5.style.display = 'flex';
+}
+
+/*------------------*/
+/*------------------*/
+/* PROJECT OVERVIEW */
+/*------------------*/
+/*------------------*/
+
+/*-----------------*/
+/* INITIATING HTML */
+/*-----------------*/
+
+let projectDropDown = document.querySelector('.chooseProject');
+let projectgridBox = document.querySelector('.gridBox');
+
+/*-------------------*/
+/* DECLARE VARIABLES */
+/*-------------------*/
+
+let optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
+let renderProjectDropdown;
+let projectValueDD = 0; // project value drop down
+let projectValueOS = 0; // project value on screen
+
+/*---------------------------------*/
+/* LOAD PROJECTS INTO SELECT INPUT */
+/*---------------------------------*/
+
+// check project array for projects
+window.onload = function() {
+    if (projects.length > 0) {
+        // render project names to dropdown box
+        renderProjectDropdown = projects.forEach(function(project) {
+            projectValueDD = projectValueDD + 1;
+            let projEl = document.createElement('option');
+            projEl.innerHTML = project.name;
+            projEl.value = projectValueDD;
+            projEl.id = project.id;
+            projectDropDown.append(projEl);
+        });
+    } else {
+        // if no projects, display that information on project box
+        let noProjects = document.createElement('option');
+        noProjects.innerHTML = 'No Projects';
+        noProjects.value = 'No Projects';
+        noProjects.setAttribute('disabled');
+        projectDropDown.appendChild(noProjects);
+    }
+}
+
+/*------------------------------*/
+/* ONCHANGE GET SELECTED OPTION */
+/*------------------------------*/
+
+projectDropDown.oninput = function() {
+    checkWhichProjectSelected();
+}
+
+function checkWhichProjectSelected() {
+    optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
+    console.log(optionSelected.text); 
+
+    renderSelectedProject(); // render selected projects task to overview board
+}
+
+checkWhichProjectSelected();
+
+/*-----------------------------------*/
+/* RENDER SELECTED PROJECT TO SCREEN */
+/*-----------------------------------*/
+
+function renderSelectedProject() {
+    renderProjectDropdown = projects.forEach(function(project) {
+        if (optionSelected.id == project.id) {
+            
+            console.log('option selected id: ' + optionSelected.id + ' is connected to the project: ' + project.name);
+
+            if (project.tasks.length !== 0) {
+                console.log(project.tasks.length);
+
+                // clear projectgridBox input
+                projectgridBox.innerHTML = '';
+
+                project.tasks.forEach(function(quickTask) {
+
+                    projectValueOS = projectValueOS + 1;
+            
+                    // make a <div> element and set attributes
+                    const overviewItem = document.createElement('div'); 
+                    overviewItem.setAttribute('class', 'overviewItem'); 
+                    overviewItem.setAttribute('id', projectValueOS); 
+            
+                    if (quickTask.completed === true) {
+                        overviewItem.classList.add('taskCompleted');
+                    }
+            
+                    overviewItem.innerHTML = `
+                    <p class="task_name">${quickTask.name}</p>
+                    <img class="task_check_icon" src="../assets/taskComplete.svg" alt="">
+                    `;
+            
+                    projectgridBox.append(overviewItem);
+                });
+
+            } else {
+                console.log('project has no tasks in it');
+            }
+
+        } else {
+            console.log('projects have not loaded yet');
+        }
+    });
+}
+
 
 /*-----------------*/
 /*-----------------*/

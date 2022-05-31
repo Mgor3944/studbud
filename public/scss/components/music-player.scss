@@ -18,13 +18,13 @@
             .mus-wrapper {
                 width: 100%;
                 height: 100%;
-                background: #333948;
+                background: var(--darkElem);
                 border-radius: 20px;
 
                 .topBox {
                     padding: 15px;
                     width: 100%;
-                    height: 15%;
+                    height: 19%;
 
                     .headline {
                         display: flex;
@@ -32,16 +32,16 @@
                         width: 100%;
     
                         .title {
-                            width: 71%;
-                            color: #E6E6E6;
+                            width: 83%;
+                            color: var(--ghost);
                             font-weight: 600;
                             font-size: 16px;
-                            margin-top: 6px;
+                            padding-top: 12px;
                             padding-left: 10px;
                         }
     
                         .songButtons {
-                            width: 29%;
+                            width: 17%;
                             display: flex;
 
                             .LikedSongs {
@@ -50,7 +50,10 @@
 
                                 #likedSongsIcon {
                                     display: block;
+                                    color: var(--ghost);
+                                    font-size: 25px;
                                 }
+
                                 #likedSongsAct {
                                     display: none;
                                 }
@@ -65,15 +68,16 @@
 
                 .musicContainer {
                     width: 100%;
-                    height: 85%;
-                    border-radius: 0px 0px 20px 20px;
+                    height: 81%;
+                    border-radius: 5px 0px 20px 20px;
 
                     .preSetSongs {
-                        padding: 20px;
+                        padding: 0px 20px 10px 20px; // 0px = top && 10px = bottom;
                         width: 100%;
-                        height: 100%;
+                        height: 98%;
                         overflow: auto !important; // only show scrollbars when necessary
                         border-radius: 0px 0px 20px 20px;
+                        display: block;
 
                         .music {
                             padding: 2px;
@@ -114,7 +118,7 @@
                             .musicContent {
                                 padding-top: 7px;
                                 padding-right: 15px;
-                                width: 150px;
+                                width: 180px;
                                 // background: red;
 
                                 .songTitle {
@@ -126,7 +130,7 @@
                                 }
 
                                 .song_Author_Time {
-                                    color: #BCBCBC;
+                                    color: var(--grey);
                                     font-size: 12px;
                                     font-weight: 400;
 
@@ -144,7 +148,7 @@
                                 // background: green;
 
                                 .songLove {
-                                    margin-right: 15px;
+                                    margin-right: 5px;
 
                                     #loveDisabled {
                                         display: block;
@@ -165,37 +169,149 @@
                                 }
                             }
                         }
+                    }
+
+                    .noLikedSongsDisplay {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0px 0px 20px 20px;
+                        display: none;
 
                         .userSongNotification {
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
                             border-radius: 0px 0px 20px 20px;
+                            padding: 20px;
 
-                            .lineSpacer {
-                                border-bottom: 1.5px solid #3C4253;
-                                margin-top: 5px;
-                                margin-bottom: 20px;
+                            .songIconBox {
+                                text-align: center;
+                                margin-bottom: 25px;
+
+                                .sadEmojiIcon {
+                                    width: 50px;
+                                }
                             }
 
                             .songNotificationText {
                                 text-align: center;
                                 padding-left: 15px;
                                 padding-right: 15px;
-                                line-height: 20px;
+                                line-height: 21px;
                                 color: var(--grey);
                                 font-size: 13px;
                                 font-weight: 300;
+                                margin-bottom: 30px;
+                            }
+
+                            .lineSplit {
+                                border-bottom: 1.5px solid var(--greyBlue);
+                                margin-bottom: 30px;
+                            }
+
+                            // Example Music Icon
+                            .music {
+                                padding: 2px;
+                                display: flex;
+                                padding-bottom: 15px;
+    
+                                .musicBG {
+                                    padding-right: 20px;
+                                    position: relative;
+    
+                                    #songPlayIcon {
+                                        display: block;
+                                        position: absolute;
+                                        top: 6.5px;
+                                        left: 3.5px;
+                                        width: 43px;
+                                        height: 43px;
+                                        z-index: 2;
+                                    }
+    
+                                    #songPauseIcon {
+                                        display: none;
+                                        position: absolute;
+                                        top: 6.5px;
+                                        left: 3.5px;
+                                        width: 43px;
+                                        height: 43px;
+                                        z-index: 2;
+                                    }
+    
+                                    #songBG {
+                                        position: relative;
+                                        display: block;
+                                        z-index: 1;
+                                    }
+                                }
+    
+                                .musicContent {
+                                    padding-top: 7px;
+                                    padding-right: 15px;
+                                    width: 180px;
+                                    // background: red;
+    
+                                    .songTitle {
+                                        color: var(--ghost);
+                                        font-weight: 600;
+                                        padding-bottom: 7px;
+                                        font-size: 13px;
+                                        letter-spacing: 0.5px;
+                                    }
+    
+                                    .song_Author_Time {
+                                        color: var(--grey);
+                                        font-size: 12px;
+                                        font-weight: 400;
+    
+                                        .medianDot {
+                                            padding-left: 2px;
+                                            padding-bottom: 2px;
+                                            padding-right: 3px;
+                                        }
+                                    }
+                                }
+    
+                                .musicBtns {
+                                    display: flex;
+                                    align-items: center;
+                                    // background: green;
+    
+                                    .songLove {
+                                        margin-right: 5px;
+    
+                                        #loveDisabled {
+                                            display: none;
+                                            width: 20px;
+                                            height: 20px;
+                                        }
+    
+                                        #loveActive {
+                                            display: block;
+                                            width: 20px;
+                                            height: 20px;
+                                        }
+                                    }
+    
+                                    .songDel {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
                             }
                         }
                     }
 
                     .bottomOfSongListGradient {
-                        display: none;
+                        display: block;
                         position: relative;
                         width: 100%;
                         height: 13%;
                         bottom: 13%;
                         z-index: 5;
                         border-radius: 0px 0px 20px 20px;
-                        background-image: linear-gradient(rgba(0, 0, 0, 0), #333948); // scrollable effect look
+                        background-image: linear-gradient(rgba(0, 0, 0, 0), var(--darkElem)); // scrollable effect look
                     }
                 }
             }

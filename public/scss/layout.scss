@@ -1,20 +1,40 @@
 :root {
     // background colours
-    --darkBlue: #1F222C;  // background
+    --darkBlue: #1F222C;  // sidebar background
     --greyBlue: #3C4253; // dashboard elem
+    --darkElem: #333948; // dark dashboard elem
+    --dashBG: #2B303E; // dashboard background
 
-    // highlight colour
-    --hotPink: hotpink; // hotpink
+    // unique colours
+    --hotPink: #ff69b4; // hotpink
+    --white: #fff;
+    --searchBar: #4B526A;
 
     // text colours
     --ghost: #E6E6E6; // title text
     --grey: #B5BCCE; // paragraph text
     --lightGrey: #b9b6b6; // placeholder
+    --paleBlue: #939AAC; // dashboard para text colour
 
     // primary/secondary colours
     --purple: #8e72d6; // primary
     --green: #00BA9E; // secondary
     --pink: #BDA3F0; // secondary
+}
+
+[data-theme = "dark"] {
+    --darkBlue: #B4B9B8;  // sidebar background
+    --greyBlue: #A3AFAF; // dashboard elem
+    --darkElem: #9FAAAA; // dark dashboard elem
+    --dashBG: #B8BFBE; // dashboard background
+
+    --white: #343434;
+    --searchBar: #AABABA;
+
+    --ghost: #1F222C; // title text
+    --grey: #3C4253; // paragraph text
+    --lightGrey: #4B526A; // placeholder
+    --paleBlue: #2B303E; // dashboard para text colour
 }
 
 * {

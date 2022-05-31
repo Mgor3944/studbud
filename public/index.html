@@ -155,7 +155,6 @@
                                 <h3 class="title">Create New Task</h3>
                                 <div class="button">
                                     <button id="createTaskBtn" type="submit" name="mysubmitbutton"><img id="createTaskImg" src="../assets/Create Task.svg" alt=""></button>
-                                    <!-- <a href="#" id="createTaskBtn"><img id="createTaskImg" src="../assets/Create Task.svg" alt=""></a> -->
                                     <a href="#" id="deleteTaskBtn"><img id="del-button" src="../assets/DelTask.svg" alt=""></a>
                                 </div>
                             </div>
@@ -422,99 +421,198 @@
                     <div class="mus-wrapper">
                         <div class="topBox">
                             <div class="headline">
-                                <h3 class="title">Song List</h3>
+                                <h3 class="title">Study Music</h3>
                                 <div class="songButtons">
                                     <a href="#" class="LikedSongs">
                                         <img id="likedSongsIcon" src="../assets/likedSongs.svg" alt="">
                                         <img id="likedSongsAct" src="../assets/likedSongsAct.svg" alt="">
                                     </a>
-                                    <a href="#" class="addNewSong">
-                                        <img id="newSongBtn" src="../assets/plus_button_music.svg" alt="">
-                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="musicContainer">
-                            <!-- <div class="userSetSongs"></div> -->
                             <div class="preSetSongs">
                                 <!-- Preset Song 1 -->
                                 <div class="music" id="song1">
+                                    <!-- Song Image/Play/Pause Buttons -->
                                     <a href="#" class="musicBG" id="playSong1">
                                         <img class="songPlayIcon_1" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
                                         <img class="songPauseIcon_1" id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
                                         <img id="songBG" src="../assets/SongBGIMG1.svg" alt="">
                                     </a>
+                                    <!-- Load Audio File -->
+                                    <audio id="songTrack1"><source src="../assets/songs/FreeFallin.mp3" type="audio/mp3"/></audio>
+                                    <!-- Song Title/Author/Duration -->
                                     <div class="musicContent">
-                                        <h4 class="songTitle">Levitating</h4>
-                                        <p class="song_Author_Time">
-                                            Dua Lipa
-                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
-                                            04 : 21
-                                        </p>
-                                    </div>
-                                    <div class="musicBtns">
-                                        <a href="#" class="songLove" id="loveIcon1">
-                                            <img class="loveDisabled_1" id="loveDisabled" src="../assets/songLove.svg" alt="">
-                                            <img class="loveActive_1" id="loveActive" src="../assets/songLoveActive.svg" alt="">
-                                        </a>
-                                        <img class="songDel" id="songDel1" src="../assets/songDel.svg" alt="">
-                                    </div>
-                                </div>
-
-                                <!-- Preset Song 2 -->
-                                <div class="music" id="song2">
-                                    <a href="#" class="musicBG" id="playSong2">
-                                        <img class="songPlayIcon_2" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
-                                        <img class="songPauseIcon_2" id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
-                                        <img id="songBG" src="../assets/SongBGIMG2.svg" alt="">
-                                    </a>
-                                    <div class="musicContent">
-                                        <h4 class="songTitle">You & Me</h4>
-                                        <p class="song_Author_Time">
-                                            Lifehouse
-                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
-                                            03 : 56
-                                        </p>
-                                    </div>
-                                    <div class="musicBtns">
-                                        <a href="#" class="songLove" id="loveIcon2">
-                                            <img class="loveDisabled_2" id="loveDisabled" src="../assets/songLove.svg" alt="">
-                                            <img class="loveActive_2" id="loveActive" src="../assets/songLoveActive.svg" alt="">
-                                        </a>
-                                        <img class="songDel" id="songDel2" src="../assets/songDel.svg" alt="">
-                                    </div>
-                                </div>
-
-                                <!-- Preset Song 3 -->
-                                <div class="music" id="song3">
-                                    <a href="#" class="musicBG" id="playSong3">
-                                        <img class="songPlayIcon_3" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
-                                        <img class="songPauseIcon_3"id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
-                                        <img id="songBG" src="../assets/SongBGIMG3.svg" alt="">
-                                    </a>
-                                    <div class="musicContent">
-                                        <h4 class="songTitle">Free Falling</h4>
+                                        <h4 class="songTitle">Free Fallin</h4>
                                         <p class="song_Author_Time">
                                             John Mayor
                                             <img class="medianDot" src="../assets/median_dot.svg" alt="">
                                             04 : 22
                                         </p>
                                     </div>
+                                    <!-- Song Delete/Like Buttons -->
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon1">
+                                            <img class="loveDisabled_1" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_1" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Preset Song 2 -->
+                                <div class="music" id="song2">
+                                    <!-- Song Image/Play/Pause Buttons -->
+                                    <a href="#" class="musicBG" id="playSong2">
+                                        <img class="songPlayIcon_2" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_2" id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG2.svg" alt="">
+                                    </a>
+                                    <!-- Load Audio File -->
+                                    <audio id="songTrack2"><source src="../assets/songs/StudyMusic1.mp3" type="audio/mp3"/></audio>
+                                    <!-- Song Title/Author/Duration -->
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Deep Focus</h4>
+                                        <p class="song_Author_Time">
+                                            Youtube
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            44 : 30
+                                        </p>
+                                    </div>
+                                    <!-- Song Delete/Like Buttons -->
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon2">
+                                            <img class="loveDisabled_2" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_2" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Preset Song 3 -->
+                                <div class="music" id="song3">
+                                    <!-- Song Image/Play/Pause Buttons -->
+                                    <a href="#" class="musicBG" id="playSong3">
+                                        <img class="songPlayIcon_3" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_3"id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG3.svg" alt="">
+                                    </a>
+                                    <!-- Load Audio File -->
+                                    <audio id="songTrack3">
+                                        <source src="../assets/songs/StudyMusic2.mp3" loop="false" type="audio/mp3"/>
+                                    </audio>
+                                    <!-- Song Title/Author/Duration -->
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Chilled Study</h4>
+                                        <p class="song_Author_Time">
+                                            Youtube
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            13 : 16
+                                        </p>
+                                    </div>
+                                    <!-- Song Delete/Like Buttons -->
                                     <div class="musicBtns">
                                         <a href="#" class="songLove" id="loveIcon3">
                                             <img class="loveDisabled_3" id="loveDisabled" src="../assets/songLove.svg" alt="">
                                             <img class="loveActive_3" id="loveActive" src="../assets/songLoveActive.svg" alt="">
                                         </a>
-                                        <img class="songDel" id="songDel3" src="../assets/songDel.svg" alt="">
                                     </div>
                                 </div>
 
-                                <div class="userSongNotification">
-                                    <div class="lineSpacer"></div>
-                                    <p class="songNotificationText"> New Songs will appear above the default ones once you start adding them!</p>
+                                <!-- Preset Song 4 -->
+                                <div class="music" id="song4">
+                                    <!-- Song Image/Play/Pause Buttons -->
+                                    <a href="#" class="musicBG" id="playSong4">
+                                        <img class="songPlayIcon_4" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_4"id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG4.svg" alt="">
+                                    </a>
+                                    <!-- Load Audio File (loop 4x) -->
+                                    <audio id="songTrack4">
+                                        <source src="../assets/songs/FindingHope.mp3" loop="false" type="audio/mp3"/>
+                                    </audio>
+                                    <!-- Song Title/Author/Duration -->
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Finding Hope</h4>
+                                        <p class="song_Author_Time">
+                                            7clouds
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            13 : 28
+                                        </p>
+                                    </div>
+                                    <!-- Song Delete/Like Buttons -->
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon4">
+                                            <img class="loveDisabled_4" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_4" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Preset Song 5 -->
+                                <div class="music" id="song5">
+                                    <!-- Song Image/Play/Pause Buttons -->
+                                    <a href="#" class="musicBG" id="playSong5">
+                                        <img class="songPlayIcon_5" id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                        <img class="songPauseIcon_5"id="songPauseIcon" src="../assets/songPauseIcon.svg" alt="">
+                                        <img id="songBG" src="../assets/SongBGIMG5.svg" alt="">
+                                    </a>
+                                    <!-- Load Audio File (loop 4x) -->
+                                    <audio id="songTrack5">
+                                        <source src="../assets/songs/StudyMusic3.mp3" loop="false" type="audio/mp3"/>
+                                    </audio>
+                                    <!-- Song Title/Author/Duration -->
+                                    <div class="musicContent">
+                                        <h4 class="songTitle">Late Night Study</h4>
+                                        <p class="song_Author_Time">
+                                            Youtube
+                                            <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                            02 : 41  : 38
+                                        </p>
+                                    </div>
+                                    <!-- Song Delete/Like Buttons -->
+                                    <div class="musicBtns">
+                                        <a href="#" class="songLove" id="loveIcon5">
+                                            <img class="loveDisabled_5" id="loveDisabled" src="../assets/songLove.svg" alt="">
+                                            <img class="loveActive_5" id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
+                            <!-- No Liked Songs Display (User)-->
+                            <div class="noLikedSongsDisplay">
+                                <div class="userSongNotification">
+                                    <div class="songIconBox">
+                                        <img class="sadEmojiIcon" src="../assets/NoLikedSongs.svg" alt="">
+                                    </div>
+                                    <p class="songNotificationText"> You haven't liked any songs yet! Once you do 
+                                        they will start appearing here. <b>Here's an example:</b></p>
+                                    <div class="lineSplit"></div>
+
+                                    <!-- Example Son-->
+                                    <div class="music">
+                                        <a href="#" class="musicBG">
+                                            <img id="songPlayIcon" src="../assets/songPlayIcon.svg" alt="">
+                                            <img id="songBG" src="../assets/SongBGIMG1.svg" alt="">
+                                        </a>
+                                        <div class="musicContent">
+                                            <h4 class="songTitle">Finding Hope</h4>
+                                            <p class="song_Author_Time">
+                                                7clouds
+                                                <img class="medianDot" src="../assets/median_dot.svg" alt="">
+                                                13 : 28
+                                            </p>
+                                        </div>
+                                        <div class="musicBtns">
+                                            <a href="#" class="songLove">
+                                                <img id="loveActive" src="../assets/songLoveActive.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scroll Effect Gradient -->
                             <div class="bottomOfSongListGradient"></div>
                         </div>
                     </div>
@@ -539,11 +637,55 @@
                             <h3 class="title">Project Overview</h3>
                             <div class="proj-selection">
                                 <select class="chooseProject" style="background-color: #4B526A;">
-                                    <option value="0" class="proj placeholder">Select Project</option>
-                                    <option value="1" class="proj">Audi</option>
-                                    <option value="2" class="proj">BMW</option>
-                                    <option value="3" class="proj">Mazda</option>
+                                    <option value="" class="proj placeholder" selected hidden>Choose a Project</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="overviewContainer">
+                            <div class="tasksTitle">
+                                <h4 class="title">Tasks</h4>
+                            </div>
+                            <div class="selectedProjectTasks">
+                                <div class="outerBox">
+                                    <div class="gridBox">
+                                        <!-- dummy item -->
+                                        <!-- <div class="overviewItem">
+                                            <p class="task_name">Crim Essay</p>
+                                            <img class="task_check_icon" src="../assets/taskComplete.svg" alt="">
+                                        </div> -->
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                        <div class="overviewItem"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overviewInsights">
+                            <div class="innerBox">
+                                <div class="completionBarBox">
+                                    <div class="barTitle">
+                                        <h4 class="head">Completion Bar</h4>
+                                    </div>
+                                    <div class="completionBar">
+                                        <div class="progressBar">
+                                            <div class="bar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="projectDueDateBox">
+                                    <div class="dueTitle">
+                                        <h4 class="head">Due Date</h4>
+                                    </div>
+                                    <div class="dueDateBox">
+                                        <h4 class="projectDueDate">03 Jun</h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

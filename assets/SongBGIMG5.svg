@@ -5,12 +5,12 @@
       <stop offset="1" stop-color="#4e636e" stop-opacity="0.871"/>
     </linearGradient>
   </defs>
-  <g id="Group_9179" data-name="Group 9179" transform="translate(-365.5 -721.5)">
-    <g id="image">
+  <g id="IMGBOX5" transform="translate(-365.5 -721.5)">
+    <g id="Background">
       <rect id="Your_image_here" data-name="Your image here" width="50" height="50" rx="5" transform="translate(366 722)" fill="#dbc0ea"/>
     </g>
-    <g id="image-2" data-name="image" transform="translate(-15)">
-      <rect id="Your_image_here-2" data-name="Your image here" width="50" height="50" transform="translate(381 722)" stroke="rgba(0,0,0,0)" stroke-width="1" fill="url(#linear-gradient)"/>
+    <g id="Gradient" transform="translate(-15)">
+      <rect id="Your_image_here-2" data-name="Your image here" width="50" height="50" rx="5" transform="translate(381 722)" stroke="rgba(0,0,0,0)" stroke-width="1" fill="url(#linear-gradient)"/>
     </g>
   </g>
 </svg>
