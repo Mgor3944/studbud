@@ -5,21 +5,27 @@
 /*--------------*/
 
 .dashboard {
-	.elements-br {
-		.achievements {
-			display: flex; /* allows divs to display next to eachother */ 
+    .dashboardElems {
+        .achievements {
+            display: flex; /* allows divs to display next to eachother */ 
             padding-top: 20px;
             padding-left: 25px;
             padding-bottom: 20px;
             padding-right: 10px;
             /* border: 2px pink solid; */
-            width: 16%;
+            width: 15.5%;
             height: 400px;
-
-			.ach-container {
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
+            .ach-container {
                 width: 100%;
+                height: 330px !important;
                 position: relative;	
-
+                opacity: 1;
+                transition: all 0.5s ease;
+    
                 .ach-wrapper {
                     display: flex; /* allows divs to display next to eachother */ 
                     padding: 20px;
@@ -27,7 +33,7 @@
                     /* border: 2px pink solid; */
                     border-radius: 20px;
                 }
-
+    
                 .ach-tasks {
                     background-color: #8E72D6;
                     z-index: 5;
@@ -35,13 +41,13 @@
                     top: 0px;
                     width: 100%;
                     opacity: 1;
-
+    
                     .box {
                         .top-wrap {
                             width: 100%;
                             display: flex;
                             padding-bottom: 12%;
-
+    
                             .complete-tasks {
                                 font-family: "Quicksand", sans-serif;
                                 font-weight: 600;
@@ -53,14 +59,14 @@
                                 color: white;
                             }
                         }
-
+    
                         .title {
                             font-size: 20px;
                             font-weight: 400;
                             color: #F0F1F4;
                             padding-bottom: 7%;
                         }
-
+    
                         .body {
                             width: 100%;
                             font-size: 12px;
@@ -69,13 +75,13 @@
                             color: #E7E8EE;
                             padding-bottom: 10%;
                         }
-
+    
                         .achieve-link {
                             width: 100%;
                             display: flex;
                             text-decoration: none;
                             cursor: pointer;
-
+    
                             .link {
                                 font-family: "Nunito", sans-serif;
                                 font-size: 14px;
@@ -83,7 +89,7 @@
                                 color: white;
                                 margin-top: 2px;
                             }
-
+    
                             i {
                                 font-size: 24px;
                                 color: white;
@@ -91,7 +97,7 @@
                         }
                     }
                 }
-
+    
                 .ach-focus {
                     background-color: #8E72D6;
                     position: absolute;
@@ -99,7 +105,7 @@
                     z-index: 4;
                     opacity: 0;
                 }
-
+    
                 .ach-proj {
                     background-color: #8E72D6;
                     position: absolute;
@@ -107,7 +113,7 @@
                     z-index: 3;
                     opacity: 0;
                 }
-
+    
                 .ach-focus-box { // design boxe for achievement slider
                     position: absolute;
                     top: 15px;
@@ -116,7 +122,7 @@
                     background-color: #3C4253;
                     left: 10%;
                 }
-
+    
                 .ach-projects-box { // design boxe for achievement slider
                     position: absolute;
                     top: 30px;
@@ -126,7 +132,7 @@
                     background-color: rgb(60, 66, 83, 0.5);
                 }
             }
-
+    
         }
     }
 }

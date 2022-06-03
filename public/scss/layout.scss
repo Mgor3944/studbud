@@ -9,6 +9,7 @@
     --hotPink: #ff69b4; // hotpink
     --white: #fff;
     --searchBar: #4B526A;
+    --taskListEvenBox: #495165;
 
     // text colours
     --ghost: #E6E6E6; // title text
@@ -23,18 +24,19 @@
 }
 
 [data-theme = "dark"] {
-    --darkBlue: #B4B9B8;  // sidebar background
-    --greyBlue: #A3AFAF; // dashboard elem
-    --darkElem: #9FAAAA; // dark dashboard elem
-    --dashBG: #B8BFBE; // dashboard background
+    --darkBlue: #efefef;  // sidebar background
+    --greyBlue: #cfd4d4; // dashboard elem
+    --darkElem: #e3e9e9; // dark dashboard elem
+    --dashBG: #fff; // dashboard background
 
     --white: #343434;
     --searchBar: #AABABA;
+    --taskListEvenBox: #a7abab;
 
-    --ghost: #1F222C; // title text
-    --grey: #3C4253; // paragraph text
+    --ghost: #292922; // title text
+    --grey: #536390; // paragraph text
     --lightGrey: #4B526A; // placeholder
-    --paleBlue: #2B303E; // dashboard para text colour
+    --paleBlue: #424242; // dashboard para text colour
 }
 
 * {
@@ -44,43 +46,87 @@
     font-family: "Montserrat" , sans-serif;
 }
 
-.dashboard .elements-tr {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+.dashboard .dashboardElems {
+    display: block;
+    width: 100%;
 }
 
-.dashboard .elements-br {
-    display: flex;
-    flex-wrap: wrap;
-}
+// .dashboard .elements-tr {
+//     display: flex;
+//     flex-wrap: wrap;
+//     flex-direction: row;
+//     background: pink;
+// }
+
+// .dashboard .elements-br {
+//     display: flex;
+//     flex-wrap: wrap;
+//     background: yellow;
+// }
 
 // If screen size is bigger than standard 15" display
 
-@media only screen and (min-width: 1700px),
+@media only screen and (min-width: 1500px),
 screen and (min-height: 800px) {
-    // .dashboard .elements-tr {
-    //     border: 2px orange solid;
-    // }
+    .dashboard {
+        .weekly-tasks,
+        .timers,
+        .cal-container {
+            height: 440px !important;
+        }
 
-    // .dashboard .elements-br {
-    //     border: 2px pink solid;
-    // }
+        .music-player,
+        .project-overview,
+        .acronyms,
+        .achievements {
+            height: 441px !important;
+        }
 
-    .dashboard .elements-tr .weekly-tasks,
-    .dashboard .elements-tr .timers,
-    .dashboard .elements-br .music-player,
-    .dashboard .elements-br .acronyms,
-    .dashboard .elements-br .project-overview {
-        height: 438px !important;
     }
+}
 
-    .dashboard .elements-tr .cal-container  {
-        height: 430px !important;
-    }
+@media only screen and (min-width: 1300px) and (max-width: 1400px),
+screen and (max-height: 799px) {
+    .dashboard {
+        .weekly-tasks,
+        .timers,
+        .cal-container {
+            height: 343px !important;
+        }
 
-    .dashboard .elements-br .achievements  {
-        height: 370px !important;
+        .music-player,
+        .project-overview,
+        .acronyms,
+        .achievements {
+            height: 343px !important;
+        }
+
+
+        .projectDueDate {
+            font-size: 30px !important;
+        }
+
+        .timers {
+            padding-bottom: 0px !important;
+            .pom-wrapper {
+                .head-wrapper {
+                    height: 25% !important;
+                }
+                .pTimer-container {
+                    height: 50% !important;
+
+                    #pClock {
+                        width: 180px !important;
+                        height: 180px !important;
+                        top: 90% !important;
+                        #pTimer {
+                            font-size: 20px !important;
+                        }
+                    }
+                }
+                
+            }
+        }
     }
 }
 
@@ -100,13 +146,79 @@ screen and (min-height: 800px) {
 
 /* Breakpoint Notifcation */
 
-@media only screen and (min-width: 900px) and (max-width: 1450px) {
+@media only screen and (min-width: 700px) and (max-width: 1300px) {
     .dashboard {
         opacity: 0 !important;
     }
 
     .sidebar {
         opacity: 0 !important;
+    }
+}
+
+/* Mobile Layout */
+
+@media only screen and (max-width: 700px) {
+    .sidebar {
+        opacity: 0 !important;
+    }
+
+    .topbar {
+        display: none !important;
+    }
+
+    .dashboard {
+        width: 100% !important;
+        left: 0px !important;
+        .dashboardElems {
+            display: flex !important;
+            flex-direction: column !important;
+            .weekly-tasks {
+                width: 93% !important;
+                height: 440px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .timers {
+                width: 100% !important;
+                height: 380px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .cal-container {
+                width: 100% !important;
+                height: 370px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .achievements {
+                display: none !important;
+            }
+            .music-player {
+                width: 100% !important;
+                height: 420px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .acronyms {
+                width: 100% !important;
+                height: 420px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .project-overview {
+                width: 100% !important;
+                height: 500px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+
+                .gridBox {
+                    grid-template-columns: repeat(9, 1fr) !important;
+                    grid-template-rows: auto !important;
+                    overflow: none !important;
+                }
+            }
+        }
     }
 }
 

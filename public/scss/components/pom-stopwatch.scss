@@ -5,16 +5,19 @@
 /*---------------*/
 
 .dashboard {
-    .elements-tr {
+    .dashboardElems {
         .timers {
             display: flex; /* allows divs to display next to eachother */ 
             width: 28%;
             height: 350px;
             padding-top: 20px;
             padding-left: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
             padding-right: 10px;
-
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
             .pom-wrapper {
                 display: inline-block; /* allows divs to display next to eachother */ 
                 position: relative;
@@ -23,38 +26,38 @@
                 background: var(--greyBlue);
                 border-radius: 20px;
                 display: block;
-
+    
                 .head-wrapper {
                     display: flex;
                     width: 100%;
                     height: 20%;
-
+    
                     .text-box {
                         padding: 20px;
                         width: 50%;
-
+    
                         .title {
                             color: var(--ghost);
                             font-weight: 600;
                             font-size: 16px;
                             margin-bottom: 8px;
                         }
-
+    
                         .tagline {
                             color: #8E72D6;
                             font-weight: 400;
                             font-size: 12px;
-
+    
                             .defaultSettings {
                                 display: block;
                             }
-
+    
                             .customSettings {
                                 display: none;
                             }
                         }
                     }
-
+    
                     .icon-box {
                         margin-top: 8px;
                         width: 50%;
@@ -63,11 +66,11 @@
                         align-items: center;
                         justify-content: center;
                         padding-left: 18px;
-
+    
                         .pom-settings {
                             margin-right: 14px;
                             cursor: pointer;
-
+    
                             .pomSettingCog {
                                 display: block;
                             }
@@ -75,7 +78,7 @@
                                 display: none;
                             }
                         }
-
+    
                         .pom-play {
                             pointer-events: all;
                             .playHidden {
@@ -85,7 +88,7 @@
                                 display: none;
                             }
                         }
-
+    
                         .pom-reset {
                             margin-left: 14px;
                             pointer-events: none;
@@ -98,7 +101,7 @@
                         }
                     }
                 }
-
+    
                 .pTimer-container {
                     background: var(--greyBlue);
                     // border: 1px solid red;
@@ -106,23 +109,10 @@
                     width: 100%;
                     height: 68%;
                     text-align: center;
-
+    
                     // pomodoro timer clock
                     .pClockWrapper {
                         display: block;
-
-                        .pClockBG {
-                            place-items: center;
-                            position: absolute;
-                            top: 46%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            width: 240px;
-                            height: 240px;
-                            border-radius: 50%;
-                            // box-shadow: -5px 14px 44px #000000, 5px -16px 50px rgba(255, 255, 255, 0.15);
-                            border: 8px solid #F4F5F4;
-                        }
     
                         #pClock { // when clock is running
                             place-items: center;
@@ -163,7 +153,7 @@
                             }
                         }
                     }
-
+    
                     // settings for pomodoro timer
                     #pClockSettings {
                         display: none;
@@ -171,14 +161,14 @@
                         width: 100%;
                         height: 100%;
                         padding: 13px;
-
+    
                         #pInputContent {
                             position: absolute;
                             top: 52%;
                             left: 50%;
                             transform: translate(-50%, -50%);
                             width: 62%;
-
+    
                             .pomInput {
                                 float: left;
                                 width: 45%;
@@ -189,7 +179,7 @@
                                     margin-bottom: 10px;
                                     color: var(--ghost);
                                 }
-
+    
                                 .inputduration {
                                     padding: 17px 20px 17px 15px;
                                     width: 100%;
@@ -204,42 +194,42 @@
                                     background: #2B303E;
                                     text-align: center;
                                     color: var(--lightGrey);
-
+    
                                 }
-
+    
                                 .inputduration:focus {
                                     color: var(--lightGrey);
                                     font-weight: 500;
                                     border: 1px solid var(--green);
                                 }
-
+    
                                 .inputduration:active {
                                     color: var(--lightGrey);
                                     font-weight: 500;
                                 }
-
+    
                                 // removes up and down arrow keys from number input
                                 input::-webkit-outer-spin-button,
                                 input::-webkit-inner-spin-button {
                                     -webkit-appearance: none;
                                 }
                             }
-
+    
                             .pomInput:nth-child(1) {
                                 margin-right: 10%;
                             }
-
+    
                             .pomInput:nth-child(1),
                             .pomInput:nth-child(2) {
                                 margin-bottom: 30px;
                             }
-
+    
                             .pomInput:nth-child(3) {
                                 margin-left: 10%;
                                 width: 80%;
                                 margin-bottom: 40px;
                             }
-
+    
                             .pSettingsInfo {
                                 text-align: center;
                                 color: var(--grey);
@@ -251,7 +241,7 @@
                         }
                     }
                 }
-
+    
                 .head-footer {
                     position: absolute;
                     bottom: 0px;
@@ -259,15 +249,15 @@
                     width: 100%;
                     border-radius: 0px 0px 20px 20px;
                     display: block;
-
+    
                     .wrapper {
                         display: flex;
                         align-items: center;
-
+    
                         .con-left {
                             width: 37%; 
                             border-radius: 0px 0px 0px 20px;
-
+    
                             .l-text {
                                 padding: 16px;
                                 font-size: 13px;
@@ -276,13 +266,13 @@
                                 transition: all 1s ease;
                             }
                         }
-
+    
                         .toggle {
                             width: 26%;
                             height: 48px;
                             /* background: green; */
                             position: relative;
-
+    
                             .padding {
                                 position: absolute;
                                 left: 50%;
@@ -294,7 +284,7 @@
                                 height: 80%;
                                 background-color: #2B303E;
                                 border-radius: 20px 20px 0px 0px;
-
+    
                                 #toggle-pomodoro {
                                     cursor: pointer;
                                     margin: 0;
@@ -310,7 +300,7 @@
                         .con-right {
                             width: 37%; 
                             border-radius: 0px 0px 20px 0px;
-
+    
                             .r-text {
                                 padding: 16px;
                                 font-size: 13px;
@@ -319,6 +309,224 @@
                                 transition: all 1s ease;
                             }
                         }
+                    }
+                }
+            }
+
+            .stopwatch-wrapper {
+                display: inline-block; /* allows divs to display next to eachother */ 
+                position: relative;
+                width: 100%;
+                height: 97%;
+                background: var(--greyBlue);
+                border-radius: 20px;
+                display: none;
+    
+                .head-wrapper {
+                    display: flex;
+                    width: 100%;
+                    height: 20%;
+    
+                    .text-box {
+                        padding: 20px;
+                        margin-top: 8px;
+                        width: 50%;
+    
+                        .title {
+                            color: var(--ghost);
+                            font-weight: 600;
+                            font-size: 16px;
+                            margin-bottom: 3px;
+                        }
+    
+                        .tagline {
+                            color: var(--ghost);
+                            font-weight: 400;
+                            font-size: 12px;
+                        }
+                    }
+    
+                    .icon-box {
+                        margin-top: 8px;
+                        width: 50%;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-left: 20px;
+    
+                        .stopwatch-lap {
+                            margin-right: 14px;
+                            pointer-events: none;
+    
+                            #lapDisabled {
+                                display: block;
+                            }
+                            #lapActive {
+                                display: none;
+                            }
+                        }
+    
+                        .stopwatch-play {
+                            pointer-events: all;
+                            #sPlay {
+                                display: block;
+                            }
+                            #sPause {
+                                display: none;
+                            }
+                        }
+    
+                        .stopwatch-reset {
+                            margin-left: 14px;
+                            pointer-events: none;
+                            #sResetDis {
+                                display: block;
+                            }
+                            #sResetAct {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+    
+                .timerContainer {
+                    width: 100%;
+                    height: 80.1%;
+                    border-radius: 0px 0px 19px 19px;
+    
+                    .stopwatch {
+                        width: 100%;
+                        height: 50%;
+                        text-align: center;
+                        position: relative;
+    
+                        .timeTitle {
+                            width: 100%;
+                            font-family: "Michelangelo", sans-serif;
+                            font-weight: 500;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            padding-bottom: 20px;
+    
+                            font-size: 70px;
+                            color: #BDA3F0;
+                            letter-spacing: 1px;
+                        }
+                    }
+    
+                    .timeElapsed {
+                        width: 100%;
+                        height: 50%;
+                        background: #333948;
+                        border-radius: 0px 0px 19px 19px;
+                        list-style-type: none !important;
+                        overflow: auto;
+    
+                        .lapBox {
+                            width: 100%;
+                            height: 30%;
+                            display: flex;
+                            border-bottom: 1.5px solid #3C4253;
+                            text-align: center;
+    
+                            .lapTitle {
+                                width: 40%;
+                                height: 100%;
+                                padding: 14px;
+    
+                                #lapTitle {
+                                    font-weight: 400;
+                                    color: var(--ghost);
+                                    letter-spacing: 1.5px;
+                                }
+                            }
+    
+                            .contentFill {
+                                width: 15%;
+                                height: 100%;
+                            }
+    
+                            .lappedTime {
+                                width: 45%;
+                                height: 100%;
+                                padding: 14px;
+    
+                                #lappedTime {
+                                    font-weight: 400;
+                                    color: var(--ghost);
+                                    letter-spacing: 1.5px;
+                                }
+                            }
+                        }
+    
+                        .fastest {
+                            .lapTitle {
+                                #lapTitle {
+                                    color: var(--purple);
+                                }
+                            }
+                            .lappedTime {
+                                #lappedTime {
+                                    color: var(--purple);
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                .head-footer {
+                    position: absolute;
+                    bottom: 0px;
+                    width: 100%;
+                    border-radius: 0px 0px 20px 20px;
+    
+                    .wrapper {
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+    
+                        .toggle {
+                            width: 26%;
+                            height: 48px;
+                            position: absolute;
+                            left: 50%;
+                            bottom: -20px;
+                            transform: translate(-50%, -50%);
+    
+                            .padding {
+                                position: absolute;
+                                left: 50%;
+                                bottom: -24px;
+                                transform: translate(-50%, -50%);
+                                margin: 0 auto;
+                            
+                                width: 80%;
+                                height: 80%;
+                                background-color: #2B303E;
+                                border-radius: 20px 20px 0px 0px;
+    
+                                #toggle-stopwatch {
+                                    cursor: pointer;
+                                    margin: 0;
+                                    position: absolute;
+                                    top: 53%;
+                                    left: 50%;
+                                    -ms-transform: translate(-50%, -50%);
+                                    transform: translate(-50%, -50%);
+                                }
+                            }
+                        }
+                    }
+    
+                    .lappedTimeGradient {
+                        position: relative;
+                        width: 100%;
+                        height: 80px;
+                        border-radius: 0px 0px 20px 20px;
+                        background-image: linear-gradient(rgba(0, 0, 0, 0), #333948); // scrollable effect look
                     }
                 }
             }

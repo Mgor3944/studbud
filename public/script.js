@@ -1,3 +1,10 @@
+let width,height;
+window.onresize = window.onload = function() {
+    width = this.innerWidth;
+    height = this.innerHeight;
+    console.log(width + 'x' + height);
+}
+
 /*--------------------------*/
 /*--------------------------*/
 /* SIDEBAR BUTTON OPEN/COSE */
@@ -34,6 +41,21 @@ function menuBtnChange() {
     }
 }
 
+/*------------------------*/
+/*------------------------*/
+/* TOGGLE LIGHT/DARK MODE */
+/*------------------------*/
+/*------------------------*/
+
+document.documentElement.setAttribute('data-theme', 'dark');
+document.documentElement.setAttribute('data-theme', 'light');
+
+/*-----------------------------*/
+/* COLOUR PALLETE (LIGHT/DARK) */
+/*-----------------------------*/
+
+// focusBtn.addEventListener('change', focusBtnChange, false);
+
 /*--------------------------*/
 /*--------------------------*/
 /* FOCUS MODE INFO + EFFECT */
@@ -44,8 +66,11 @@ function menuBtnChange() {
 /* INITIATING HTML */
 /*-----------------*/
 
-let fswitchBtn = document.querySelector(".f_switch");
-let focusBtn = document.querySelector("#bolt_switch");
+let fswitchBtn = document.querySelector(".f_switch"); // sidenavbar icon
+let focusModeBtn = document.querySelector("#toggleFocusMode"); // topnavbar icon
+
+let focusNotActive = document.querySelector("#focusNotActive");
+let focusActive = document.querySelector("#focusActive");
 
 /*-----------------*/
 /* EVENT LISTENERS */
@@ -58,8 +83,8 @@ fswitchBtn.addEventListener("click", ()=> {
 });
 
 // focus button == lightning icon in top navbar
-focusBtn.addEventListener("click", ()=> {
-    focusBtnChange(); 
+focusModeBtn.addEventListener('click', ()=> {
+    toggleFocusMode(); 
 });
 
 /*-------------------*/
@@ -67,23 +92,50 @@ focusBtn.addEventListener("click", ()=> {
 /*-------------------*/
 
 //  Toggles focus mode on/off - changing icon design
-function focusBtnChange() {
-    if(focusBtn.classList.contains("bx-bolt-circle")) {
-        focusBtn.classList.replace("bx-bolt-circle", "bxs-bolt-circle"); // replaces the icons class
-        focusBtn.style.color = "#E95050";
-        document.documentElement.setAttribute('data-theme', 'dark');
+function toggleFocusMode() {
+    if(!focusNotActive) return;
+    if (getComputedStyle(focusNotActive).display == 'block') {
+        focusNotActive.style.display = 'none';
+        focusActive.style.display = 'block';
+
+        document.querySelector(".ach-container").style.opacity = '0.2'; // achievments
+        document.querySelector(".acr-wrapper").style.opacity = '0.2'; // acronyms
+
+        document.querySelector(".completionBarBox").style.opacity = '0.2'; // project overview completion bar
+        document.querySelectorAll('.isCompleted').forEach((item) => { item.style.opacity = '0.2'; }); // project overview tasks completed
+        document.querySelectorAll('.isNotCompleted').forEach((item) => { item.style.opacity = '1'; }); // project overview tasks not completed
+
+        document.querySelectorAll('.timeFromTask').forEach((item) => { item.style.opacity = '0.2'; }); // tasklist estimate time
+        document.querySelectorAll('#delTaskImg').forEach((item) => { item.style.opacity = '0.2'; }); // tasklist del btn
+
+        document.querySelectorAll('.days > div').forEach((item) => { item.style.opacity = '0.3'; }); // calender all days
+        document.querySelectorAll('#prev-month-days').forEach((item) => { item.style.opacity = '0.15'; }); // calender prev month days
+        document.querySelectorAll('#next-month-days').forEach((item) => { item.style.opacity = '0.15'; }); // calender next month days
+        document.querySelector(".today").style.opacity = '1'; // reActivates today's date style
+
     } else {
-        focusBtn.classList.replace("bxs-bolt-circle","bx-bolt-circle"); // replaces the icons class
-        focusBtn.style.color = "#E950D1";
-        document.documentElement.setAttribute('data-theme', 'light');
+        focusNotActive.style.display = 'block';
+        focusActive.style.display = 'none';
+
+        // toggle achievments & acronym states
+        document.querySelector(".ach-container").style.opacity = '1';
+        document.querySelector(".acr-wrapper").style.opacity = '1';
+
+        // toggle project overview states
+        document.querySelector(".completionBarBox").style.opacity = '1';
+        document.querySelectorAll('.isCompleted').forEach((item) => { item.style.opacity = '1'; });
+        document.querySelectorAll('.isNotCompleted').forEach((item) => { item.style.opacity = '0.5'; });
+
+        // toggle tasklist states
+        document.querySelectorAll('.timeFromTask').forEach((item) => { item.style.opacity = '1'; });
+        document.querySelectorAll('#delTaskImg').forEach((item) => { item.style.opacity = '1'; });
+
+        // toggle calender states
+        document.querySelectorAll('.days > div').forEach((item) => { item.style.opacity = '1'; });
+        document.querySelectorAll('#prev-month-days').forEach((item) => { item.style.opacity = '0.35'; });
+        document.querySelectorAll('#next-month-days').forEach((item) => { item.style.opacity = '0.35'; });
     }
 }
-
-/*-----------------------------*/
-/* COLOUR PALLETE (LIGHT/DARK) */
-/*-----------------------------*/
-
-focusBtn.addEventListener('change', focusBtnChange, false);
 
 /*------------------------------------------*/
 /*------------------------------------------*/
@@ -160,6 +212,16 @@ function switchVisible() {
         pomstopTimer.style.opacity = '0.3', calBox.style.opacity = '0.3',
         achievements.style.opacity = '0.3', musicPlayer.style.opacity = '0.3',
         acronyms.style.opacity = '0.3', projOverviewBox.style.opacity = '0.3';
+
+        pomstopTimer.style.pointerEvents = 'none', calBox.style.pointerEvents = 'none',
+        achievements.style.pointerEvents = 'none', musicPlayer.style.pointerEvents = 'none',
+        acronyms.style.pointerEvents = 'none', projOverviewBox.style.pointerEvents = 'none';
+
+        document.querySelector('.stopwatch-play').style.pointerEvents = 'none';
+        document.querySelector('.pom-play').style.pointerEvents = 'none';
+
+        document.querySelector('.preSetSongs').style.overflow = 'hidden';
+        document.querySelector('.acronymDisplay').style.overflow = 'hidden';
         
     } else {
         CrTask.style.display = 'block';
@@ -169,6 +231,16 @@ function switchVisible() {
         pomstopTimer.style.opacity = '1', calBox.style.opacity = '1', 
         achievements.style.opacity = '1', musicPlayer.style.opacity = '1',
         acronyms.style.opacity = '1', projOverviewBox.style.opacity = '1';
+
+        pomstopTimer.style.pointerEvents = 'all', calBox.style.pointerEvents = 'all',
+        achievements.style.pointerEvents = 'all', musicPlayer.style.pointerEvents = 'all',
+        acronyms.style.pointerEvents = 'all', projOverviewBox.style.pointerEvents = 'all';
+
+        document.querySelector('.stopwatch-play').style.pointerEvents = 'all';
+        document.querySelector('.pom-play').style.pointerEvents = 'all';
+
+        document.querySelector('.preSetSongs').style.overflow = 'auto';
+        document.querySelector('.acronymDisplay').style.overflow = 'auto';
     }
 }
 
@@ -601,7 +673,12 @@ function renderTasks() {
             taskOutput.setAttribute('data-key', task.id); // <output class="item" data-key="20200708"> </output>
     
             if (task.completed === true) {
+                // style completed task
                 taskOutput.classList.add('taskCompleted');
+                // render project overview to display changes
+                window.setTimeout(() => {
+                    renderSelectedProject();
+                }, 2000); // wait 2 seconds
             }
     
             taskOutput.innerHTML = `
@@ -653,8 +730,10 @@ function toggleTask(id) {
     projects.forEach((project) => {
         project.tasks.forEach(function(task) {
             if (task.id == id) {
+                // set the task status to complete 
+                task.completed = true;
                 // toggle the value
-                task.completed = !task.completed;
+                // task.completed = !task.completed;
             }
         });
         addTasksToLocalStorageArray(projects);
@@ -665,15 +744,15 @@ function toggleTask(id) {
 /* DELETE SPECIFIED TASK ONCLICK */
 /*-------------------------------*/
 
-// delete selected task and update localstorage
+// delete selected task and update localstorage ~ Need to fix
 function deleteTask(id) {
     projects.forEach((project) => {
         project.tasks.forEach(function(task) {
             if (task.id == id) {
-                console.log(id);
-                console.log(task.id);
-                console.log('removed task'); 
-                project.tasks.splice(task, 1); // removes task from project 
+                console.log('Selected Task ID: ' + task.id + ' == Task Array ID: ' + id);
+                let findTaskToDelete = project.tasks.indexOf(task); // finds the array index value of the selected task
+                project.tasks.splice(findTaskToDelete, 1); // removes task from project 
+                console.log('removed task ' + '(' + task.name + ')' + ' from project ' + '(' + task.project + ')'); 
             }
         });
         addTasksToLocalStorageArray(projects); // updates localstorage and project array
@@ -742,8 +821,8 @@ function toggleTaskListDisplay() {
 		// check project's task array exists and has any entries
 		isEveryProjectEmpty = projects.forEach(function(project) {
             if (typeof project.tasks !== 'undefined' && project.tasks.length > 0) {
-                console.log(project.name);
-			    console.log(`${project.tasks.length} tasks`);
+                // console.log(project.name);
+			    // console.log(`${project.tasks.length} tasks`);
                 tasksExist = true;
             }
         });
@@ -892,12 +971,15 @@ pomFocusOutput.innerText = workDurationInput.value + ' Min Focus'; // inital foc
 pomBreakOutput.innerText = breakDurationInput.value + ' Min Break'; // inital break text = initial break duration value
 
 // initial secondConversion clock settings
-let workSessionDuration = 2700; // in seconds = 45 mins (60*45)
+let workSessionDuration = 2700; // in seconds = 45 mins (60*45) == 2700
 let currentTimeLeftInSession = 2700; 
 let breakSessionDuration = 900; // in seconds = 15 mins (60%15)
 
 // for achievements (pom focus only)
 let timeSpentInCurrentSession = 0;
+
+const { on } = require('events');
+const { set } = require('express/lib/application');
 
 // progress bar (styling + initalising) ~ using progressbar.js plugin
 const ProgressBar = require('progressbar.js');
@@ -907,6 +989,11 @@ const progressBar = new ProgressBar.Circle('#pClock', {
     easing: 'easeInOut',
     text: { value: '45:00', },
     trailColor: '#f4f5f4', // faded white
+    from: { color: '#50E9C0' },
+    to: { color: '#BDA3F0' },
+    step: (state, shape) => {
+        shape.path.setAttribute("stroke", state.color);
+    }
 });
 
 progressBar.text.style.fontFamily = '"Michelangelo", sans-serif';
@@ -1935,15 +2022,26 @@ function displayAllSongs() {
 
 let projectDropDown = document.querySelector('.chooseProject');
 let projectgridBox = document.querySelector('.gridBox');
+let progressBarStatus = document.querySelector('#progressBarStatus'); // progressbar ~ line ~ no plugin used
 
 /*-------------------*/
 /* DECLARE VARIABLES */
 /*-------------------*/
 
+progressBarStatus.style.width = '0px';
+
 let optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
 let renderProjectDropdown;
-let projectValueDD = 0; // project value drop down
-let projectValueOS = 0; // project value on screen
+let projectValueDD = 0; // project value drop down ~ counter
+let taskValueOS = 0; // task value on screen ~ counter
+let storedSelection = optionSelected.id;
+
+// const projectStatus = new ProgressBar.Line('#progressBarStatus', {
+//     color: '#50E9C0', // green/blue
+//     strokeWidth: 24,
+//     easing: 'easeInOut',
+//     trailColor: '#f4f5f4', // faded white
+// });
 
 /*---------------------------------*/
 /* LOAD PROJECTS INTO SELECT INPUT */
@@ -1951,16 +2049,32 @@ let projectValueOS = 0; // project value on screen
 
 // check project array for projects
 window.onload = function() {
+    let storedProjSel = localStorage.getItem('storedProjSel', storedSelection); // store for future visits
+    console.log('dropdown project selected: ' + storedProjSel);
+
     if (projects.length > 0) {
         // render project names to dropdown box
         renderProjectDropdown = projects.forEach(function(project) {
+            
             projectValueDD = projectValueDD + 1;
-            let projEl = document.createElement('option');
-            projEl.innerHTML = project.name;
-            projEl.value = projectValueDD;
-            projEl.id = project.id;
-            projectDropDown.append(projEl);
+
+            let projOpt = document.createElement('option');
+            projOpt.innerHTML = project.name;
+            projOpt.value = projectValueDD;
+            projOpt.id = project.id;
+            projectDropDown.append(projOpt);
+
+            if (storedProjSel !== null) {
+                if (storedProjSel == projOpt.value) {
+                    projectDropDown.options[storedProjSel].selected = true;
+                    window.setTimeout(() => {
+                        optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
+                        renderSelectedProject();
+                    }, 1000);
+                }
+            }
         });
+
     } else {
         // if no projects, display that information on project box
         let noProjects = document.createElement('option');
@@ -1979,42 +2093,78 @@ projectDropDown.oninput = function() {
     checkWhichProjectSelected();
 }
 
+/*-------------------------------*/
+/* CHECK WHICH OPTION IS SELCTED */
+/*-------------------------------*/
+
 function checkWhichProjectSelected() {
     optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
-    console.log(optionSelected.text); 
+    storedSelection = optionSelected.value;
+    console.log('dropdown project selected: ' + storedSelection);
+    localStorage.setItem('storedProjSel', storedSelection); // store for future visits
 
+    // console.log(optionSelected.text); 
     renderSelectedProject(); // render selected projects task to overview board
 }
 
-checkWhichProjectSelected();
-
 /*-----------------------------------*/
-/* RENDER SELECTED PROJECT TO SCREEN */
+/* RENDER PROJECT OVERVIEW TO SCREEN */
 /*-----------------------------------*/
 
 function renderSelectedProject() {
     renderProjectDropdown = projects.forEach(function(project) {
-        if (optionSelected.id == project.id) {
+        if (optionSelected.id == project.id) { // selected option id == one of a project id
             
             console.log('option selected id: ' + optionSelected.id + ' is connected to the project: ' + project.name);
 
             if (project.tasks.length !== 0) {
-                console.log(project.tasks.length);
 
-                // clear projectgridBox input
+                /*----------------------------------------*/
+                /* CALCULATE PROGRESS BAR COMPLETION RATE */
+                /*----------------------------------------*/
+                // 1. calculate the total number of tasks in selected project
+                // 2. calculate the number of completed tasks in selected project
+                // 3. calculate step 2 as a percentage of step 1
+                // 4. Animate progress bar to display the value of step 3
+
+                let projectLength;
+                let numberOfCompletedTasks = 0;
+                let completedTasksLength;
+                let progressBarWidth;
+
+                project.tasks.forEach(function(taskCheck) {
+                    if (taskCheck.completed === true) {
+                        numberOfCompletedTasks = numberOfCompletedTasks + 1;
+                    }
+                });
+
+                projectLength = project.tasks.length;
+                completedTasksLength = numberOfCompletedTasks;
+                progressBarWidth = ((completedTasksLength / projectLength) * 100) + '%'; // calc %
+
+                window.setTimeout(() => {
+                    progressBarStatus.style.width = progressBarWidth; //  animate bar after 1 second
+                }, 1000);
+
+                /*------------------------------------*/
+                /* RENDER OVERVIEW OF TASKS TO SCREEN */
+                /*------------------------------------*/
+
+                // clear projectgridBox content
                 projectgridBox.innerHTML = '';
 
                 project.tasks.forEach(function(quickTask) {
 
-                    projectValueOS = projectValueOS + 1;
+                    // increase id value for every task div created
+                    taskValueOS = taskValueOS + 1;
             
                     // make a <div> element and set attributes
                     const overviewItem = document.createElement('div'); 
-                    overviewItem.setAttribute('class', 'overviewItem'); 
-                    overviewItem.setAttribute('id', projectValueOS); 
+                    overviewItem.setAttribute('class', 'overviewItem isNotCompleted'); 
+                    overviewItem.setAttribute('id', taskValueOS); 
             
                     if (quickTask.completed === true) {
-                        overviewItem.classList.add('taskCompleted');
+                        overviewItem.classList.replace('isNotCompleted', 'isCompleted');
                     }
             
                     overviewItem.innerHTML = `
@@ -2026,15 +2176,213 @@ function renderSelectedProject() {
                 });
 
             } else {
-                console.log('project has no tasks in it');
+                // clear projectgridBox input
+                projectgridBox.innerHTML = '';
+                // render blank task view display
+                for (let i = 0; i < 10; i++) {
+                    const overviewItem = document.createElement('div'); 
+                    overviewItem.setAttribute('class', 'overviewItem'); 
+                    projectgridBox.append(overviewItem);
+                }
+                // render progress bar width to 0%;
+                progressBarStatus.style.width = '0%';
             }
-
-        } else {
-            console.log('projects have not loaded yet');
         }
+        if (optionSelected.value == '') {
+            // clear projectgridBox input
+            projectgridBox.innerHTML = '';
+            // render blank task view display
+            for (let i = 0; i < 10; i++) {
+                const overviewItem = document.createElement('div'); 
+                overviewItem.setAttribute('class', 'overviewItem'); 
+                projectgridBox.append(overviewItem);
+            }
+            // render progress bar width to 0%;
+            progressBarStatus.style.width = '0%';
+         }
     });
+    
 }
 
+/*---------------*/
+/*---------------*/
+/* ACRONYM MAKER */
+/*---------------*/
+/*---------------*/
+
+let acronymsArr = []; // array of acronyms
+
+/*----------------*/
+/* INTIATING HTML */
+/*----------------*/
+
+// form
+let acrInput = document.querySelector('.acroInput');
+let AcrSubmit = document.querySelector('#AcrSubmit');
+
+// output
+let acrOutput = document.querySelector('.acronymOutput');
+
+/*-----------------*/
+/* EVENT LISTENERS */
+/*-----------------*/
+
+// default study songs 
+AcrSubmit.addEventListener('click', () => {
+    toggleAcronymState();
+});
+
+function toggleAcronymState() {
+    // check acronym input isn't undefined, only spaces or empty
+    if (acrInput.value.trim().length == 0 || acrInput.value == '') {
+        console.log('acronym hasnt been inputed correctly');
+        return false;
+    } else {
+        AcrSubmit.style.backgroundColor = '#BDA3F0';
+        window.setTimeout(() => { // wait 1 second then update acronym display
+            AcrSubmit.style.backgroundColor = '#8e72d6';
+            createAcronym();
+        },  1000);
+    }
+}
+
+// function to split, map & join input
+function getInputFirstLetters(str) {
+    const firstLetters = str
+      .split(' ') // removes white spaces from words
+      .map(word => word[0]) // find letter indexed at first position for each word
+      .join(''); // concatinate letter together to form acronym
+  
+    return firstLetters;
+}
+
+// create acronym ~ short value, long value and array object
+function createAcronym() {
+    // assign acronym and user input to variables
+    let acronymShort = getInputFirstLetters(acrInput.value); // make acronym uppercase 
+    let acronymLong  = acrInput.value;
+    
+    // console log output of variables declared above
+    console.log(acronymShort + ' = ' + acronymLong);
+    
+    // make an object
+    const newAcronym = {
+        id: Date.now(),
+        short: acronymShort,
+        long: acronymLong,
+    };
+
+    addNewAcronym(newAcronym);
+}
+
+function addNewAcronym(acronymItem) {
+    acronymsArr.push(acronymItem); // push acronym to array (in reverse order)
+    addAcronymToLocalStorage(acronymsArr); // push array to localstorage (function)
+    acrInput.value = ''; // clear the acronym input value
+}
+
+function renderAcronyms(acronymsArr) {
+    // clear taskItem input
+    acrOutput.innerHTML = '';
+
+    acronymsArr.forEach((acronym) => {
+        const acrItem = document.createElement('div');
+        acrItem.setAttribute('class', 'acronymItem');
+        acrItem.setAttribute('data-key', acronym.id);
+    
+        acrItem.innerHTML = `
+        <div class="acronymShort">${acronym.short}</div>
+        <div class="acronymLong">${acronym.long}</div>
+        <img id="delAcronym" class="delAcronym" src="../assets/delTaskIcon.svg" alt="">
+        `;
+    
+        // add the acronym to output div
+        acrOutput.append(acrItem);
+    });
+
+    if (acronymsArr.length > 0) {
+        // add an extra classname called 'newestAcro' to the first child in the array
+        document.querySelector('.acronymItem:first-child').classList.add('newestAcro');
+    }
+}
+
+function addAcronymToLocalStorage(acronymsArr) {
+    // convert the array to string then store it.
+    localStorage.setItem('acronymsArr', JSON.stringify(acronymsArr));
+    acronymsArr = acronymsArr.reverse();
+    renderAcronyms(acronymsArr); // render array to screen
+}
+
+function getAcronymFromLocalStorage() {
+    const acronymReference = localStorage.getItem('acronymsArr');
+    // if reference exists
+    if (acronymReference) {
+        // converts back to array and store it in acronym array
+        acronymsArr = JSON.parse(acronymReference);
+        console.log('Acronyms Array ', acronymsArr);
+
+        // check if array has any entries
+        if (acronymsArr.length > 0) {
+            acronymsArr = acronymsArr.reverse();
+            renderAcronyms(acronymsArr); // render entries to screen
+        } else {
+            console.log('Acronym Array Is Empty');
+            renderInitialAcronymSetup();
+        }
+    } else {
+        console.log('Local Storage Cannot Find Acronym Array');
+        renderInitialAcronymSetup();
+    }
+}
+
+function deleteAcronym(id) {
+    acronymsArr.forEach((acronym) => {
+      // if the selected acronym's (parent) ID equals ID in Acronym Array
+      if (acronym.id == id) {
+            // console log 'acronym.id' & 'id' to see they are the same
+            console.log(acronym.id);
+            console.log(id);
+    
+            // find the index of the selected acronym
+            let findAcronymToDel = acronymsArr.indexOf(acronym);
+    
+            // delete it from array
+            acronymsArr.splice(findAcronymToDel, 1);
+      }
+    });
+    // update localstorage
+    addAcronymToLocalStorage(acronymsArr);
+}
+
+// get acronyms from localstorage on window load
+getAcronymFromLocalStorage();
+
+// localStorage.removeItem('acronymsArr');
+
+acrOutput.addEventListener('click', function(event) {
+    // check if click is on a delete button
+    if (event.target.classList.contains('delAcronym')) {
+        // get data-key of parent div when del btn is clicked
+        deleteAcronym(event.target.parentElement.getAttribute('data-key'));
+    }
+
+    // if last acronym in array is deleted display initial setup
+    if (acronymsArr.length === 0 ) {
+        renderInitialAcronymSetup();
+    }
+});
+
+function renderInitialAcronymSetup() {
+    // clear projectgridBox input
+    acrOutput.innerHTML = '';
+    // render blank task view display
+    for (let i = 0; i < 6; i++) {
+        const acrItem = document.createElement('div');
+        acrItem.setAttribute('class', 'acronymItem'); 
+        acrOutput.append(acrItem);
+    }
+}
+  
 
 /*-----------------*/
 /*-----------------*/

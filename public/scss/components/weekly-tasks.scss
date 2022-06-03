@@ -5,17 +5,21 @@
 /*--------------*/
 
 .dashboard {
-    .elements-tr { // top row of dashboard
+    .dashboardElems {
         .weekly-tasks { // weekly tasks box outer
             position: relative;
             display: flex;
             width: 49%;
+            height: 350px;
+            float: left;
             // flex-direction: row-reverse;
             padding-top: 20px;
             padding-left: 25px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
             padding-right: 10px;
-
+            opacity: 1;
+            transition: all 0.3s ease;
+    
             .task-wrapper { // weekly tasks box 
                 position: absolute;
                 display: flex;
@@ -25,12 +29,12 @@
                 background: var(--greyBlue);
                 border-radius: 20px;
                 display: block;
-
+    
                 .head-wrapper { // tasks heading box
                     display: flex;
                     width: 100%;
                     opacity: 0.3;
-
+    
                     .title { // heading title
                         width: 75%;
                         color: var(--ghost);
@@ -38,22 +42,22 @@
                         font-size: 17px;
                         margin-top: 5px;
                     }
-
+    
                     .button { // heading button
                         display: flex;
                         width: 25%;
-
+    
                         #crNewTaskBtn {
                             pointer-events: none; // remove once a task is created
                         }
                     }
                 }
-
+    
                 .task-list {
                     height: 91%;
                     border-radius: 0px 0px 10px 10px ; // top-left, top-right, bottom-right, bottom-left
                     position: relative;
-
+    
                     .before-list {
                         position: absolute;
                         top: 50%;
@@ -61,13 +65,13 @@
                         transform: translate(-50%, -50%);
                         width: 80%;
                         display: none;
-
+    
                         .heading {
                             padding: 20px;
                             align-items: center;
                             text-align: center;
                             justify-content: center;
-
+    
                             .first-task {
                                 font-size: 65px;
                             }
@@ -81,13 +85,13 @@
                                 padding-top: 20px;
                                 padding-bottom: 30px;
                             }
-
+    
                             strong {
                                 font-family: 'Michelangelo', sans-serif;
                                 font-weight: 500;
                                 color: var(--purple);
                             }
-
+    
                             .info {
                                 font-family: 'Montserrat', sans-serif;
                                 font-weight: 500;
@@ -96,14 +100,14 @@
                             }
                         }
                     }
-
+    
                     .taskListOutput {
                         width: 100%;
                         height: 100%;
                         margin-top: 10px;
                         overflow-y: auto; // will add scroll bars if neccessary
                         padding: 0px 0px 30px 0px; // 0px = top && 10px = bottom;
-
+    
                         .taskItem {
                             background: var(--greyBlue); 
                             width: 100%;
@@ -111,7 +115,7 @@
                             border-radius: 14px;
                             display: flex;
                             margin-bottom: 6px;
-
+    
                             .nameFromTask {
                                 width: 125px;
                                 padding: 7px 0px 7px 12px;
@@ -119,7 +123,7 @@
                                 font-size: 14px;
                                 color: var(--ghost);
                             }
-
+    
                             .projectsFromTask {
                                 width: 85px;
                                 padding-top: 9px;
@@ -128,36 +132,37 @@
                                 color: rgb(255, 255, 255, 0.9);
                                 border-radius: 20px;
                                 text-align: center;
-
+    
                             }
-
+    
                             // mapping chosen progrect colour to tasklist project display box
                             .col_blue {
                                 background: rgb(101, 249, 255, 0.5); 
                             }
-
+    
                             .col_purple { // update to second colour
                                 background: rgb(154, 101, 255, 0.5);
                             }
-
+    
                             .col_green { // update to third colour
                                 background: rgb(74, 197, 126, 0.8);
                             }
-
+    
                             .col_red { // update to fourth colour
                                 background: rgba(255, 101, 101, 0.5);
                             }
-
+    
                             .col_orange { // update to fifth colour
                                 background: rgba(255, 178, 101, 0.5);
                             }
-
+    
                             .col_pink { // update to sixth colour
                                 background: rgb(255, 101, 196, 0.5);
                             }
                             
-
+    
                             .timeFromTask {
+                                opacity: 1;
                                 width: 160px;
                                 padding-top: 8px;
                                 margin-left: 15px;
@@ -165,7 +170,8 @@
                                 font-size: 14px;
                                 color: var(--ghost);
                                 display: flex;
-
+                                transition: all 0.5s ease;
+    
                                 #timeIcon {
                                     content: url("../../assets/phclock-clockwise.svg");
                                     margin-right: 13px;
@@ -173,7 +179,7 @@
                                     height: 17px;
                                 }
                             }
-
+    
                             .priorityFromTask {
                                 width: 83px;
                                 padding-top: 10px;
@@ -184,22 +190,22 @@
                                 border-radius: 10px;
                                 text-align: center;
                             }
-
+    
                             .Low {
                                 background: #E2F4EC;
                                 color: #4A9D77;
                             }
-
+    
                             .Medium {
                                 background: #E1E1EF;
                                 color: #363565;
                             }
-
+    
                             .High {
                                 background: #FFEDEF;
                                 color: #E95060;
                             }
-
+    
                             .dueDateFromTask {
                                 width: 165px;
                                 padding-top: 8px;
@@ -210,7 +216,7 @@
                                 color: var(--ghost);
                                 display: flex;
                                 overflow: hidden;
-
+    
                                 #timeIcon {
                                     content: url("../../assets/phclock-clockwise.svg");
                                     margin-right: 13px;
@@ -219,14 +225,14 @@
                                     height: 17px;
                                 }
                             }
-
+    
                             .hiddenTaskComplete {
                                 // padding: 3px 7px 0px 7px;
                                 border-radius: 0px;
                                 display: inline-block;
                                 cursor: pointer;
                                 margin-right: 10px;
-
+    
                                 #timeIcon {
                                     content: url("../../assets/uncheckedCompleteBtn.svg");
                                     margin-top: 4.5px;
@@ -236,20 +242,22 @@
                                     transition: all 0.8s ease;
                                 }
                             }
-
+    
                             .completeTask {
                                 display: none;
                                 pointer-events: all;
                             }
-
+    
                             .completeTask:checked + .hiddenTaskComplete {
                                 #timeIcon {
                                     content: url("../../assets/taskCompleteActive.svg");
                                     opacity: 1;
                                 }
                             }
-
+    
                             #delTaskImg {
+                                opacity: 1;
+                                transition: all 0.5s ease;
                                 cursor: pointer;
                                 padding: 4px;
                                 margin-top: 0.5px;
@@ -257,14 +265,14 @@
                                 height: 30px;
                                 content: url("../../assets/delTaskIcon.svg");
                             }
-
+    
                             #delTaskImg:hover {
                                 animation-name: delTaskEffect;
                                 animation-duration: 2s;
                                 animation-timing-function: ease;
                                 content: url("../../assets/delTaskIcon_confirm.svg");
                             }
-
+    
                             @keyframes delTaskEffect {
                                 0% {transform: rotate(0);}
                                 35% {transform: rotate(-15deg);}
@@ -272,31 +280,57 @@
                                 100% {transform: rotate(0);}
                             }
                         }
-
+    
+                        /*-- Completed Task Status --*/
                         .taskCompleted {
-                            opacity: 1;
+                            display: flex;
+                            transition: all 0.5s ease;
+    
+                            //style tasklist elements with reduced opacity on complete
+                            // .nameFromTask {
+                            //     opacity: 0.2;
+                            // }
+                            // .projectsFromTask {
+                            //     opacity: 0.2;
+                            // }
+                            // .dueDateFromTask {
+                            //     opacity: 0.2;
+                            // }
+                            // .priorityFromTask {
+                            //     opacity: 0.2;
+                            // }
+                            // .timeFromTask {
+                            //     opacity: 0.2;
+                            // }
+                            .completeTask:checked + .hiddenTaskComplete {
+                                pointer-events: none;
+                            }
+                            // .low, .Medium, .High {
+                            //     background: #E1E1EF;
+                            //     color: #363565;
+                            // }
                         }
-
+    
                         .taskItem:nth-child(even) { // add a background box to every second child element
-                            background: #495165;
+                            background: var(--taskListEvenBox);
                         }
-
+    
                         .taskItem:nth-child(even) {
                             padding: 20px 2px 20px 2px; 
                         }
                     }
-
+    
                     .bottomTaskGradient {
                         display: none;
                         position: relative;
                         width: 100%;
                         height: 20%;
                         bottom: 20%;
-                        background-image: linear-gradient(rgba(0, 0, 0, 0), #3C4253); // scrollable effect look
+                        background-image: linear-gradient(rgba(0, 0, 0, 0), var(--greyBlue)); // scrollable effect look
                     }
                 }
             }
-
+    
             .create-wrapper {
                 position: absolute;
                 display: flex;
@@ -306,14 +340,14 @@
                 background: var(--greyBlue);
                 border-radius: 20px;
                 display: none; //change back to none after!!!
-
+    
                 // create a task form 
                 .tasks-form {
-
+    
                     .newtask-wrapper {
                         display: flex;
                         width: 100%;
-
+    
                         .title { // heading title
                             width: 73%;
                             color: var(--ghost);
@@ -335,13 +369,13 @@
                                 cursor: pointer;
                             }
                         }
-
+    
                     }
-
+    
                     .crtask-wrapper {
                         height: 91%;
                         border-radius: 0px 0px 10px 10px;
-
+    
                         .createTasks {
                             padding-top: 20px;
                             padding-bottom: 0px;
@@ -354,7 +388,7 @@
                                 padding-bottom: 30px;
                                 display: flex;
                                 flex-direction: column;
-
+    
                                 input {
                                     padding: 17px 20px 17px 15px;
                                     border: none;
@@ -366,30 +400,30 @@
                                     border-radius: 8px;
                                     color: var(--lightGrey);
                                     font-weight: 500;
-                                    background: #333948;
+                                    background: var(--darkElem);
                                 }
-
+    
                                 input:focus {
                                     color: var(--lightGrey);
                                     font-weight: 500;
                                 }
-
+    
                                 input::placeholder {
                                     color: rgb(185, 182, 182, 0.6);
                                     font-weight: 400;
                                     letter-spacing: 0.2px;
                                 }
-
+    
                                 input:focus::placeholder {
                                     color: transparent;
                                 }
-
+    
                                 input:active {
                                     color: var(--lightGrey);
                                     font-weight: 500;
                                 }
                             }
-
+    
                             // new project input box
                             .newProject {
                                 position: relative;
@@ -399,7 +433,7 @@
                                 display: flex;
                                 flex-direction: column;
                                 outline: none;
-
+    
                                 input {
                                     padding: 17px 55px 17px 15px;
                                     border: none;
@@ -413,22 +447,22 @@
                                     font-weight: 500;
                                     background: #333948;
                                 }
-
+    
                                 input:focus {
                                     color: var(--lightGrey);
                                     font-weight: 500;
                                 }
-
+    
                                 input::placeholder {
                                     color: rgb(185, 182, 182, 0.6);
                                     font-weight: 400;
                                     letter-spacing: 0.2px;
                                 }
-
+    
                                 input:focus::placeholder {
                                     color: transparent;
                                 }
-
+    
                                 .new-proj-icon {
                                     position: absolute;
                                     width: 35px;
@@ -438,12 +472,12 @@
                                     display: block;
                                 }
                             }
-
+    
                             .tasks-combo {
                                 width: 50%;
                                 margin-right: 10%;
                                 float: left;
-
+    
                                 // due date input box
                                 .dueDate {
                                     position: relative;
@@ -453,7 +487,7 @@
                                     float: left;
                                     display: flex;
                                     flex-direction: column;
-
+    
                                     input {
                                         padding: 17px 20px 17px 12px;
                                         border: none;
@@ -476,14 +510,14 @@
                                         font-weight: 400;
                                         letter-spacing: 0.2px;
                                     }
-
+    
                                     input::-webkit-calendar-picker-indicator {
                                         position: absolute;
                                         right: 15px;
                                         background: url(../../assets/duedatecal.svg) 90% / 95% no-repeat;
                                     }
                                 }
-
+    
                                 // priority selection input box
                                 .priority {
                                     width: 42%;
@@ -491,7 +525,7 @@
                                     float: left;
                                     display: flex;
                                     flex-direction: column;
-
+    
                                     select {
                                         padding: 17px 55px 17px 14px;
                                         border: none;
@@ -506,14 +540,14 @@
                                         cursor: pointer;
                                     }
                                 }
-
+    
                                 // completion time input box
                                 .comtime {
                                     position: relative;
                                     width: 100%;
                                     display: flex;
                                     flex-direction: column;
-
+    
                                     input {
                                         padding: 17px 65px 17px 15px;
                                         border: none;
@@ -543,22 +577,22 @@
                                         color: transparent;
                                     }
                                 }
-
+    
                             }
-
+    
                             .existing-projects {
                                 width: 40%;
                                 height: 200px;
                                 float: left;
                                 // background: green;
                                 padding-bottom: 10px;
-
+    
                                 .projects {
                                     margin-top: 20px;
                                     width: 100%;
                                     height: 165px;
                                     overflow: auto; // creates scrollbars when there are lots of projects
-
+    
                                     .item {
                                         font-weight: 400;
                                         font-size: 15px;
@@ -569,97 +603,97 @@
                                         overflow: hidden;
                                         user-select: none;
                                     }
-
+    
                                     .hiddenbox {
                                         padding: 10px 16px 10px 16px;
                                         border-radius: 5px;
                                         display: inline-block;
                                         cursor: pointer;
                                     }
-
+    
                                     .projcheckbox {
                                         display: none;
                                     }
-
+    
                                     //project box number one
                                     .item:nth-child(1) .hiddenbox {
                                         color: #4ab5c5;
                                         border: 1.5px solid #4ab5c5;
                                     }
-
+    
                                     // .item:nth-child(1) .hiddenbox:hover {
                                     //     background: #4ab5c5;
                                     //     color: white;
                                     //     transition: all 0.5s ease;
                                     // }
-
+    
                                     .item:nth-child(1) .projcheckbox:checked + .hiddenbox{
                                         background: #4ab5c5;
                                         color: white;
                                     }
-
+    
                                     // project box number two
-
+    
                                     .item:nth-child(2) .hiddenbox {
                                         color: #7369e2;
                                         border: 1.5px solid #544ac5;
                                     }
-
+    
                                     .item:nth-child(2) .projcheckbox:checked + .hiddenbox {
                                         background: #544ac5;
                                         color: white;
                                     }
-
+    
                                     // project box number three
-
+    
                                     .item:nth-child(3) .hiddenbox {
                                         color: #4AC57E; 
                                         border: 1.5px solid #4AC57E;
                                     }
-
+    
                                     .item:nth-child(3) .projcheckbox:checked + .hiddenbox {
                                         background: #4AC57E;
                                         color: white;
                                     }
-
+    
                                     // project box number four
-
+    
                                     .item:nth-child(4) .hiddenbox {
                                         color: #C5534A;
                                         border: 1.5px solid #C5534A;
                                     }
-
+    
                                     .item:nth-child(4) .projcheckbox:checked + .hiddenbox {
                                         background: #C5534A;
                                         color: white;
                                     }
-
+    
                                     // project box number fifth
-
+    
                                     .item:nth-child(5) .hiddenbox {
                                         color: #C59F4A;
                                         border: 1.5px solid #C59F4A;
                                     }
-
+    
                                     .item:nth-child(5) .projcheckbox:checked + .hiddenbox {
                                         background: #C59F4A;
                                         color: white;
                                     }
-
+    
                                     // project box number six
-
+    
                                     .item:nth-child(6) .hiddenbox {
                                         color: #C54AB2;
                                         border: 1.5px solid #C54AB2;
                                     }
-
+    
                                     .item:nth-child(6) .projcheckbox:checked + .hiddenbox {
                                         background: #C54AB2;
                                         color: white;
                                     }
                                 }
                             }
-
+    
                             label { // label styling for each form input 
                                 padding-left: 5px;
                                 color: #DBDBDB;

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="37" height="36" viewBox="0 0 37 36">
   <g id="Liked_Songs_Btn_Default" data-name="Liked Songs Btn Default" transform="translate(-405 -28)">
     <g id="background" transform="translate(405 28)">
-      <rect id="Shape_BG" data-name="Shape BG" width="37" height="36" rx="6" fill="#46b39c"/>
-      <g id="Icon" transform="translate(10.015 10.599)">
-        <path id="Path" d="M16.952,3.807a4.466,4.466,0,0,0-6.317,0l-.86.86-.86-.86A4.466,4.466,0,0,0,2.6,10.123l.861.86L9.775,17.3l6.316-6.317.861-.86A4.465,4.465,0,0,0,16.952,3.807Z" transform="translate(-1.29 -2.499)" fill="#333948"/>
+      <rect id="Shape_BG" data-name="Shape BG" width="37" height="36" rx="6" fill="#00ba9e"/>
+      <g id="Icon" transform="translate(12.338 12.626)">
+        <path id="Path" d="M12.664,3.449a3.243,3.243,0,0,0-4.587,0l-.625.625-.625-.625A3.243,3.243,0,0,0,2.24,8.036l.625.625,4.587,4.587L12.039,8.66l.625-.625A3.242,3.242,0,0,0,12.664,3.449Z" transform="translate(-1.29 -2.499)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
       </g>
     </g>
   </g>

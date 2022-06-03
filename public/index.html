@@ -92,7 +92,10 @@
                 <div class="top-icons-help">
                     <a href="#" class="tih-link"><h2 class="feedback-title">Feedback</h2></a>
                     <a href="#" class="tih-link"><h2 class="help-title">Help</h2></a>
-                    <a href="#" class="tih-link"><i class='bx bx-bolt-circle' style='color: #E950D1' id="bolt_switch"></i></a>
+                    <a href="#" class="tih-link" id="toggleFocusMode">
+                        <img id="focusNotActive" src="../assets/focusModeIcon.svg" alt="">
+                        <img id="focusActive" src="../assets/focusModeIconActive.svg" alt="">
+                    </a>
                     <a href="#" class="tih-link"><i class='bx bxs-bell' style='color: #8e72d6'></i></a>
                 </div>
                 <div class="top-searchbar">
@@ -111,8 +114,7 @@
                 </div>
             </section>
 
-            <!-- Dashboard Elements -->
-            <section class="elements-tr">
+            <section class="dashboardElems">
 
                 <!-- Weekly Tasks -->
                 <section class="weekly-tasks">
@@ -371,9 +373,6 @@
                         </div>
                     </div>
                 </section>
-            </section>
-
-            <section class="elements-br">
 
                 <!-- Achievements -->
                 <section class="achievements">
@@ -469,7 +468,7 @@
                                         <img id="songBG" src="../assets/SongBGIMG2.svg" alt="">
                                     </a>
                                     <!-- Load Audio File -->
-                                    <audio id="songTrack2"><source src="../assets/songs/StudyMusic1.mp3" type="audio/mp3"/></audio>
+                                    <audio id="songTrack2"><source src="../assets/songs/FreeFallin.mp3" type="audio/mp3"/></audio>
                                     <!-- Song Title/Author/Duration -->
                                     <div class="musicContent">
                                         <h4 class="songTitle">Deep Focus</h4>
@@ -498,7 +497,7 @@
                                     </a>
                                     <!-- Load Audio File -->
                                     <audio id="songTrack3">
-                                        <source src="../assets/songs/StudyMusic2.mp3" loop="false" type="audio/mp3"/>
+                                        <source src="../assets/songs/FreeFallin.mp3" loop="false" type="audio/mp3"/>
                                     </audio>
                                     <!-- Song Title/Author/Duration -->
                                     <div class="musicContent">
@@ -558,7 +557,7 @@
                                     </a>
                                     <!-- Load Audio File (loop 4x) -->
                                     <audio id="songTrack5">
-                                        <source src="../assets/songs/StudyMusic3.mp3" loop="false" type="audio/mp3"/>
+                                        <source src="../assets/songs/FreeFallin.mp3" loop="false" type="audio/mp3"/>
                                     </audio>
                                     <!-- Song Title/Author/Duration -->
                                     <div class="musicContent">
@@ -623,8 +622,28 @@
                     <div class="acr-wrapper">
                         <div class="acr-text"><p class="title">Create your own acronyms here</p></div>
                         <div class="acr-box">
-                            <div class="headline">
-                                <h3 class="title">Acronym Maker</h3>
+                            <div class="acronymContainer">
+                                <div class="firstAcronym">
+                                    <label for="acroInput" class="acroInputLabel">Type Words Here</label>
+                                    <div class="inputBox">
+                                        <input type="text" name="acroInput" class="acroInput" placeholder="E.g. new aesthetic made easy">
+                                        <a href="#" id="AcrSubmit"><i class="bx bx-plus" id="SubmitIcon"></i></a>
+                                    </div>
+                                </div>
+                                <!-- Acronym Display Box -->
+                                <div class="acronymDisplay acronymListActive">
+                                    <p class="acroOutputLabel">Your Acronyms</p>
+                                    <!-- When Acronym List Output -->
+                                    <div class="acronymOutput">
+                                        <!-- Dummy Item -->
+                                        <!-- <div class="acronymItem">
+                                            <div class="acronymShort"><h4 class="shortText">NAME</h4></div> 
+                                            <div class="acronymLong"><p class="longText">New, Aesthetic, Made, Easy </p></div>
+                                            <img id="delAcronym" class="delAcronym" src="../assets/delTaskIcon.svg" alt="">
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="onScrollGradient"></div>
                             </div>
                         </div>
                     </div>
@@ -637,13 +656,13 @@
                             <h3 class="title">Project Overview</h3>
                             <div class="proj-selection">
                                 <select class="chooseProject" style="background-color: #4B526A;">
-                                    <option value="" class="proj placeholder" selected hidden>Choose a Project</option>
+                                    <option value="" class="proj placeholder" selected >Choose a Project</option> <!-- can you use 'hidden'-->
                                 </select>
                             </div>
                         </div>
                         <div class="overviewContainer">
                             <div class="tasksTitle">
-                                <h4 class="title">Tasks</h4>
+                                <h4 class="title" id="projOverviewTaskHead">Tasks</h4>
                             </div>
                             <div class="selectedProjectTasks">
                                 <div class="outerBox">
@@ -674,7 +693,7 @@
                                     </div>
                                     <div class="completionBar">
                                         <div class="progressBar">
-                                            <div class="bar"></div>
+                                            <div class="bar" id="progressBarStatus"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -690,9 +709,7 @@
                         </div>
                     </div>
                 </section>
-
             </section>
-
         </section>
     
         <script src="script.js" type="module"></script> <!-- script file link-->

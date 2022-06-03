@@ -5,34 +5,39 @@
 /*--------------*/ 
 
 .dashboard {
-    .elements-br {
+    .dashboardElems {
         .music-player {
             display: flex; /* allows divs to display next to eachother */ 
             padding-top: 20px;
             padding-left: 10px;
             padding-bottom: 20px;
             padding-right: 10px;
-            width: 21%;
+            width: 20.5%;
             height: 350px; 
-
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
             .mus-wrapper {
                 width: 100%;
                 height: 100%;
                 background: var(--darkElem);
                 border-radius: 20px;
-
+                opacity: 1;
+                transition: all 0.5s ease;
+    
                 .topBox {
                     padding: 15px;
                     width: 100%;
                     height: 19%;
-
+    
                     .headline {
                         display: flex;
                         height: 100%;
                         width: 100%;
     
                         .title {
-                            width: 83%;
+                            width: 85%;
                             color: var(--ghost);
                             font-weight: 600;
                             font-size: 16px;
@@ -41,53 +46,53 @@
                         }
     
                         .songButtons {
-                            width: 17%;
+                            width: 15%;
                             display: flex;
-
+    
                             .LikedSongs {
                                 margin-right: 13px;
                                 margin-top: 4px;
-
+    
                                 #likedSongsIcon {
                                     display: block;
                                     color: var(--ghost);
                                     font-size: 25px;
                                 }
-
+    
                                 #likedSongsAct {
                                     display: none;
                                 }
                             }
-
+    
                             .addNewSong {
                                 margin-bottom: 20px;
                             }
                         }
                     }
                 }
-
+    
                 .musicContainer {
                     width: 100%;
                     height: 81%;
                     border-radius: 5px 0px 20px 20px;
-
+    
                     .preSetSongs {
                         padding: 0px 20px 10px 20px; // 0px = top && 10px = bottom;
                         width: 100%;
                         height: 98%;
-                        overflow: auto !important; // only show scrollbars when necessary
+                        overflow: auto; // only show scrollbars when necessary
                         border-radius: 0px 0px 20px 20px;
                         display: block;
-
+    
                         .music {
                             padding: 2px;
                             display: flex;
                             padding-bottom: 15px;
-
+    
                             .musicBG {
                                 padding-right: 20px;
                                 position: relative;
-
+    
                                 #songPlayIcon {
                                     display: block;
                                     position: absolute;
@@ -97,7 +102,7 @@
                                     height: 43px;
                                     z-index: 2;
                                 }
-
+    
                                 #songPauseIcon {
                                     display: none;
                                     position: absolute;
@@ -107,20 +112,20 @@
                                     height: 43px;
                                     z-index: 2;
                                 }
-
+    
                                 #songBG {
                                     position: relative;
                                     display: block;
                                     z-index: 1;
                                 }
                             }
-
+    
                             .musicContent {
                                 padding-top: 7px;
                                 padding-right: 15px;
                                 width: 180px;
                                 // background: red;
-
+    
                                 .songTitle {
                                     color: var(--ghost);
                                     font-weight: 600;
@@ -128,12 +133,12 @@
                                     font-size: 13px;
                                     letter-spacing: 0.5px;
                                 }
-
+    
                                 .song_Author_Time {
-                                    color: var(--grey);
+                                    color: #BCBCBC;
                                     font-size: 12px;
                                     font-weight: 400;
-
+    
                                     .medianDot {
                                         padding-left: 2px;
                                         padding-bottom: 2px;
@@ -141,28 +146,28 @@
                                     }
                                 }
                             }
-
+    
                             .musicBtns {
                                 display: flex;
                                 align-items: center;
                                 // background: green;
-
+    
                                 .songLove {
                                     margin-right: 5px;
-
+    
                                     #loveDisabled {
                                         display: block;
                                         width: 20px;
                                         height: 20px;
                                     }
-
+    
                                     #loveActive {
                                         display: none;
                                         width: 20px;
                                         height: 20px;
                                     }
                                 }
-
+    
                                 .songDel {
                                     width: 20px;
                                     height: 20px;
@@ -170,29 +175,29 @@
                             }
                         }
                     }
-
+    
                     .noLikedSongsDisplay {
                         width: 100%;
                         height: 100%;
                         border-radius: 0px 0px 20px 20px;
                         display: none;
-
+    
                         .userSongNotification {
                             position: relative;
                             width: 100%;
                             height: 100%;
                             border-radius: 0px 0px 20px 20px;
                             padding: 20px;
-
+    
                             .songIconBox {
                                 text-align: center;
                                 margin-bottom: 25px;
-
+    
                                 .sadEmojiIcon {
                                     width: 50px;
                                 }
                             }
-
+    
                             .songNotificationText {
                                 text-align: center;
                                 padding-left: 15px;
@@ -203,12 +208,12 @@
                                 font-weight: 300;
                                 margin-bottom: 30px;
                             }
-
+    
                             .lineSplit {
                                 border-bottom: 1.5px solid var(--greyBlue);
                                 margin-bottom: 30px;
                             }
-
+    
                             // Example Music Icon
                             .music {
                                 padding: 2px;
@@ -302,7 +307,7 @@
                             }
                         }
                     }
-
+    
                     .bottomOfSongListGradient {
                         display: block;
                         position: relative;
@@ -315,7 +320,6 @@
                     }
                 }
             }
-            
         }
     }
 }

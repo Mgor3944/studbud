@@ -1,0 +1,226 @@
+/*---------------*/
+/*---------------*/
+/* ACRONYM MAKER */
+/*---------------*/
+/*---------------*/
+
+.dashboard {
+    .dashboardElems {
+        .acronyms {
+            display: flex; /* allows divs to display next to eachother */ 
+            padding-top: 20px;
+            padding-left: 10px;
+            padding-bottom: 20px !important;
+            padding-right: 10px;
+            width: 24%;
+            height: 350px;
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
+            .acr-wrapper {
+                display: inline-block; /* allows divs to display underneath eachother */ 
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                opacity: 1;
+                transition: all 0.5s ease;
+    
+                .acr-text {
+                    padding-left: 10px;
+                    padding-top: 5px;
+                    width: 100%;
+                    height: 10%;
+                    /* border: 2px pink solid; */
+                    border-radius: 20px;
+                    color: var(--grey);
+    
+                    .title {
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+                }
+    
+                .acr-box {
+                    width: 100%;
+                    height: 90%;
+                    /* border: 2px pink solid; */
+                    background: var(--greyBlue);
+                    border-radius: 20px;
+    
+                    .acronymContainer {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px;
+                        // padding: 20px;
+                        padding: 20px 20px 5px 20px;
+    
+                        .firstAcronym {
+                            width: 100%;
+                            height: 24%;
+                            margin-bottom: 25px;
+    
+                            .acroInputLabel {
+                                width: 100%;
+                                color: var(--ghost);
+                                font-size: 14px;
+                                padding-left: 5px;
+                                // background: cornflowerblue;
+                            }
+    
+                            .inputBox {
+                                display: flex;
+                                width: 100%;
+                                height: 45px;
+                                margin-top: 14px;
+    
+                                .acroInput {
+                                    border: none;
+                                    -webkit-appearance: none;
+                                    -ms-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    outline: none;
+                                }
+        
+                                .acroInput {
+                                    border-radius: 8px;
+                                    width: 81%;
+                                    margin-right: 5%;
+                                    height: 100%;
+                                    background: var(--darkElem);
+                                    color: var(--ghost);
+                                    opacity: 0.8;
+                                    padding: 5px 20px 5px 15px; // top, right, bottom, left
+                                }
+        
+                                .acroInput::placeholder {
+                                    color: var(--ghost);
+                                    opacity: 0.5;
+                                }
+    
+                                // .acroInput:focus {
+                                //     border: 1px solid var(--pink);
+                                // }
+    
+                                #AcrSubmit {
+                                    width: 14%;
+                                    height: 100%;
+                                    border-radius: 3px;
+                                    // background: pink;
+                                    background: #495165;
+                                    cursor: pointer;
+                                    text-align: center;
+    
+                                    #SubmitIcon {
+                                        padding-top: 11px;
+                                        font-size: 25px;
+                                        color: var(--ghost);
+                                    }
+                                }
+                            }
+                        }
+    
+                        .acronymDisplay {
+                            width: 100%;
+                            height: 66%;
+                            overflow: auto;
+                            // background: cornflowerblue;
+    
+                            .acroOutputLabel {
+                                width: 100%;
+                                color: var(--ghost);
+                                font-size: 14px;
+                                padding-left: 5px;
+                                margin-bottom: 14px;
+                            }
+    
+                            .acronymOutput {
+                                width: 100%;
+                                height: 100%;
+                                // background: red;
+    
+                                .acronymItem {
+                                    display: flex;
+                                    width: 100%;
+                                    background: #495165;
+                                    height: 45px;
+                                    border-radius: 8px;
+                                    margin-bottom: 15px;
+                                    color: var(--ghost);
+                                    // background: red;
+    
+                                    .acronymShort {
+                                        height: 100%;
+                                        border-radius: 8px 0px 0px 8px;
+                                        background: #495165;
+                                        color: var(--ghost);
+                                        text-align: center;
+                                        padding: 15.5px 10px 0px 12px;
+                                        font-weight: 600;
+                                        font-size: 13px;
+                                    }
+        
+                                    .acronymLong {
+                                        overflow-x: hidden !important;
+                                        width: 244px;
+                                        height: 100%;
+                                        border-radius: 0px 8px 8px 0px;
+                                        background: #495165;
+                                        color: var(--ghost);
+                                        text-align: left;
+                                        padding: 15.5px 15px 0px 0px;
+                                        margin-right: 5px;
+                                        font-weight: 400;
+                                        font-size: 13px;
+                                        overflow: hidden;
+    
+                                        .longText {
+                                            opacity: 0.9;
+                                        }
+                                    }
+    
+                                    .delAcronym {
+                                        // background: green;
+                                        cursor: pointer;
+                                        width: 45px;
+                                        height: 100%;
+                                        padding: 12px;
+                                        border-radius: 5px;
+                                        content: url("../../assets/delTaskIcon.svg");
+                                    }
+                                }
+    
+                                .newestAcro { // first item in list ~ custom style
+                                    height: 45px;
+                                    background: var(--darkElem);
+                                    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                                    border-radius: 8px;
+    
+                                    .acronymShort {
+                                        background: var(--darkElem);
+                                        color: var(--pink);
+                                    }
+        
+                                    .acronymLong {
+                                        background: var(--darkElem);
+                                        color: var(--pink);
+                                    }
+                                }
+                            }
+                        }
+                    }
+    
+                    .onScrollGradient {
+                        display: none;
+                        position: relative;
+                        width: 100%;
+                        height: 20%;
+                        bottom: 20%;
+                        background-image: linear-gradient(rgba(0, 0, 0, 0), var(--greyBlue)); // scrollable effect look
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,27 +5,30 @@
 /*------------------*/
 
 .dashboard {
-	.elements-br {
-		.project-overview {
-			display: flex; /* allows divs to display next to eachother */ 
+    .dashboardElems {
+        .project-overview {
+            display: flex; /* allows divs to display next to eachother */ 
             padding: 20px 25px 20px 10px; // top, right, bottom, left
-			width: 40%;
-			height: 350px;
-
-			.proj-wrapper {
-				width: 100%;
-				height: 100%;
-				background: #3C4253;
-				border-radius: 15px;  
-
-				.head-wrapper { // tasks heading box
+            width: 40%;
+            height: 350px;
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
+            .proj-wrapper {
+                width: 100%;
+                height: 100%;
+                background: #3C4253;
+                border-radius: 15px;  
+    
+                .head-wrapper { // tasks heading box
                     display: flex;
                     width: 100%;
                     height: 18%;
                     // background-color: rgb(0, 128, 0, 0.5);
                     border-radius: 15px 15px 0px 0px;
                     padding: 20px 20px 20px 25px;
-
+    
                     .title { // heading title
                         width: 62%;
                         color: #E6E6E6;
@@ -33,54 +36,59 @@
                         font-size: 18px;
                         margin-top: 10px;
                     }
-
+    
                     .proj-selection { // heading button
                         display: flex;
                         width: 38%;
-
+    
                         select {
-							font-family: 'Nunito', sans-serif;
-							width: 220px;
-							padding: 5px 5px 5px 20px; // top, right, bottom, left
-							font-size: 15px;
-							letter-spacing: 0.2px;
-							// border: 1px solid #CCC;
-							border: none;
-							height: 45px;
-							border-radius: 20px;
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							color: rgb(230, 230, 230, 0.8) !important;
-							background: url(../../assets/proj-select-down-arrow.svg) 90% / 9% no-repeat #FFF;
-							cursor: pointer;
-						}
-
-						select:after {
-							border: none !important;
-							appearance: none;
+                            font-family: 'Nunito', sans-serif;
+                            width: 220px;
+                            padding: 5px 5px 5px 20px; // top, right, bottom, left
+                            font-size: 15px;
+                            letter-spacing: 0.2px;
+                            // border: 1px solid #CCC;
+                            border: none;
+                            height: 45px;
+                            border-radius: 20px;
                             -webkit-appearance: none;
-							-moz-appearance: none;
-						}
+                            -moz-appearance: none;
+                            appearance: none;
+                            color: rgb(230, 230, 230, 0.8) !important;
+                            background: url(../../assets/proj-select-down-arrow.svg) 90% / 9% no-repeat #FFF;
+                            cursor: pointer;
+                        }
+    
+                        select:after {
+                            border: none !important;
+                            appearance: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                        }
+    
+                        select:focus {
+                            box-shadow: none;
+                            outline: none;
+                        }
                     }
                 }
-
+    
                 .overviewContainer {
                     width: 100%;
                     height: 50%;
                     padding: 0px 20px 2px 25px;
-
+    
                     .tasksTitle {
                         width: 100%;
                         height: 23%;
                         padding-top: 9px;
-
+    
                         .title {
                             font-weight: 400;
                             color: var(--ghost);
                         }
                     }
-
+    
                     .selectedProjectTasks {
                         width: 100%;
                         height: 77%;
@@ -117,21 +125,32 @@
                                     }
         
                                     .task_check_icon {
-                                        content: url("../../assets/uncheckedCompleteBtn.svg");
+                                        content: url("../../assets/project_overview_task_incomplete.svg");
                                         width: 21px;
                                         height: 21px;
                                     }
                                 }
-
-                                .taskCompleted {
-
+    
+                                .isNotCompleted {
+                                    opacity: 0.5;
+                                    transition: all 0.5s ease;
+                                }
+    
+                                .isCompleted {
+                                    opacity: 1;
+                                    transition: all 0.5s ease;
+    
+                                    .task_name {
+                                        opacity: 1;
+                                    }
+    
                                     .task_check_icon {
-                                        content: url("../../assets/taskCompleteActive.svg");
+                                        content: url("../../assets/project_overview_task_complete.svg");
                                         width: 21px;
                                         height: 21px;
                                     }
                                 }
-
+    
                                 // .overviewItem:nth-child(even) {
                                 //     opacity: 0.4;
                                 // }
@@ -149,21 +168,23 @@
                         }
                     }
                 }
-
+    
                 .overviewInsights {
                     width: 100%;
                     height: 32%;
                     border-radius: 0px 0px 15px 15px;
                     padding: 0px 20px 10px 25px;
                     display: flex;
-
+    
                     .innerBox {
                         width: 100%;
                         display: flex;
-
+    
                         .completionBarBox {
                             width: 75%;
                             height: 100%;
+                            opacity: 1;
+                            transition: all 0.5s ease;
                             // background: green;
         
                             .barTitle {
@@ -177,25 +198,26 @@
                                     color: var(--ghost);
                                 } 
                             }
-
+    
                             .completionBar {
                                 width: 100%;
                                 height: 65%;
                                 // background: red;
                                 padding: 16px 25px 12px 0px;
-
+    
                                 .progressBar {
                                     width: 100%;
                                     height: 100%;
                                     background: #5B6276;
                                     border-radius: 15px;
-
+    
                                     .bar {
-                                        width: 45%;
+                                        overflow: hidden;
                                         height: 100%;
                                         background: var(--purple);
                                         z-index: 2;
                                         border-radius: 15px;
+                                        transition: all 0.5s linear;
                                     }
                                 }
                             }
@@ -216,13 +238,13 @@
                                     color: var(--ghost);
                                 } 
                             }
-
+    
                             .dueDateBox {
                                 width: 100%;
                                 height: 65%;
                                 // background: red;
                                 padding: 17px 5px 0px 0px;
-
+    
                                 .projectDueDate {
                                     font-size: 34px;
                                     color: var(--purple);
@@ -232,7 +254,7 @@
                         }
                     }
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 }

@@ -5,29 +5,32 @@
 /*----------*/
 
 .dashboard  {
-    .elements-tr {
+    .dashboardElems {
         .cal-container {
             display: flex; /* allows divs to display next to eachother */ 
             padding-top: 20px;
             padding-left: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
             padding-right: 25px;
             width: 23%;
             height: 350px;
-
+            opacity: 1;
+            transition: all 0.3s ease;
+            float: left;
+    
             .cal-wrapper {
                 display: inline-block;
                 width: 100%;
                 height: 95%;
                 border-radius: 20px;
-
+    
                 .cal-box {
                     display: inline-block; 
                     width: 100%;
                     height: 88%;
                     background: var(--greyBlue); 
                     border-radius: 20px;
-
+    
                     .cal-top {
                         display: flex;
                         text-align: center;
@@ -36,7 +39,7 @@
                         height: 23.5%;
                         border-radius: 20px 20px 0px 0px;
                         /* border: 2px orange solid; */
-
+    
                         .left-arrow-cal {
                             padding-top: 27px;
                             width: 20%;
@@ -44,7 +47,7 @@
                             color: #FFFFFF;
                             border-radius: 20px 0px 0px 0px;
                         }
-
+    
                         .month-year {
                             display: flex;
                             width: 60%;
@@ -52,28 +55,28 @@
                             align-items: center;
                             justify-content: center;
                             font-weight: 400;
-
+    
                             #currMonth {
                                 padding-right: 3%;
                             }
                         }
-
+    
                         .right-arrow-cal {
                             padding-top: 27px;
                             width: 20%;
-
+    
                             border-radius: 0px 20px 0px 0px;
                             font-size: 22px;
                             color: #FFFFFF;
                         }
                     }
-
+    
                     .cal-bottom {
                         width: 100%;
                         height: 77%;
                         background: #333948;
                         border-radius: 0px 0px 20px 20px;
-
+    
                         .calendar-week-day {
                             display: flex;
                             justify-content: space-between;
@@ -82,23 +85,23 @@
                             color: white;
                             font-size: 15px;
                             height: 13%;
-
+    
                             padding-left: 20px;
                             padding-right: 20px;
-
+    
                             padding-top: 12px;
-
+    
                             div {
                                 justify-content: center;
                                 width: 30px;
                             }
                         }
-
+    
                         .calDaysBox {
                             width: 100%;
                             height: 87%;
                             border-radius: 0px 0px 20px 20px;
-
+    
                             .cal-days {
                                 width: 100%;
                                 height: 100%;
@@ -107,50 +110,58 @@
     
                                 .days {
                                     font-weight: 400;
-                                    color: #CDD1D8;
+                                    // color: #CDD1D8;
                                     font-size: 13px;
                                     height: 100%;
                                     overflow: hidden !important;
                                     display: grid;
-                                    grid-template-columns: repeat(7, 14.1%);
+                                    grid-template-columns: repeat(7, 14.3%);
                                     grid-template-rows: repeat(5, 20%);
-
+    
                                     div { // each day style
                                         text-align: center;
                                         width: 30px;
                                         height: 30px;
                                         padding-top: 7px;
-                                        padding-left: 1px;
                                         border-radius: 20px;
+                                        color: #CDD1D8;
                                     }
-
+    
                                     #prev-month-days {
                                         opacity: 0.35;
+                                        transition: all 0.5s ease;
                                     }
-
+    
                                     .today { // today's date style
                                         z-index: 0;
                                         position: relative;
                                         color: var(--greyBlue);
                                         background: var(--pink);
                                         font-weight: 700;
+                                        opacity: 1;
                                     }
-
+    
                                     #next-month-days {
                                         opacity: 0.35;
+                                        transition: all 0.5s ease;
                                     }
+                                }
+    
+                                .days > div {
+                                    opacity: 1;
+                                    transition: all 0.5s ease;
                                 }
                             }
                         }
                     }
                 }
-
+    
                 .cal-legend {
                     display: flex;
                     width: 100%;
                     height: 13%;
                     color: #B5BCCE;
-
+    
                     .legendPosBox {
                         padding-left: 10%;
                         padding-right: 5%;
