@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>StudBud | Covey Quadrants</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.svg"> <!-- Favicon -->
+
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> <!-- Boxicons CDN Link -->
+
+        <link href="style.css" rel="stylesheet" type="text/css" /> <!-- css file link-->
+        <link href="scss/main.scss" rel="stylesheet" type="text/css" /> <!-- scss file link-->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'> <!-- sweetAlert2 link-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <!-- Vertical Navbar -->
+        <div class="sidebar">
+
+            <!-- Logo -->
+            <div class="logo-details">
+                <i class='bx bx-pulse icon'></i>
+                <div class="logo_name">StudBud</div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            
+            <!-- Navlist -->
+            <ul class="nav-list">
+
+                <!-- Active Features -->
+                <li>
+                    <a href="./index.html" class="navlink"><i class='bx bxs-dashboard'></i><span class="links_name">Dashboard</span></a>
+                    <span class="tooltip">Dashboard</span></li>
+                <li>
+                    <a href="#" class="navlink"><i class='bx bx-cube active'></i><span class="links_name activeX">Covey Quads</span></a>
+                    <span class="tooltip">Covey Quads</span>
+                </li>
+
+                <div class="line-split"></div>
+
+                <!-- Coming Soon -->
+                <li>
+                    <a href="#" class="navlink coming-soon"><i class='bx bx-calendar'></i><span class="links_name">Projects</span></a>
+                    <span class="tooltip">Projects</span>
+                </li>
+                <li>
+                    <a href="#" class="navlink coming-soon"><i class='bx bx-task'></i><span class="links_name">Tasks</span></a>
+                    <span class="tooltip">Tasks</span>
+                </li>
+                <li>
+                    <a href="#" class="navlink coming-soon"><i class='bx bx-medal'></i><span class="links_name">Achievements</span></a>
+                    <span class="tooltip">Achievements</span>
+                </li>
+
+                <div class="line-split"></div>
+
+                <!-- Active Features -->
+                <li><a href="#" class="navlink"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a></li>
+                <li><a href="#" class="navlink"><i class='bx bx-log-out'></i><span class="links_name">Log Out</span></a></li>
+
+                <!-- Focus Mode Highlight --> 
+                <li class="focus_info">
+                    <div class="focus-details">
+                        <i class='bx bxs-zap f_icon' style='color:#de1592'></i>
+                        <h3 class="title">Focus</h3>
+                        <p class="tagline">Focus mode displays only the important aspects of your dashboard!</p>
+                        <p class="infoBar">Click the <b>lightning icon</b> in the top navbar.</p>
+                    </div>
+                    <i class='bx bxs-zap f_switch' style='color:#FFF' id="f_icon"></i>
+                </li>
+            </ul>
+        </div>
+
+        <!-- DASHBOARD -->
+        <section class="dashboard">
+
+            <!-- Horizontal Navbar -->
+            <section class="topbar">
+                <div class="top_heading">
+                    <h1 class="top-tite">Covey Quadrants</h1>
+                    <h2 class="top-date">
+                        <div id="current_day"></div>
+                        <div id="current_date"></div>
+                    </h2>
+                </div>
+                <div class="top-icons-help">
+                    <a href="#" class="tih-link">
+                        <h2 class="feedback-title">Feedback</h2>
+                    </a>
+                    <a href="#" class="tih-link">
+                        <h2 class="help-title">Help</h2>
+                    </a>
+                    <a href="#" class="tih-link" id="toggleFocusMode">
+                        <img id="focusNotActive" src="../assets/focusModeIcon.svg" alt="">
+                        <img id="focusActive" src="../assets/focusModeIconActive.svg" alt="">
+                    </a>
+                    <a href="#" class="tih-link">
+                        <i class='bx bxs-bell' style='color: #8e72d6'></i>
+                    </a>
+                </div>
+                <div class="top-searchbar">
+                    <input type="text" placeholder="Search...">
+                    <i class='bx bx-search' id="searchbar"></i>
+                </div>
+                <div class="top-account">
+                    <div class="account-wrapper">
+                        <img id="user_img" src="../assets/account_icon.svg" alt="">
+                        <div class="account-details">
+                            <h2 class="name">Matt Gordon</h2>
+                            <p class="occupation">UI/UX Designed</p>
+                        </div>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Elements -->
+            <section class="dashElements">
+                <!-- Covey Quadrants -->
+                <section class="leftContainer">
+                    <div class="left-flex-container"> 
+
+                        <div class="flex-container-wrap">  <!-- Not Effected by Parent FlexBox -->
+
+                            <div class="quadContainer" id="quadOne"> <!-- Quadrant One -->
+                                <div class="quad-heading-h"> 
+                                    <h4>URGENT</h4>
+                                </div>
+                                <div class="quad-flex-box-bottom">
+                                    <div class="quad-content-left">
+                                        <div class="quad-heading-v">
+                                            <img class="vertical-text" id="for-mobile" src="../assets/vertical-text-covey-qads-important.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="quad-content-right">
+                                        <div class="quadrantBox">
+                                            <div class="quadLabel">
+                                                <h4>Quadrant 1</h4>
+                                            </div>
+                                            <ul class="quadOutput" id="quad-one-output">
+                                                <!-- Items Appear Here -->
+                                                <!-- Dummy Item -->
+                                                <!-- <li class="quadTaskItem">
+                                                    <h4 class="quad-task-name">· UX Design</h4>
+                                                    <h4 class="quad-due-date">11 Apr 2022</h4>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="quadContainer" id="quadTwo"> <!-- Quadrant Two -->
+                                <div class="quad-heading-h">
+                                    <h4>NOT URGENT</h4>
+                                </div>
+                                <div class="quad-flex-box-bottom">
+                                    <div class="quad-content-left">
+                                        <div class="quad-heading-v">
+                                            <!-- <img class="vertical-text" id="for-mobile" src="../assets/vertical-text-covey-qads-important.svg" alt=""> -->
+                                        </div>
+                                    </div>
+                                    <div class="quad-content-right">
+                                        <div class="quadrantBox">
+                                            <div class="quadLabel">
+                                                <h4>Quadrant 2</h4>
+                                            </div>
+                                            <ul class="quadOutput" id="quad-two-output">
+                                                <!-- Items Appear Here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="flex-container-wrap">
+
+                            <div class="quadContainer" id="quadThree"> <!-- Quadrant Three -->
+                                <div class="quad-heading-h"></div>
+                                <div class="quad-flex-box-bottom">
+                                    <div class="quad-content-left">
+                                        <div class="quad-heading-v">
+                                            <img class="vertical-text" src="../assets/vertical-text-covey-qads.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="quad-content-right">
+                                        <div class="quadrantBox">
+                                            <div class="quadLabel">
+                                                <h4>Quadrant 3</h4>
+                                            </div>
+                                            <ul class="quadOutput" id="quad-three-output">
+                                                <!-- Items Appear Here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="quadContainer" id="quadFour"> <!-- Quadrant Four -->
+                                <div class="quad-heading-h"></div>
+                                <div class="quad-flex-box-bottom">
+                                    <div class="quad-content-left">
+                                        <div class="quad-heading-v">
+                                            <!-- <img class="vertical-text" id="for-mobile" src="../assets/vertical-text-covey-qads.svg" alt=""> -->
+                                        </div>
+                                    </div>
+                                    <div class="quad-content-right">
+                                        <div class="quadrantBox">
+                                            <div class="quadLabel">
+                                                <h4>Quadrant 4</h4>
+                                            </div>
+                                            <ul class="quadOutput" id="quad-four-output">
+                                                <!-- Items Appear Here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rightContainer">
+                    <div class="right-flex-container">
+                        <div class="child-container-wrap"> <!-- Not Effected by Parent FlexBox -->
+
+                            <!-- Currently Selected Project, Overview Stats -->
+                            <div class="project-stats-wrapper">
+                                <div class="proj-stats-container">
+                                    <div class="header">
+                                        <h4 class="projectHeading">Designs | Project Insights</h4>
+                                    </div>
+                                    <div class="projectBarGrid">
+                                        <div class="project-bar-outer" id="focus-time-outer">
+                                            <img class="barIcon" id="focusBarIcon" src="../assets/proj-overview-bar-focus-icon.svg" alt="">
+                                            <div class="projectBar" id="focusTimeBar"></div>
+                                        </div>
+                                        <div class="project-bar-outer" id="completion-rate-outer">
+                                            <img class="barIcon" id="focusBarIcon" src="../assets/proj-overview-bar-completion-icon.svg" alt="">
+                                            <div class="projectBar" id="completionRateBar"></div>
+                                        </div>
+                                        <div class="project-bar-outer" id="due-date-outer">
+                                            <img class="barIcon" id="focusBarIcon" src="../assets/proj-overview-bar-due-icon.svg" alt="">
+                                            <div class="projectBar" id="dueDateBar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="simpleTaskListWrapper">
+                                <div class="taskListContainer">
+                                    <div class="header">
+                                        <h4 class="projectHeading">Tasks To Complete</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section> <!-- Houses the Simple TaskList & Calender -->
+            </section>
+        </section>
+    
+        <script src="./scripts/covey-quads.js"></script> <!-- script file link -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script> <!-- SweetAlert2 Link -->
+    </body>
+</html>

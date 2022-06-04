@@ -1,9 +1,9 @@
-let width,height;
-window.onresize = window.onload = function() {
-    width = this.innerWidth;
-    height = this.innerHeight;
-    console.log(width + 'x' + height);
-}
+// let width,height;
+// window.onresize = window.onload = function() {
+//     width = this.innerWidth;
+//     height = this.innerHeight;
+//     console.log(width + 'x' + height);
+// }
 
 /*--------------------------*/
 /*--------------------------*/
@@ -1497,7 +1497,7 @@ function addElapsedTime() {
 /*--------------*/
 /*--------------*/
 
-let likedSongsArr = [];
+// let likedSongsArr = [];
 
 /*----------------*/
 /* INTIATING HTML */

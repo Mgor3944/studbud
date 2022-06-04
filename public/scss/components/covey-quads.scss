@@ -1,0 +1,324 @@
+.dashboard {
+    .dashElements {
+        max-width: 2000px;
+        display: flex;
+        flex-direction: row;
+        padding: 15px 0px 6px 0px;
+        // background-color: pink;
+
+        .leftContainer {
+            padding: 10px 15px 10px 25px;
+            flex: 67%;
+
+            .left-flex-container {
+                width: 100%;
+                height: 838px;
+
+                /*-----------------*/
+                /* COVEY QUADRANTS */
+                /*-----------------*/
+
+                .flex-container-wrap {
+                    width: 100%;
+                    height: 50%;
+                    display: flex;
+
+                    .quadContainer {
+                        flex: 1;
+
+                        .quad-heading-h {
+                            width: 100%;
+                            height: 10%;
+                            color: var(--grey);
+                            font-weight: 600;
+                            font-size: 17px;
+                            text-align: center;
+                            padding-left: 50px;
+                        }
+
+                        .quad-flex-box-bottom {
+                            width: 100%;
+                            height: 90%;
+                            display: flex;
+                            flex-direction: row;
+
+                            .quad-content-left {
+                                flex: 10%;
+                                position: relative;
+
+                                .quad-heading-v {
+                                    position: absolute;
+                                    top: 30%;
+                                    left: 0%;
+                                    padding: 0px 0px 0px 15px;
+                                }
+                            }
+
+                            .quad-content-right {
+                                flex: 90%; 
+                                padding: 10px;
+
+                                .quadrantBox {
+                                    width: 100%;
+                                    height: 100%;
+                                    background: var(--darkElem);
+                                    border-radius: 20px;
+                                    padding: 40px;
+
+                                    .quadLabel {
+                                        height: 17%;
+                                        width: 100%;
+                                        font-weight: 700;
+                                        font-size: 18px;
+                                        color: var(--purple);
+                                    }
+
+                                    .quadOutput {
+                                        width: 100%;
+                                        height: 83%;
+                                        overflow: auto;
+
+                                        .quadTaskItem {
+                                            width: 100%;
+                                            display: flex;
+                                            padding: 5px 0px 10px 0px;
+
+                                            .quad-task-name {
+                                                color: var(--ghost);
+                                                width: 60%;
+                                                font-weight: 400;
+                                            }
+
+                                            .quad-due-date {
+                                                color: var(--grey);
+                                                width: 40%;
+                                                font-weight: 300;
+                                                text-align: right;
+                                            }
+                                        }
+
+                                        .completedItem {
+                                            opacity: 0.5;
+                                            .quad-task-name { text-decoration: line-through; }
+                                            .quad-due-date { text-decoration: line-through; }
+                                        }
+
+                                        // DEFAULT LOADING BOXES
+                                        .defaultLoadingItem {
+                                            width: 60%;
+                                            height: 10%;
+                                            margin-bottom: 10px;
+                                            border-radius: 20px;
+                                            background: var(--dashBG);
+                                        }
+
+                                        .defaultLoadingItem:nth-child(odd) { background: var(--greyBlue); }
+                                        .defaultLoadingItem:nth-child(2) { width: 70%; }
+                                        .defaultLoadingItem:nth-child(3) { width: 50%; }
+                                        .defaultLoadingItem:nth-child(4) { width: 60%; }
+                                        .defaultLoadingItem:nth-child(5) { width: 30%; }
+                                        .defaultLoadingItem:nth-child(6) { width: 40%; }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .rightContainer {
+            padding: 10px 25px 10px 15px;
+            flex: 33%;
+
+            .right-flex-container {
+                width: 100%;
+                height: 838px;
+
+                .child-container-wrap {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    /*------------------------*/
+                    /* PROJECT OVERVIEW STATS */
+                    /*------------------------*/
+
+                    .project-stats-wrapper {
+                        flex: 45%;
+                        margin-bottom: 30px;
+                        // background: var(--greyBlue);
+                        border-radius: 15px;
+                        padding: 0px 20px 0px 20px;
+
+                        .proj-stats-container {
+                            width: 100%;
+                            height: 100%;
+                            padding: 20px 20px 10px 20px;
+
+                            .header {
+                                width: 100%;
+                                color: var(--ghost);
+                                font-weight: 600;
+                                font-size: 17px;
+                                padding-bottom: 40px;
+
+                            }
+
+                            .projectBarGrid {
+                                position: relative;
+                                display: flex;
+                                flex-direction: row;
+                                width: 100%;
+                                height: 80%;
+
+                                .project-bar-outer {
+                                    position: relative;
+                                    height: 100%;
+                                    border-radius: 20px;
+                                    background: var(--darkElem); // greenyellow
+
+                                    .barIcon {
+                                        width: 100%;
+                                        height: 25px;
+                                        margin-top: 20px;
+                                    }
+
+                                    .projectBar {
+                                        position: absolute;
+                                        bottom: 0px;
+                                        width: 100%;
+                                        border-radius: 20px;
+                                    }
+
+                                    #focusTimeBar {
+                                        background: var(--paleBlue);
+                                        height: 20%;
+                                    }
+
+                                    #completionRateBar {
+                                        background: var(--pink);
+                                        height: 45%;
+                                    }
+
+                                    #dueDateBar {
+                                        background: var(--paleBlue);
+                                        height: 70%;
+                                    }
+                                }
+
+                                #focus-time-outer {
+                                    flex: 20%;
+                                    margin-right: 40px;
+                                }
+
+                                #completion-rate-outer {
+                                    flex: 20%;
+                                    margin-right: 40px;
+                                }
+
+                                #due-date-outer {
+                                    flex: 20%;
+                                }
+                            }
+                        }
+                    }
+
+                    /*-------------------*/
+                    /* TASK LIST DISPLAY */
+                    /*-------------------*/
+
+                    .simpleTaskListWrapper {
+                        flex: 55%;
+                        background: var(--greyBlue);
+                        border-radius: 15px;
+
+                        .taskListContainer {
+                            width: 100%;
+                            height: 100%;
+                            padding: 30px;
+
+                            .header {
+                                width: 100%;
+                                color: var(--ghost);
+                                font-weight: 600;
+                                font-size: 17px;
+                                padding-bottom: 40px;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// RESPONSIVE SETTINGS
+
+@media (max-width: 1200px) {
+    .dashElements {
+        flex-direction: column !important;
+        
+        .leftContainer {
+            padding: 10px 25px 10px 25px !important;
+
+            .left-flex-container {
+                height: 700px !important;
+            }
+        }
+        
+        .rightContainer {
+            padding: 10px 25px 10px 25px !important;
+
+            .right-flex-container {
+                height: 600px !important;
+
+                .child-container-wrap {
+                    flex-direction: row-reverse !important;
+
+                    .project-stats-wrapper {
+                        flex: 40% !important;
+                        margin-right: 30px;
+                    }
+        
+                    .simpleTaskListWrapper {
+                        flex: 60% !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MOBILE RESPONSIVE SETTINGS ~ RIGHT CONTAINER
+
+@media (max-width: 900px) {
+    .dashElements {
+        .rightContainer {
+            .right-flex-container {
+                height: 600px !important;
+                .child-container-wrap {
+                    flex-direction: column-reverse !important;
+                }
+            }
+        }
+    }
+}
+
+// MOBILE RESPONSIVE SETTINGS ~ LEFT CONTAINER
+
+@media (max-width: 750px) {
+    .dashElements {
+        .leftContainer {
+            .left-flex-container {
+                height: 1200px !important;
+                .flex-container-wrap {
+                    flex-direction: column !important;
+                }
+            }
+        }
+    }
+}

@@ -128,33 +128,50 @@ screen and (max-height: 799px) {
             }
         }
     }
+
+    .sidebar.open li.focus_info {
+        height: 180px !important;
+        margin-top: 25px !important;
+    }
 }
 
 /* Resizing Navbar Top */
 
 @media only screen and (min-width: 1700px) {
     .dashboard .top_heading {
-        width: 55%;
+        width: 55% !important;
     }
 }
 
 @media only screen and (min-width: 1550px) and (max-width: 1699px) {
     .dashboard .top_heading {
-        width: 45%;
+        width: 45% !important;
+    }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1549px) {
+    .dashboard .top_heading {
+        width: 35% !important;
+    }
+}
+
+@media only screen and (min-width: 1250px) and (max-width: 1400px) {
+    .dashboard .top_heading {
+        width: 33% !important;
     }
 }
 
 /* Breakpoint Notifcation */
 
-@media only screen and (min-width: 700px) and (max-width: 1300px) {
-    .dashboard {
-        opacity: 0 !important;
-    }
+// @media only screen and (min-width: 700px) and (max-width: 1300px) {
+//     .dashboard {
+//         opacity: 0 !important;
+//     }
 
-    .sidebar {
-        opacity: 0 !important;
-    }
-}
+//     .sidebar {
+//         opacity: 0 !important;
+//     }
+// }
 
 /* Mobile Layout */
 
