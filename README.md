@@ -16,9 +16,7 @@ Throughout the duration of this web app development project I experienced severa
 
 Reflecting on the development process of Studbud, I can definiteyl say I have more than enjoyed this project. The development skills I have learnt are amazing and definitely something I use going forward... mostly likely to continue developing this app into something of a professional standard. I know that with a few more weeks of work on it, I would have been able to make it to a professional standard, however I couldn't be prouder of the standard to which I achieved. From time-management skills, to development skills to greater organisational skills I belive my foundations have risen exponentially and I wanted to thank my tutor Sam and the rest of the web design tutors for pushing students like myself to create better and more sophisticated applications.
 
-# Acknowledgements
-
-I wanted to add an additional section to my reflection which was dedicated to everyone that helped guide me. First of all, I wanted to say a huge thank you to my tutor Sam for responding to my billions of questions and providing me helpful insights into how I could better my code, I definitely couldn't have got this far without you. I also wanted to say a big thank you to all the other tutors that provided me with any guideance, thank you so much. Hopefully, I can continue to develop this project into something real and fun for students to use as I believe that it is almost there. 
+Hopefully, I can continue to develop this project into something real and fun for students to use as I believe that the professional standard of work I am looking to achieve is not terribly far away. I am very excited to hear your feedback on the project as a whole.
 
 ---
 
