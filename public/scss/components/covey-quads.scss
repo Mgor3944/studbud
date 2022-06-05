@@ -82,6 +82,7 @@
                                             width: 100%;
                                             display: flex;
                                             padding: 5px 0px 10px 0px;
+                                            animation: fadeTasksInToQuads 1.5s ease;
 
                                             .quad-task-name {
                                                 color: var(--ghost);
@@ -109,15 +110,19 @@
                                             height: 10%;
                                             margin-bottom: 10px;
                                             border-radius: 20px;
-                                            background: var(--dashBG);
+                                            background: var(--greyBlue);
                                         }
 
-                                        .defaultLoadingItem:nth-child(odd) { background: var(--greyBlue); }
                                         .defaultLoadingItem:nth-child(2) { width: 70%; }
                                         .defaultLoadingItem:nth-child(3) { width: 50%; }
                                         .defaultLoadingItem:nth-child(4) { width: 60%; }
                                         .defaultLoadingItem:nth-child(5) { width: 30%; }
                                         .defaultLoadingItem:nth-child(6) { width: 40%; }
+
+                                        @keyframes fadeTasksInToQuads {
+                                            0% { opacity: 0; }
+                                            100% { opacity: 1; }
+                                        }
                                     }
                                 }
                             }
@@ -148,22 +153,41 @@
 
                     .project-stats-wrapper {
                         flex: 45%;
+                        height: 45%;
                         margin-bottom: 30px;
-                        // background: var(--greyBlue);
                         border-radius: 15px;
-                        padding: 0px 20px 0px 20px;
+                        padding: 0px 40px 0px 40px;
 
                         .proj-stats-container {
+                            opacity: 1;
                             width: 100%;
                             height: 100%;
                             padding: 20px 20px 10px 20px;
+                            transition: all 0.5s ease;
+                            transition-delay: 0.5s;
 
                             .header {
                                 width: 100%;
                                 color: var(--ghost);
-                                font-weight: 600;
-                                font-size: 17px;
                                 padding-bottom: 40px;
+
+                                .heading-text {
+                                    font-weight: 600;
+                                    font-size: 17px;
+
+                                    .selProjectCol {
+                                        padding: 5px 10px 5px 10px; 
+                                        border-radius: 5px;
+                                    }
+
+                                    // assign background colour to respective project name
+                                    .col-blue { background: rgb(101, 249, 255, 0.5); }
+                                    .col-purple { background: rgb(154, 101, 255, 0.5); }
+                                    .col-green { background: rgb(74, 197, 126, 0.6); }
+                                    .col-red  { background: rgba(255, 101, 101, 0.5); }
+                                    .col-orange  { background: rgba(255, 178, 101, 0.5); }
+                                    .col-pink  { background: rgb(255, 101, 196, 0.5); }
+                                }
 
                             }
 
@@ -179,6 +203,8 @@
                                     height: 100%;
                                     border-radius: 20px;
                                     background: var(--darkElem); // greenyellow
+                                    overflow: hidden !important;
+                                    text-align: center;
 
                                     .barIcon {
                                         width: 100%;
@@ -193,30 +219,36 @@
                                         border-radius: 20px;
                                     }
 
-                                    #focusTimeBar {
-                                        background: var(--paleBlue);
-                                        height: 20%;
-                                    }
-
                                     #completionRateBar {
                                         background: var(--pink);
-                                        height: 45%;
-                                    }
+                                        height: 0%;
+                                        padding-top: 10px;
+                                        transition: all 1s ease;
 
+                                        .completion-percent-text {
+                                            z-index: 5;
+                                            font-size: 19px;
+                                            color: var(--ghost);
+                                        }
+                                    }
+                                    
                                     #dueDateBar {
                                         background: var(--paleBlue);
-                                        height: 70%;
-                                    }
-                                }
+                                        height: 0%;
+                                        padding-top: 10px;
+                                        transition: all 1s ease;
 
-                                #focus-time-outer {
-                                    flex: 20%;
-                                    margin-right: 40px;
+                                        .days-left-text {
+                                            z-index: 5;
+                                            font-size: 19px;
+                                            color: var(--ghost);
+                                        }
+                                    }
                                 }
 
                                 #completion-rate-outer {
                                     flex: 20%;
-                                    margin-right: 40px;
+                                    margin-right: 50px;
                                 }
 
                                 #due-date-outer {
@@ -232,21 +264,117 @@
 
                     .simpleTaskListWrapper {
                         flex: 55%;
+                        height: 55%;
                         background: var(--greyBlue);
                         border-radius: 15px;
 
                         .taskListContainer {
                             width: 100%;
                             height: 100%;
-                            padding: 30px;
 
                             .header {
+                                height: 17%;
                                 width: 100%;
                                 color: var(--ghost);
                                 font-weight: 600;
                                 font-size: 17px;
-                                padding-bottom: 40px;
+                                padding: 30px;
+                                letter-spacing: 0.5px;
+                            }
 
+                            .tasks-container {
+                                width: 100%;
+                                height: 83%;
+                                border-radius: 0px 0px 20px 20px;
+                                padding: 0px 30px 20px 30px;
+
+                                .task-list-output {
+                                    width: 100%;
+                                    height: 100%;
+                                    list-style-type: none;
+                                    overflow: auto;
+                                    transition: all 0.5s ease;
+
+                                    .simpleTaskItem {
+                                        width: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        padding: 10px 15px 10px 15px;
+                                        color: var(--ghost);
+                                        margin-bottom: 5px;
+
+                                        .simple-task-name {
+                                            opacity: 0.8;
+                                            padding-top: 5px;
+                                            flex: 38%;
+                                            font-weight: 500;
+                                        }
+
+                                        .simple-task-priority {
+                                            opacity: 0.9;
+                                            text-align: center;
+                                            flex: 24%;
+                                            padding: 7px;
+                                            border-radius: 5px;
+
+                                            .priority-text {
+                                                font-size: 13px;
+                                                font-weight: 600;
+                                            }
+                                        }
+
+                                        .simple-task-days-left {
+                                            padding-top: 5px;
+                                            text-align: right;
+                                            flex: 38%;
+                                            font-weight: 300;
+                                        }
+                                    }
+
+                                    .simpleTaskItem:nth-child(odd) {
+                                        width: 100%;
+                                        background: var(--darkElem);
+                                        border-radius: 10px;
+                                        padding: 15px;
+                                    }
+
+                                    .highPriority {
+                                        .simple-task-priority {
+                                            background: #FFEDEF;
+                                            .priority-text {
+                                                color: #E95060;
+                                            }
+                                        }
+                                    }
+
+                                    .medPriority {
+                                        .simple-task-priority {
+                                            background: #E1E1EF;
+                                            .priority-text {
+                                                color: #363565;
+                                            }
+                                        }
+                                    }
+
+                                    .lowPriority {
+                                        .simple-task-priority {
+                                            background: #E2F4EC;
+                                            .priority-text {
+                                                color: #4A9D77;
+                                            }
+                                        }
+                                    }
+
+                                    .completed {
+                                        display: none;
+                                    }
+                                }
+
+                                @keyframes fadeTopDownTasks {
+                                    0% { height: 0%; }
+                                    100% { height: 100%; }
+                                }
+                                  
                             }
                         }
                     }

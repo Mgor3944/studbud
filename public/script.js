@@ -287,6 +287,7 @@ let colArray = ['skips', 'blue', 'purple', 'green', 'red', 'orange', 'pink'];
 /*---------------------*/
 
 let selectedValue;
+let projectDueDate = null;
 
 /*-----------------*/
 /* INITIATING HTML */
@@ -340,6 +341,7 @@ function addProjectName(item) {
 		    name: item,
             color: selectedValue,
             id: Date.now(),
+            due: projectDueDate,
 		    tasks: []
          };
 
@@ -386,8 +388,14 @@ function renderProjects(projects) {
 function addProjectsToLocalStorage(projects) {
     // convert the array to string then store it.
     localStorage.setItem('projects', JSON.stringify(projects));
+
     // render array to screen
     renderProjects(projects);
+
+    // when a new project is added, update project overview dropdown
+    window.setTimeout(() => {
+        updateProjectDropDown();
+    }, 2000);
 }
 
 /*-------------------------------------*/
@@ -2016,13 +2024,16 @@ function displayAllSongs() {
 /*------------------*/
 /*------------------*/
 
+let storedProjSel;
+
 /*-----------------*/
 /* INITIATING HTML */
 /*-----------------*/
 
 let projectDropDown = document.querySelector('.chooseProject');
 let projectgridBox = document.querySelector('.gridBox');
-let progressBarStatus = document.querySelector('#progressBarStatus'); // progressbar ~ line ~ no plugin used
+let renderedProjectDueDate = document.querySelector('.projectDueDate');
+let progressBarStatus = document.querySelector('#progressBarStatus'); // project completion bar ~ no plugin used (all me!)
 
 /*-------------------*/
 /* DECLARE VARIABLES */
@@ -2032,16 +2043,8 @@ progressBarStatus.style.width = '0px';
 
 let optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
 let renderProjectDropdown;
-let projectValueDD = 0; // project value drop down ~ counter
 let taskValueOS = 0; // task value on screen ~ counter
 let storedSelection = optionSelected.id;
-
-// const projectStatus = new ProgressBar.Line('#progressBarStatus', {
-//     color: '#50E9C0', // green/blue
-//     strokeWidth: 24,
-//     easing: 'easeInOut',
-//     trailColor: '#f4f5f4', // faded white
-// });
 
 /*---------------------------------*/
 /* LOAD PROJECTS INTO SELECT INPUT */
@@ -2049,40 +2052,56 @@ let storedSelection = optionSelected.id;
 
 // check project array for projects
 window.onload = function() {
-    let storedProjSel = localStorage.getItem('storedProjSel', storedSelection); // store for future visits
+    storedProjSel = localStorage.getItem('storedProjSel'); // store selected project id for future visits
     console.log('dropdown project selected: ' + storedProjSel);
 
     if (projects.length > 0) {
-        // render project names to dropdown box
-        renderProjectDropdown = projects.forEach(function(project) {
-            
-            projectValueDD = projectValueDD + 1;
-
-            let projOpt = document.createElement('option');
-            projOpt.innerHTML = project.name;
-            projOpt.value = projectValueDD;
-            projOpt.id = project.id;
-            projectDropDown.append(projOpt);
-
-            if (storedProjSel !== null) {
-                if (storedProjSel == projOpt.value) {
-                    projectDropDown.options[storedProjSel].selected = true;
-                    window.setTimeout(() => {
-                        optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
-                        renderSelectedProject();
-                    }, 1000);
-                }
-            }
-        });
-
+        // render each project name to dropdown box
+        updateProjectDropDown(storedProjSel);
     } else {
         // if no projects, display that information on project box
+        projectDropDown.innerHTML = '';
         let noProjects = document.createElement('option');
         noProjects.innerHTML = 'No Projects';
         noProjects.value = 'No Projects';
-        noProjects.setAttribute('disabled');
         projectDropDown.appendChild(noProjects);
     }
+}
+
+/*------------------------------------------------*/
+/* WHEN PROJECT ARRAY IS UPDATED, UPDATE DROPDOWN */
+/*------------------------------------------------*/
+
+function updateProjectDropDown(storedProjSel) {
+
+    // render default first option in before projects
+    projectDropDown.innerHTML = '';
+    let defaultOption = document.createElement('option');
+    defaultOption.innerHTML = 'Choose a Project';
+    defaultOption.value = '';
+    defaultOption.setAttribute('class', 'proj placeholder');
+    projectDropDown.appendChild(defaultOption);
+
+    // search project array for projects
+    projects.forEach(function(project) {
+        // render each project name to dropdown box
+        let projOpt = document.createElement('option');
+        projOpt.innerHTML = project.name;
+        projOpt.value = project.id;
+        projOpt.id = project.id;
+        projectDropDown.append(projOpt);
+
+        // if stored overview project ID exists
+        if (storedProjSel !== null) {
+            if (storedProjSel == projOpt.value) {
+                projectDropDown.options[storedProjSel].selected = true;
+                window.setTimeout(() => {
+                    optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
+                    renderSelectedProject();
+                }, 1000);
+            }
+        }
+    });
 }
 
 /*------------------------------*/
@@ -2098,13 +2117,82 @@ projectDropDown.oninput = function() {
 /*-------------------------------*/
 
 function checkWhichProjectSelected() {
+    // find selected option from dropdown
     optionSelected = projectDropDown.options[projectDropDown.selectedIndex];
     storedSelection = optionSelected.value;
-    console.log('dropdown project selected: ' + storedSelection);
-    localStorage.setItem('storedProjSel', storedSelection); // store for future visits
+    localStorage.setItem('storedProjSel', storedSelection); // store selected project ID
 
-    // console.log(optionSelected.text); 
-    renderSelectedProject(); // render selected projects task to overview board
+    // check if project due date exists and make according changes
+    checkProjectDueDateInput(storedSelection);
+}
+
+function checkProjectDueDateInput(storedSelection) {
+
+    // confirm which project the selected project is from and add due date to it
+    projects.forEach(function(project) {
+
+        // if selected project ID == project in database check due date entry
+        if (storedSelection == project.id) {
+
+            // if project doesnt have a due date, add project due day to database
+            if (project.due === null) {
+
+                // switch displays
+                document.querySelector('.overviewInsights').style.display = 'none';
+                document.querySelector('.overviewContainer').style.display = 'none';
+                document.querySelector('.addProjectDueDate').style.display = 'block';
+
+                // declare due date submit btn
+                let dueDateEntrySubmit = document.querySelector('#due-date-entry-submit');
+
+                // run event listener for submit
+                dueDateEntrySubmit.addEventListener('click', () => {
+                    window.setTimeout(() => {
+                        updateProjectDueDate();
+                    }, 500);
+                });
+
+                function updateProjectDueDate() {
+
+                    // get day & month input
+                    let projDueDateDay = document.querySelector('#due-date-day').value;
+                    let projDueDateMonth = document.querySelector('#due-date-month').value;
+
+                    // create project due date
+                    let projectDueDate = projDueDateDay + ' ' + projDueDateMonth;
+
+                    // add project due date to selected project & update localstorage
+                    project.due = projectDueDate;
+                    localStorage.setItem('projects', JSON.stringify(projects));
+
+                    // set default display settings
+                    document.querySelector('.overviewInsights').style.display = 'flex';
+                    document.querySelector('.overviewContainer').style.display = 'block';
+                    document.querySelector('.addProjectDueDate').style.display = 'none';
+
+                    // render newly updated project overview to screen
+                    renderSelectedProject();
+                }
+
+            } else {
+                // set default display settings
+                document.querySelector('.overviewInsights').style.display = 'flex';
+                document.querySelector('.overviewContainer').style.display = 'block';
+                document.querySelector('.addProjectDueDate').style.display = 'none';
+
+                // render project with updated due date to screen
+                renderSelectedProject();
+            }
+            
+        } else {
+            document.querySelector('.overviewInsights').style.display = 'flex';
+            document.querySelector('.overviewContainer').style.display = 'block';
+            document.querySelector('.addProjectDueDate').style.display = 'none';
+            
+            // render default project overview settings to screen
+            renderSelectedProject();
+        }
+    });
 }
 
 /*-----------------------------------*/
@@ -2116,6 +2204,13 @@ function renderSelectedProject() {
         if (optionSelected.id == project.id) { // selected option id == one of a project id
             
             console.log('option selected id: ' + optionSelected.id + ' is connected to the project: ' + project.name);
+
+            /*---------------------------*/
+            /* RENDER DUE DATE TO SCREEN */
+            /*---------------------------*/
+
+            renderedProjectDueDate.innerHTML = '';
+            renderedProjectDueDate.innerHTML = project.due;
 
             if (project.tasks.length !== 0) {
 
@@ -2176,8 +2271,9 @@ function renderSelectedProject() {
                 });
 
             } else {
-                // clear projectgridBox input
+                // clear grid box and due date 
                 projectgridBox.innerHTML = '';
+
                 // render blank task view display
                 for (let i = 0; i < 10; i++) {
                     const overviewItem = document.createElement('div'); 
@@ -2188,9 +2284,15 @@ function renderSelectedProject() {
                 progressBarStatus.style.width = '0%';
             }
         }
+
         if (optionSelected.value == '') {
-            // clear projectgridBox input
+            // clear grid box and due date 
             projectgridBox.innerHTML = '';
+            renderedProjectDueDate.innerHTML = '';
+
+            // render default date to screen
+            renderedProjectDueDate.innerHTML = '...';
+
             // render blank task view display
             for (let i = 0; i < 10; i++) {
                 const overviewItem = document.createElement('div'); 
@@ -2201,7 +2303,6 @@ function renderSelectedProject() {
             progressBarStatus.style.width = '0%';
          }
     });
-    
 }
 
 /*---------------*/
@@ -2357,8 +2458,6 @@ function deleteAcronym(id) {
 // get acronyms from localstorage on window load
 getAcronymFromLocalStorage();
 
-// localStorage.removeItem('acronymsArr');
-
 acrOutput.addEventListener('click', function(event) {
     // check if click is on a delete button
     if (event.target.classList.contains('delAcronym')) {
@@ -2382,7 +2481,6 @@ function renderInitialAcronymSetup() {
         acrOutput.append(acrItem);
     }
 }
-  
 
 /*-----------------*/
 /*-----------------*/

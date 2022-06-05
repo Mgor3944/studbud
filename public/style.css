@@ -72,6 +72,27 @@ body {
     margin: 10% !important;
 }
 
+.sidebar .coming-soon {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
+.sidebar.open .coming-soon {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
+.sidebar.open .coming-soon:hover {
+    color: none !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
 .sidebar .navlink .active { /* changes colour of item icon when it is active */
     color: var(--purple) !important;
 }

@@ -65,7 +65,7 @@
                 <div class="line-split"></div>
 
                 <!-- Active Features -->
-                <li><a href="#" class="navlink"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a></li>
+                <li><a href="#" class="navlink coming-soon"><i class='bx bx-cog'></i><span class="links_name">Settings</span></a></li>
                 <li><a href="#" class="navlink"><i class='bx bx-log-out'></i><span class="links_name">Log Out</span></a></li>
 
                 <!-- Focus Mode Highlight --> 
@@ -122,7 +122,7 @@
                     <div class="task-wrapper">
                         <!-- Top Section -->
                         <div class="head-wrapper">
-                            <h3 class="title">Today's Tasks</h3>
+                            <h3 class="title">Weekly Tasks</h3>
                             <div class="button">
                                 <a href="#" id="crNewTaskBtn"><img id="crTaskbutton" src="../assets/newTaskBtn.svg" alt=""></a>
                             </div>
@@ -661,6 +661,16 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="addProjectDueDate">
+                            <div class="projectDueDateEntry">
+                                <label class="due-date-entry-label">Add A <span class="emphasise">Due Date</span> For Your Project</label>
+                                <div class="due-date-input-flexBox">
+                                    <input type="number" name="due-date-day" id="due-date-day" maxlength="2" placeholder="20" autofocus>
+                                    <input type="text" name="due-date-month" id="due-date-month" maxlength="3" placeholder="Apr">
+                                    <a href="#" id="due-date-entry-submit"><i class="bx bx-plus" id="submitProjDueDate"></i></a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="overviewContainer">
                             <div class="tasksTitle">
                                 <h4 class="title" id="projOverviewTaskHead">Tasks</h4>
@@ -703,7 +713,7 @@
                                         <h4 class="head">Due Date</h4>
                                     </div>
                                     <div class="dueDateBox">
-                                        <h4 class="projectDueDate">03 Jun</h4>
+                                        <h4 class="projectDueDate">...</h4>
                                     </div>
                                 </div>
                             </div>
