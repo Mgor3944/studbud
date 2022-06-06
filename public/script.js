@@ -958,6 +958,8 @@ let pomSessions = document.querySelector('.pSessions');
 
 let type = 'Work';
 
+let clockTimer;
+
 // clock settings
 let isClockRunning = false;
 let isClockStopped = true;
