@@ -1368,8 +1368,8 @@ let isPlaying = false;
 let initialStopwatchTime = '00 : 00 : 00';
 stopwatchTime.innerText = initialStopwatchTime;
 
-timeInStopwatch = 0;
-stopwatch = null;
+let timeInStopwatch = 0;
+let stopwatch = null;
 
 let lapNumber = 1;
 
